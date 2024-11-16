@@ -1,11 +1,10 @@
-
---CreaciÛn de procedimientos de almacenado para insert en las tablas
----SofÌa Sancho, 14/11/2024
+--Creaci√≥n de procedimientos de almacenado para insert en las tablas
+---Sof√≠a Sancho, 14/11/2024
 
 CREATE OR REPLACE PROCEDURE FIDE_CATEGORIAS_TB_INSERTAR_SP (
-    V_idCategoria IN NUMBER,
-    V_Nombre IN VARCHAR2,
-    V_Descripcion IN VARCHAR2
+    V_idCategoria IN FIDE_CATEGORIAS_TB.idCategoria%TYPE,
+    V_Nombre IN FIDE_CATEGORIAS_TB.Nombre%TYPE,
+    V_Descripcion IN FIDE_CATEGORIAS_TB.Descripcion%TYPE
 )
 IS
 BEGIN
@@ -16,13 +15,13 @@ BEGIN
 END FIDE_CATEGORIAS_TB_INSERTAR_SP;
 
 ---Prueba
-EXEC FIDE_CATEGORIAS_TB_INSERTAR_SP(1, 'Computadoras de escritorio', 'AquÌ se almacenan todas las pc');
+EXEC FIDE_CATEGORIAS_TB_INSERTAR_SP(1, 'Computadoras de escritorio', 'Aqu√≠ se almacenan todas las pc');
 
 ---(Exito)
 
 CREATE OR REPLACE PROCEDURE FIDE_ESTADOS_TB_INSERTAR_SP (
-    V_idEstado IN NUMBER,
-    V_Nombre IN VARCHAR2
+    V_idEstado IN FIDE_ESTADOS_TB.idEstado%TYPE,
+    V_Nombre IN FIDE_ESTADOS_TB.Nombre%TYPE
 )
 IS
 BEGIN
@@ -35,8 +34,8 @@ EXEC FIDE_ESTADOS_TB_INSERTAR_SP(1, 'Activo');
 ---(Exito)
 
 CREATE OR REPLACE PROCEDURE FIDE_PAISES_TB_INSERTAR_SP (
-    V_idPais IN NUMBER,
-    V_Nombre IN VARCHAR2
+    V_idPais IN FIDE_PAISES_TB.idPais%TYPE,
+    V_Nombre IN FIDE_PAISES_TB.Nombre%TYPE
 )
 IS
 BEGIN
@@ -49,8 +48,8 @@ EXEC FIDE_PAISES_TB_INSERTAR_SP(1, 'Costa Rica');
 ---(Exito)
 
 CREATE OR REPLACE PROCEDURE FIDE_PROVINCIAS_TB_INSERTAR_SP (
-    V_idProvincia IN NUMBER,
-    V_Nombre IN VARCHAR2
+    V_idProvincia IN FIDE_PROVINCIAS_TB.idProvincia%TYPE,
+    V_Nombre IN FIDE_PROVINCIAS_TB.Nombre%TYPE
 )
 IS
 BEGIN
@@ -63,8 +62,8 @@ EXEC FIDE_PROVINCIAS_TB_INSERTAR_SP(1, 'Provincia A');
 ---(Exito)
 
 CREATE OR REPLACE PROCEDURE FIDE_CANTONES_TB_INSERTAR_SP (
-    V_idCanton IN NUMBER,
-    V_Nombre IN VARCHAR2
+    V_idCanton IN FIDE_CANTONES_TB.idCanton%TYPE,
+    V_Nombre IN FIDE_CANTONES_TB.Nombre%TYPE
 )
 IS
 BEGIN
@@ -77,8 +76,8 @@ EXEC FIDE_CANTONES_TB_INSERTAR_SP(1, 'Puriscal');
 ---(Exito)
 
 CREATE OR REPLACE PROCEDURE FIDE_DISTRITOS_TB_INSERTAR_SP (
-    V_idDistrito IN NUMBER,
-    V_Nombre IN VARCHAR2
+    V_idDistrito IN FIDE_DISTRITOS_TB.idDistrito%TYPE,
+    V_Nombre IN FIDE_DISTRITOS_TB.Nombre%TYPE
 )
 IS
 BEGIN
@@ -91,30 +90,30 @@ EXEC FIDE_DISTRITOS_TB_INSERTAR_SP(1, 'Mercedes Sur');
 ---(Exito)
 
 CREATE OR REPLACE PROCEDURE FIDE_DIRECCIONES_TB_INSERTAR_SP (
-    V_idDireccion IN NUMBER,
-    V_idPais IN NUMBER,
-    V_idProvincia IN NUMBER,
-    V_idCanton IN NUMBER,
-    V_idDistrito IN NUMBER,
-    V_SeÒas IN VARCHAR2
+    V_idDireccion IN FIDE_DIRECCIONES_TB.idDireccion%TYPE,
+    V_idPais IN FIDE_DIRECCIONES_TB.idPais%TYPE,
+    V_idProvincia IN FIDE_DIRECCIONES_TB.idProvincia%TYPE,
+    V_idCanton IN FIDE_DIRECCIONES_TB.idCanton%TYPE,
+    V_idDistrito IN FIDE_DIRECCIONES_TB.idDistrito%TYPE,
+    V_Se√±as IN FIDE_DIRECCIONES_TB.Se√±as%TYPE
 )
 IS
 BEGIN
     INSERT INTO FIDE_DIRECCIONES_TB (
-        idDireccion, idPais, idProvincia, idCanton, idDistrito, SeÒas)
+        idDireccion, idPais, idProvincia, idCanton, idDistrito, Se√±as)
     VALUES (
-        V_idDireccion, V_idPais, V_idProvincia, V_idCanton, V_idDistrito, V_SeÒas);
+        V_idDireccion, V_idPais, V_idProvincia, V_idCanton, V_idDistrito, V_Se√±as);
     COMMIT;
 END FIDE_DIRECCIONES_TB_INSERTAR_SP;
 --prueba
-EXEC FIDE_DIRECCIONES_TB_INSERTAR_SP(1, 1, 1, 1, 1, 'Cerbatana, UrbanizaciÛn Miramar');
+EXEC FIDE_DIRECCIONES_TB_INSERTAR_SP(1, 1, 1, 1, 1, 'Cerbatana, Urbanizaci√≥n Miramar');
 ---(Exito)
 
 CREATE OR REPLACE PROCEDURE FIDE_PROVEEDORES_TB_INSERTAR_SP (
-    V_idProveedor IN NUMBER,
-    V_Nombre IN VARCHAR2,
-    V_idDireccion IN NUMBER,
-    V_Telefono IN NUMBER
+    V_idProveedor IN FIDE_PROVEEDORES_TB.idProveedor%TYPE,
+    V_Nombre IN FIDE_PROVEEDORES_TB.Nombre%TYPE,
+    V_idDireccion IN FIDE_PROVEEDORES_TB.idDireccion%TYPE,
+    V_Telefono IN FIDE_PROVEEDORES_TB.Telefono%TYPE
 )
 IS
 BEGIN
@@ -127,8 +126,8 @@ EXEC FIDE_PROVEEDORES_TB_INSERTAR_SP(1, 'Hp', 1, 24171032);
 ---(Exito)
 
 CREATE OR REPLACE PROCEDURE FIDE_MARCASPRODUCTO_TB_INSERTAR_SP (
-    V_idMarca IN NUMBER,
-    V_Nombre IN VARCHAR2
+    V_idMarca IN FIDE_MARCASPRODUCTO_TB.idMarca%TYPE,
+    V_Nombre IN FIDE_MARCASPRODUCTO_TB.Nombre%TYPE
 )
 IS
 BEGIN
@@ -141,12 +140,12 @@ EXEC FIDE_MARCASPRODUCTO_TB_INSERTAR_SP(1, 'Hp');
 ---(Exito)
 
 CREATE OR REPLACE PROCEDURE FIDE_PRODUCTOS_TB_INSERTAR_SP (
-    V_idProducto IN NUMBER,
-    V_Nombre IN VARCHAR2,
-    V_Precio IN NUMBER,
-    V_idCategoria IN NUMBER,
-    V_idEstado IN NUMBER,
-    V_idMarca IN NUMBER
+    V_idProducto IN FIDE_PRODUCTOS_TB.idProducto%TYPE,
+    V_Nombre IN FIDE_PRODUCTOS_TB.Nombre%TYPE,
+    V_Precio IN FIDE_PRODUCTOS_TB.Precio%TYPE,
+    V_idCategoria IN FIDE_PRODUCTOS_TB.idCategoria%TYPE,
+    V_idEstado IN FIDE_PRODUCTOS_TB.idEstado%TYPE,
+    V_idMarca IN FIDE_PRODUCTOS_TB.idMarca%TYPE
 )
 IS
 BEGIN
@@ -159,10 +158,10 @@ EXECUTE FIDE_PRODUCTOS_TB_INSERTAR_SP(1, 'Hp Pavilion', 3500 , 1, 1, 1);
 ---(Exito)
 
 CREATE OR REPLACE PROCEDURE FIDE_PRODUCTOPROVEEDOR_TB_INSERTAR_SP (
-    V_idProductoProveedor IN NUMBER,
-    V_horarioEntrega IN VARCHAR2,
-    V_idProveedor IN NUMBER,
-    V_precioCompra IN NUMBER
+    V_idProductoProveedor IN FIDE_PRODUCTOPROVEEDOR_TB.idProductoProveedor%TYPE,
+    V_horarioEntrega IN FIDE_PRODUCTOPROVEEDOR_TB.horarioEntrega%TYPE,
+    V_idProveedor IN FIDE_PRODUCTOPROVEEDOR_TB.idProveedor%TYPE,
+    V_precioCompra IN FIDE_PRODUCTOPROVEEDOR_TB.precioCompra%TYPE
 )
 IS
 BEGIN
@@ -175,11 +174,11 @@ EXEC FIDE_PRODUCTOPROVEEDOR_TB_INSERTAR_SP(1, 'lunes 9 am',1, 35000);
 ---(Exito)
 
 CREATE OR REPLACE PROCEDURE FIDE_SUCURSALES_TB_INSERTAR_SP (
-    V_idSucursal IN NUMBER,
-    V_Nombre IN VARCHAR2,
-    V_idDireccion IN NUMBER,
-    V_horaApertura IN VARCHAR2,
-    V_horaCierre IN VARCHAR2
+    V_idSucursal IN FIDE_SUCURSALES_TB.idSucursal%TYPE,
+    V_Nombre IN FIDE_SUCURSALES_TB.Nombre%TYPE,
+    V_idDireccion IN FIDE_SUCURSALES_TB.idDireccion%TYPE,
+    V_horaApertura IN FIDE_SUCURSALES_TB.horaApertura%TYPE,
+    V_horaCierre IN FIDE_SUCURSALES_TB.horaCierre%TYPE
 )
 IS
 BEGIN
@@ -192,11 +191,11 @@ EXEC FIDE_SUCURSALES_TB_INSERTAR_SP(1, 'Sucursal Puriscal', 1, '08:00', '16:00')
 ---(Exito)
 
 CREATE OR REPLACE PROCEDURE FIDE_INVENTARIOS_TB_INSERTAR_SP (
-    V_idInventario IN NUMBER,
-    V_idProducto IN NUMBER,
-    V_Cantidad IN NUMBER,
-    V_ultimaActualizacion IN DATE,
-    V_idSucursal IN NUMBER
+    V_idInventario IN FIDE_INVENTARIOS_TB.idInventario%TYPE,
+    V_idProducto IN FIDE_INVENTARIOS_TB.idProducto%TYPE,
+    V_Cantidad IN FIDE_INVENTARIOS_TB.Cantidad%TYPE,
+    V_ultimaActualizacion IN FIDE_INVENTARIOS_TB.ultimaActualizacion%TYPE,
+    V_idSucursal IN FIDE_INVENTARIOS_TB.idSucursal%TYPE
 )
 IS
 BEGIN
@@ -209,14 +208,14 @@ EXEC FIDE_INVENTARIOS_TB_INSERTAR_SP(1, 1, 240, SYSDATE, 1);
 ---(Exito)
 
 CREATE OR REPLACE PROCEDURE FIDE_EMPLEADOS_TB_INSERTAR_SP (
-    V_idEmpleado IN NUMBER,
-    V_Nombre IN VARCHAR2,
-    V_idSucursal IN NUMBER,
-    V_Puesto IN VARCHAR2,
-    V_idDireccion IN NUMBER,
-    V_Salario IN NUMBER,
-    V_Correo IN VARCHAR2,
-    V_idEstado IN NUMBER
+    V_idEmpleado IN FIDE_EMPLEADOS_TB.idEmpleado%TYPE,
+    V_Nombre IN FIDE_EMPLEADOS_TB.Nombre%TYPE,
+    V_idSucursal IN FIDE_EMPLEADOS_TB.idSucursal%TYPE,
+    V_Puesto IN FIDE_EMPLEADOS_TB.Puesto%TYPE,
+    V_idDireccion IN FIDE_EMPLEADOS_TB.idDireccion%TYPE,
+    V_Salario IN FIDE_EMPLEADOS_TB.Salario%TYPE,
+    V_Correo IN FIDE_EMPLEADOS_TB.Correo%TYPE,
+    V_idEstado IN FIDE_EMPLEADOS_TB.idEstado%TYPE
 )
 IS
 BEGIN
@@ -225,15 +224,15 @@ BEGIN
     COMMIT;
 END FIDE_EMPLEADOS_TB_INSERTAR_SP;
 --prueba
-EXEC FIDE_EMPLEADOS_TB_INSERTAR_SP(1, 'SofÌa Sancho', 1, 'Gerente', 1, 150000, 'sofiasancho0219@innovatech.com', 1);
+EXEC FIDE_EMPLEADOS_TB_INSERTAR_SP(1, 'Sof√≠a Sancho', 1, 'Gerente', 1, 150000, 'sofiasancho0219@innovatech.com', 1);
 ---(Exito)
 
 CREATE OR REPLACE PROCEDURE FIDE_VENTAS_TB_INSERTAR_SP (
-    V_idVenta IN NUMBER,
-    V_idEmpleado IN NUMBER,
-    V_idSucursal IN NUMBER,
-    V_fechaVenta IN DATE,
-    V_Total IN NUMBER
+    V_idVenta IN FIDE_VENTAS_TB.idVenta%TYPE,
+    V_idEmpleado IN FIDE_VENTAS_TB.idEmpleado%TYPE,
+    V_idSucursal IN FIDE_VENTAS_TB.idSucursal%TYPE,
+    V_fechaVenta IN FIDE_VENTAS_TB.fechaVenta%TYPE,
+    V_Total IN FIDE_VENTAS_TB.Total%TYPE
 )
 IS
 BEGIN
@@ -246,11 +245,11 @@ EXEC FIDE_VENTAS_TB_INSERTAR_SP(1, 1, 1, SYSDATE, 20000);
 ---(Exito)
 
 CREATE OR REPLACE PROCEDURE FIDE_DETALLEVENTAS_TB_INSERTAR_SP (
-    V_idDetalle IN NUMBER,
-    V_idVenta IN NUMBER,
-    V_idProducto IN NUMBER,
-    V_Cantidad IN NUMBER,
-    V_precioUnitario IN NUMBER
+    V_idDetalle IN FIDE_DETALLEVENTAS_TB.idDetalle%TYPE,
+    V_idVenta IN FIDE_DETALLEVENTAS_TB.idVenta%TYPE,
+    V_idProducto IN FIDE_DETALLEVENTAS_TB.idProducto%TYPE,
+    V_Cantidad IN FIDE_DETALLEVENTAS_TB.Cantidad%TYPE,
+    V_precioUnitario IN FIDE_DETALLEVENTAS_TB.precioUnitario%TYPE
 )
 IS
 BEGIN
@@ -263,8 +262,8 @@ EXEC FIDE_DETALLEVENTAS_TB_INSERTAR_SP(1, 1, 1, 2, 10000);
 ---(Exito)
 
 CREATE OR REPLACE PROCEDURE FIDE_METODOSPAGO_TB_INSERTAR_SP (
-    V_idMetodoPago IN NUMBER,
-    V_Nombre IN VARCHAR2
+    V_idMetodoPago IN FIDE_METODOSPAGO_TB.idMetodoPago%TYPE,
+    V_Nombre IN FIDE_METODOSPAGO_TB.Nombre%TYPE
 )
 IS
 BEGIN
@@ -277,13 +276,13 @@ EXEC FIDE_METODOSPAGO_TB_INSERTAR_SP(1, 'Efectivo');
 ---(Exito)
 
 CREATE OR REPLACE PROCEDURE FIDE_FACTURAS_TB_INSERTAR_SP (
-    V_idFactura IN NUMBER,
-    V_idVenta IN NUMBER,
-    V_fechaEmision IN DATE,
-    V_idMetodoPago IN NUMBER,
-    V_Subtotal IN NUMBER,
-    V_Impuesto IN NUMBER,
-    V_Total IN NUMBER
+    V_idFactura IN FIDE_FACTURAS_TB.idFactura%TYPE,
+    V_idVenta IN FIDE_FACTURAS_TB.idVenta%TYPE,
+    V_fechaEmision IN FIDE_FACTURAS_TB.fechaEmision%TYPE,
+    V_idMetodoPago IN FIDE_FACTURAS_TB.idMetodoPago%TYPE,
+    V_Subtotal IN FIDE_FACTURAS_TB.Subtotal%TYPE,
+    V_Impuesto IN FIDE_FACTURAS_TB.Impuesto%TYPE,
+    V_Total IN FIDE_FACTURAS_TB.Total%TYPE
 )
 IS
 BEGIN
@@ -296,11 +295,11 @@ EXEC FIDE_FACTURAS_TB_INSERTAR_SP(1, 1, SYSDATE, 1, 35000, 35400, 400);
 ---(Exito)
 
 CREATE OR REPLACE PROCEDURE FIDE_DEVOLUCIONES_TB_INSERTAR_SP (
-    V_idDevolucion IN NUMBER,
-    V_idProducto IN NUMBER,
-    V_idFactura IN NUMBER,
-    V_Fecha IN DATE,
-    V_Motivo IN VARCHAR2
+    V_idDevolucion IN FIDE_DEVOLUCIONES_TB.idDevolucion%TYPE,
+    V_idProducto IN FIDE_DEVOLUCIONES_TB.idProducto%TYPE,
+    V_idFactura IN FIDE_DEVOLUCIONES_TB.idFactura%TYPE,
+    V_Fecha IN FIDE_DEVOLUCIONES_TB.Fecha%TYPE,
+    V_Motivo IN FIDE_DEVOLUCIONES_TB.Motivo%TYPE
 )
 IS
 BEGIN
