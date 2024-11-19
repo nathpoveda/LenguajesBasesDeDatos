@@ -12,20 +12,44 @@
         <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
         <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
         <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-</head>
+
+        <style>
+            #main-header .carousel-item img {
+                height: 400px;
+                object-fit: cover;
+                width: 100%;
+            }
+
+            @media (max-width: 768px) {
+                #main-header .carousel-item img {
+                    height: 200px;
+                }
+            }
+
+            #welcome-banner {
+                height: 300px; /* Ajusta la altura del banner */
+                display: flex;
+                justify-content: center;
+                align-items: center;  /* Asegura que el contenido esté centrado */
+                color: white;  /* Color del texto */
+                text-align: center;
+            }
+        </style>
+    </head>
     <body>
         <header th:fragment="header" class="header">
-            <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
+            <nav class="navbar navbar-expand-sm navbar-dark bg-primary p-4">
                 <div class="container">
-                    <a th:href="@{/}" class="navbar-brand">[[#{aplicacion.titulo}]]</a>
+                    <a th:href="@{/}" class="navbar-brand"> <i class="fa-solid fa-microchip"></i> InnovaTech</a>
                     <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                        <ul class="navbar-nav" sec:authorize="hasRole('ROLE_VENDEDOR')">
-                            <li class="nav-item px-2"><a class="nav-link" th:href="@{/categoria/listado}">[[#{plantilla.categorias}]]</a></li>
-                            <li class="nav-item px-2"><a class="nav-link" th:href="@{/producto/listado}">[[#{plantilla.productos}]]</a></li>                           
-                            <li class="nav-item dropdown" sec:authorize="hasRole('ROLE_ADMIN')">
+                        <ul class="navbar-nav">
+                            <li class="nav-item px-2"><a class="nav-link" th:href="@{/categoria/listado}">Gestión de Productos</a></li>
+                            <li class="nav-item px-2"><a class="nav-link" th:href="@{/producto/listado}">Ventas</a></li>   
+                            <li class="nav-item px-2"><a class="nav-link" th:href="@{/producto/listado}">Sucursales</a></li> 
+                            <!-- <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" 
                                    data-bs-toggle="dropdown" 
                                    href="#" 
@@ -37,21 +61,23 @@
                                     <li><a class="dropdown-item" th:href="@{/usuario/listado}">[[#{plantilla.usuarios}]]</a></li>
                                 </ul>
                             </li>
-                            
+                            -->
+
                         </ul>
-                        
-                        
-                </div>
-            </nav>
-            <section id="main-header" class="py-2 bg-success text-white">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h1><i class="fas fa-cog"></i> [[#{plantilla.suTienda}]]</h1>
-                        </div>
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" th:href="@{/login}"><i class="fa-solid fa-user"></i> Inicio de Sesión</a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-            </section>
+            </nav>
+           
+
         </header>
+
+        <footer th:fragment="footer" class="bg-dark text-white mt-1 p-0 pt-3 fixed-bottom">
+            <p class="lead text-center">&COPY;InnovaTech - Derechos Reservados 2024</p>
+        </footer>
     </body>
 </html>

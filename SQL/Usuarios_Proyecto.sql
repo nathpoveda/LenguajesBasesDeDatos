@@ -1,0 +1,10 @@
+alter session set "_ORACLE_SCRIPT"= true;
+
+CREATE ROLE admin_role;
+
+GRANT CREATE SESSION, CREATE TABLE, CREATE VIEW, CREATE PROCEDURE,CREATE SEQUENCE TO admin_role;
+
+
+CREATE USER usuario1 IDENTIFIED BY "123";
+
+GRANT admin_role to usuario1;
