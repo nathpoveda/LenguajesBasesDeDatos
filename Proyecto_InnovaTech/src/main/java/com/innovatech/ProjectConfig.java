@@ -89,35 +89,16 @@ public class ProjectConfig implements WebMvcConfigurer {
             .logout((logout) -> logout.permitAll());
         return http.build();
     }
-    
-    @Bean
-    public UserDetailsService userss() {
-        UserDetails admin = User.builder()
-                .username("juan")
-                .password("{noop}123")
-                .roles("USER", "VENDEDOR", "ADMIN")
-                .build();
-        UserDetails sales = User.builder()
-                .username("rebeca")
-                .password("{noop}456")
-                .roles("USER", "VENDEDOR")
-                .build();
-        UserDetails user = User.builder()
-                .username("pedro")
-                .password("{noop}789")
-                .roles("USER")
-                .build();
-        return new InMemoryUserDetailsManager(user, sales, admin);
-    }
 
-//    @Autowired
-//    private UserDetailsService userDetailsService;
+    @Autowired
+    private UserDetailsService userDetailsService;
 
+// Descomentar para activar la encriptacion de contraseñas
 //    @Autowired
 //    public void configurerGlobal(
 //            AuthenticationManagerBuilder build)
 //            throws Exception {
-//        build.userDetailsService(users())
+//        build.userDetailsService(userDetailsService)
 //                .passwordEncoder(new BCryptPasswordEncoder());
 //    }
 }
