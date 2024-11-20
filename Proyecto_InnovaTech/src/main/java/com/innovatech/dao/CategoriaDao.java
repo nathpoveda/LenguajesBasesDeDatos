@@ -4,6 +4,7 @@ import com.innovatech.domain.Categoria;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,4 +17,10 @@ public interface CategoriaDao
     @Query("UPDATE Categoria c SET c.estado = 'I' WHERE c.id = :id")
     int disable(@Param("id") Long id);
     
+    @Transactional
+    @Procedure(procedureName = "FIDE_PROYECTO_FINAL_PKG.FIDE_CATEGORIAS_TB_INSERTAR_SP")
+    void insertarCategoria(
+        @Param("V_idCategoria") Long idCategoria, 
+        @Param("V_Nombre") String nombre, 
+        @Param("V_Descripcion") String descripcion);
 }

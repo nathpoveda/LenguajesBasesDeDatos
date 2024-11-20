@@ -6,6 +6,7 @@ import com.innovatech.domain.Categoria;
 import com.innovatech.services.CategoriaService;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -34,7 +35,8 @@ public class CategoriaServiceImpl implements CategoriaService{
     @Override
     @Transactional
     public void save(Categoria categoria) {
-        categoriaDao.save(categoria);
+        Random random = new Random(); // Quitar esto
+        categoriaDao.insertarCategoria(random.nextLong(), categoria.getNombre(), categoria.getDescripcion());
     }
 
     @Override
