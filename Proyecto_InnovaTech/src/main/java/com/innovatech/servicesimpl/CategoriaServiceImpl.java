@@ -39,10 +39,8 @@ public class CategoriaServiceImpl implements CategoriaService{
 
     @Override
     @Transactional
-    //me imagino que aquí hay que hacer la modificación para que no borre la categoría como tal, 
-    //sino aquel drama de pasarlo a "inactivo"
     public void delete(Categoria categoria) {
-        categoriaDao.delete(categoria);
+        categoriaDao.disable(categoria.getIdCategoria());
     }
     
 }

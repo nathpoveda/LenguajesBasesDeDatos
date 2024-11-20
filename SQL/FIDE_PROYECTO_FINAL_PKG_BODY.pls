@@ -77,11 +77,11 @@ CREATE OR REPLACE PACKAGE BODY FIDE_PROYECTO_FINAL_PKG AS
         V_idProvincia IN FIDE_DIRECCIONES_TB.idProvincia%TYPE,
         V_idCanton IN FIDE_DIRECCIONES_TB.idCanton%TYPE,
         V_idDistrito IN FIDE_DIRECCIONES_TB.idDistrito%TYPE,
-        V_Señas IN FIDE_DIRECCIONES_TB.Señas%TYPE
+        V_direccionExacta IN FIDE_DIRECCIONES_TB.direccionExacta%TYPE
     ) IS
     BEGIN
-        INSERT INTO FIDE_DIRECCIONES_TB (idDireccion, idPais, idProvincia, idCanton, idDistrito, Señas)
-        VALUES (V_idDireccion, V_idPais, V_idProvincia, V_idCanton, V_idDistrito, V_Señas);
+        INSERT INTO FIDE_DIRECCIONES_TB (idDireccion, idPais, idProvincia, idCanton, idDistrito, direccionExacta)
+        VALUES (V_idDireccion, V_idPais, V_idProvincia, V_idCanton, V_idDistrito, V_direccionExacta);
         COMMIT;
     END FIDE_DIRECCIONES_TB_INSERTAR_SP;
 

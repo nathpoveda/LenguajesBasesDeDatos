@@ -4,7 +4,7 @@ CREATE OR REPLACE PACKAGE FIDE_PROYECTO_FINAL_PKG AS
         V_idCategoria IN FIDE_CATEGORIAS_TB.idCategoria%TYPE,
         V_Nombre IN FIDE_CATEGORIAS_TB.Nombre%TYPE,
         V_Descripcion IN FIDE_CATEGORIAS_TB.Descripcion%TYPE
-    );
+    ) ;
 
     PROCEDURE FIDE_ESTADOS_TB_INSERTAR_SP (
         V_idEstado IN FIDE_ESTADOS_TB.idEstado%TYPE,
@@ -37,7 +37,7 @@ CREATE OR REPLACE PACKAGE FIDE_PROYECTO_FINAL_PKG AS
         V_idProvincia IN FIDE_DIRECCIONES_TB.idProvincia%TYPE,
         V_idCanton IN FIDE_DIRECCIONES_TB.idCanton%TYPE,
         V_idDistrito IN FIDE_DIRECCIONES_TB.idDistrito%TYPE,
-        V_Señas IN FIDE_DIRECCIONES_TB.Señas%TYPE
+        V_direccionExacta IN FIDE_DIRECCIONES_TB.direccionExacta%TYPE
     );
 
     PROCEDURE FIDE_PROVEEDORES_TB_INSERTAR_SP (
