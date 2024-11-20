@@ -44,39 +44,41 @@ public class ProjectConfig implements WebMvcConfigurer {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//        http
-//            .authorizeHttpRequests((request) -> request
-//                .requestMatchers(
-//                "/",
-//                "/index",
-//                "/errores/**",
-//                "/carrito/**",
-//                "/pruebas/**",
-//                "/categoria/**",
-//                "/reportes/**",
-//                "/registro/**",
-//                "/js/**",
-//                "/webjars/**"
-//                )
-//                .permitAll()
-//                .requestMatchers(
-//                "/inicio-admin"
-//                )
-//                .hasRole("Administrador")
-//                .requestMatchers(
-//                "/producto/listado",
-//                "/usuario/listado"
-//                )
-//                .hasAnyRole("Administrador", "Vendedor")
-//            )
-//            .formLogin((form) -> form
-//                .loginPage("/login")
-//                .defaultSuccessUrl("/inicio-admin", true)
-//                .permitAll()
-//            )
-//            .logout((logout) -> logout.permitAll());
-        http.csrf().disable() // Desactiva CSRF
-            .authorizeHttpRequests((request) -> request.anyRequest().permitAll()); // Permite todo
+        http
+            .authorizeHttpRequests((request) -> request
+                .requestMatchers(
+                "/",
+                "/index",
+                "/errores/**",
+                "/carrito/**",
+                "/pruebas/**",
+                "/categoria/**",
+                "/reportes/**",
+                "/registro/**",
+                "/js/**",
+                "/webjars/**"
+                )
+                .permitAll()
+                .requestMatchers(
+                "/inicio-admin"
+                )
+                .hasRole("ADMIN")
+                .requestMatchers(
+                "/producto/listado",
+                "/usuario/listado"
+                )
+                .hasAnyRole("ADMIN", "SALES")
+            )
+            .formLogin((form) -> form
+                .loginPage("/login")
+                .defaultSuccessUrl("/inicio-admin", true)
+                .permitAll()
+            )
+            .logout((logout) -> logout.permitAll());
+
+
+//        http.csrf().disable() // Desactiva CSRF
+//            .authorizeHttpRequests((request) -> request.anyRequest().permitAll()); // Permite todo
         return http.build();
     }
 

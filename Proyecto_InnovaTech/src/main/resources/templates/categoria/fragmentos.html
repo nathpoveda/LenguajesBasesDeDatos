@@ -7,30 +7,60 @@
         <title>Categorías - InnovaTech</title>
         <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
         <link th:href="@{/webjars/font-awesome/css/all.css}" rel="stylesheet" />
+
     </head>
     
     <body>
         
+
+        <section th:fragment="botonesAgregar" class="py-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">   
+                        <button 
+                            sec:authorize="hasRole('ROLE_ADMIN')"
+                            type="button" 
+                            class="btn btn-primary btn-block" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#agregarCategoria">
+                            <i class="fas fa-plus"></i> Agregar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section th:fragment="listadoCategorias" id="categorias">
             <div class="container pt-4">
                 <div class="row">
                     <div class="col-md-9">
                         <div class="card">
                             <div class="card-header">
-                                <h4>Listado de Categorías</h4>
+                                <h4>Listado de Categorías Activas</h4>
                             </div>
                             <div th:if="${categorias != null and !categorias.empty}">
                                 <table class="table table-hover table-bordered ">
-                                    <thead class="table-warning">
+                                    <thead class="table-primary">
                                         <tr>
                                             <th>#</th>
                                             <th>Nombre</th>
+                                            <th>Descripción</th>
+                                            <th>Opciones</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr th:each="categorias, contador : ${categorias}">
+                                        <tr th:each="categoria, contador : ${categorias}">
                                             <td>[[${contador.count}]]</td>
-                                            <td>[[${categorias.nombre}]]</td>
+                                            <td>[[${categoria.nombre}]]</td>
+                                            <td>[[${categoria.descripcion}]]</td>
+                                            <td sec:authorize="hasRole('ROLE_ADMIN')">
+                                                <a th:href="@{/categoria/eliminar/}+${categoria.idCategoria}"
+                                                   class="btn btn-danger">
+                                                    <i class="fa-solid fa-ban"></i> Deshabilitar</a>
+                                                <a th:href="@{/categoria/modificar/}+${categoria.idCategoria}"
+                                                   class="btn btn-primary">
+                                                    <i class="fas fa-pencil"></i> Actualizar</a>
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -41,17 +71,118 @@
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <div class="card text-center text-white mb-3" style="background-color: #E9967A">
+                        <div class="card text-center text-white mb-3" style="background-color: #0D6EFD">
                             <div class="card-body">
                                 <h3>Categorias registradas</h3>
-                                <h4 class="fs-2"><i class="fa-solid fa-utensils"></i> [[${totalCategorias}]]</h4>
+                                <h4 class="fs-2"><i class="fa-solid fa-icons"></i> [[${totalCategorias}]]</h4>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        
-        
+
+        <section th:fragment="agregarCategoria">
+            <div id="agregarCategoria" 
+                 class="modal fade" 
+                 tabindex="-1" 
+                 aria-labelledby="exampleModalLabel" 
+                 aria-hidden="true">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content">
+                        <div class="modal-header bg-info text-white">
+                            <h5 class="modal-title">Agregar Nueva Categoría</h5>
+                            <button type="button" 
+                                    class="btn-close" 
+                                    data-bs-dismiss="modal" 
+                                    aria-label="Close"></button>
+                        </div> 
+                        <form th:action="@{/categoria/guardar}" th:object="${categoria}"
+                              method="POST" class="was-validated"
+                              enctype="multipart/form-data">
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label for="nombre">Nombre</label>
+                                    <input type="text" class="form-control" name="nombre" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="descripcion">Descripción</label>
+                                    <input type="text" class="form-control" name="descripcion" required="true"/>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" type="submit">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section th:fragment="editarCategoria">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <form method="POST"
+                          th:action="@{/categoria/guardar}" th:object="${categoria}"
+                          class="was-validated"
+                          enctype="multipart/form-data">
+                        <input type="hidden" name="idCategoria" th:field="*{idCategoria}"/>
+                        <section th:replace="~{categoria/fragmentos :: botonesEditar}"/>
+                        <div id=details>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h4>Actualizar Categoría</h4>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="mb-3">
+                                                    <label for="nombre">Nombre</label>
+                                                    <input type="text" class="form-control" 
+                                                           name="nombre" th:field="*{nombre}"
+                                                           required="true">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="descripcion">Descripción</label>
+                                                    <input type="text" class="form-control" 
+                                                           name="descripcion" th:field="*{descripcion}"
+                                                           required="true">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section th:fragment="botonesEditar">
+            <div class="container py-4 mb-4 bg-light">
+                <div class="row">
+                    <div class="col-md-4 d-grid">
+                        <a th:href="@{/categoria/listado}" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left"></i> Regresar
+                        </a>
+                    </div>
+
+                    <div class="col-md-4 d-grid" sec:authorize="hasRole('ROLE_ADMIN')">                             
+                        <a th:href="@{/categoria/eliminar/}+${categoria.idCategoria}"
+                           class="btn btn-danger">
+                            <i class="fa-solid fa-ban"></i> Deshabilitar 
+                        </a>
+                    </div>
+
+                    <div class="col-md-4 d-grid" sec:authorize="hasRole('ROLE_ADMIN')">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-check"></i> Actualizar 
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
     </body>
 </html>
