@@ -43,6 +43,7 @@ public class EmpleadoServiceImpl implements UserDetailsService {
         
         //Se recorren los roles dle usuario y se pasan al arreglo...ya como rol de seguridad
         for (Rol r : empleado.getRoles()){
+            System.out.println("Prueba roles: " + r.getNombre());
             roles.add(new SimpleGrantedAuthority(r.getNombre()));
         }
         

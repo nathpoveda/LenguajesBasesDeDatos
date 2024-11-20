@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Panel de Administración - InnovaTech</title>
+        <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
+        <link th:href="@{/webjars/font-awesome/css/all.css}" rel="stylesheet" />
+        <style>
+            .admin-section {
+                margin-top: 30px;
+            }
+            .admin-card {
+                text-align: center;
+                padding: 20px;
+                border: 1px solid #ddd;
+                border-radius: 10px;
+                transition: transform 0.2s;
+                background-color: #d1f7ff;
+            }
+            .admin-card:hover {
+                transform: scale(1.05);
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            }
+            .admin-card i {
+                font-size: 40px;
+                margin-bottom: 15px;
+                color: #0D6EFD;
+            }
+        </style>
+    </head>
+    <body>
+        <header th:replace="~{layout/plantilla :: header}"/>
+        
+        <div class="container admin-section">
+            <div class="row">
+                <div class="col-12 text-center mb-4">
+                    <h1>¡Bienvenido! Actualmente está activo como Administrador</h1>
+                    <p>Selecciona una opción para gestionar.</p>
+                </div>
+            </div>
+            <div class="row">
+                <!--Tarjeta de Categorías -->
+                <div class="col-md-4">
+                    <div class="admin-card">
+                        <i class="fas fa-tags"></i>
+                        <h4>Categorías</h4>
+                        <p>Gestione las categorías de productos.</p>
+                        <a href="/categoria/listado" class="btn btn-info">Administrar</a>
+                    </div>
+                </div>
+                <!-- Tarjeta de Productos -->
+                <div class="col-md-4">
+                    <div class="admin-card">
+                        <i class="fas fa-box"></i>
+                        <h4>Productos</h4>
+                        <p>Gestione los productos disponibles en la tienda.</p>
+                        <a href="/admin/productos" class="btn btn-info">Administrar</a>
+                    </div>
+                </div>
+                <!-- Tarjeta de Sucursales -->
+                <div class="col-md-4">
+                    <div class="admin-card">
+                        <i class="fas fa-store"></i>
+                        <h4>Sucursales</h4>
+                        <p>Gestiona las sucursales de la tienda.</p>
+                        <a href="/admin/sucursales" class="btn btn-info">Administrar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <!-- Tarjeta de Empleados -->
+                <div class="col-md-4">
+                    <div class="admin-card">
+                        <i class="fas fa-users"></i>
+                        <h4>Empleados</h4>
+                        <p>Gestiona a los usuarios empleados.</p>
+                        <a href="/admin/usuarios" class="btn btn-info">Administrar</a>
+                    </div>
+                </div>
+                <!-- Configuración -->
+                <div class="col-md-4">
+                    <div class="admin-card">
+                        <i class="fas fa-cogs"></i>
+                        <h4>Configuración</h4>
+                        <p>Ajusta las configuraciones generales de la tienda.</p>
+                        <a href="/admin/configuracion" class="btn btn-info">Configurar</a>
+                    </div>
+                </div>
+                <!-- Reportes -->
+                <div class="col-md-4">
+                    <div class="admin-card">
+                        <i class="fas fa-chart-line"></i>
+                        <h4>Reportes</h4>
+                        <p>Consulta y genera reportes de la tienda.</p>
+                        <a href="/admin/reportes" class="btn btn-info">Ver Reportes</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+        
+        <footer th:replace="~{layout/plantilla :: footer}"/>
+    </body>
+</html>

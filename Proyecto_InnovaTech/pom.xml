@@ -14,7 +14,7 @@
     <name>innovatech</name>
     <description>Proyecto de Lenguajes de Bases de Datos, III Cuatrimestre 2024</description>
     <properties>
-        <java.version>23</java.version>
+        <java.version>22</java.version>
     </properties>
     <dependencies>
         <dependency>

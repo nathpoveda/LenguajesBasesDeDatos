@@ -44,49 +44,39 @@ public class ProjectConfig implements WebMvcConfigurer {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-            .authorizeHttpRequests((request) -> request
-                .requestMatchers(
-                "/",
-                "/index",
-                "/errores/**",
-                "/carrito/**",
-                "/pruebas/**",
-                "/reportes/**",
-                "/registro/**",
-                "/js/**",
-                "/webjars/**"
-                )
-                .permitAll()
-                .requestMatchers(
-                "/producto/nuevo",
-                "/producto/guardar",
-                "/producto/modificar/**",
-                "/producto/eliminar/**",
-                "/categoria/nuevo", 
-                "/categoria/guardar",
-                "/categoria/modificar/**", 
-                "/categoria/eliminar/**",
-                "/usuario/nuevo", 
-                "/usuario/guardar",
-                "/usuario/modificar/**", 
-                "/usuario/eliminar/**",
-                "/reportes/**"
-                )
-                .hasRole("ADMIN")
-                .requestMatchers(
-                "/producto/listado",
-                "/categoria/listado",
-                "/usuario/listado"
-                )
-                .hasAnyRole("ADMIN", "VENDEDOR")
-            )
-            .formLogin((form) -> form
-                .loginPage("/login")
-                .defaultSuccessUrl("/index", true)
-                .permitAll()
-            )
-            .logout((logout) -> logout.permitAll());
+//        http
+//            .authorizeHttpRequests((request) -> request
+//                .requestMatchers(
+//                "/",
+//                "/index",
+//                "/errores/**",
+//                "/carrito/**",
+//                "/pruebas/**",
+//                "/categoria/**",
+//                "/reportes/**",
+//                "/registro/**",
+//                "/js/**",
+//                "/webjars/**"
+//                )
+//                .permitAll()
+//                .requestMatchers(
+//                "/inicio-admin"
+//                )
+//                .hasRole("Administrador")
+//                .requestMatchers(
+//                "/producto/listado",
+//                "/usuario/listado"
+//                )
+//                .hasAnyRole("Administrador", "Vendedor")
+//            )
+//            .formLogin((form) -> form
+//                .loginPage("/login")
+//                .defaultSuccessUrl("/inicio-admin", true)
+//                .permitAll()
+//            )
+//            .logout((logout) -> logout.permitAll());
+        http.csrf().disable() // Desactiva CSRF
+            .authorizeHttpRequests((request) -> request.anyRequest().permitAll()); // Permite todo
         return http.build();
     }
 
