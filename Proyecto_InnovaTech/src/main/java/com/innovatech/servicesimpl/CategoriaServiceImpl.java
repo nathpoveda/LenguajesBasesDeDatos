@@ -18,7 +18,10 @@ public class CategoriaServiceImpl implements CategoriaService{
     
     @Override
     public List<Categoria> getCategorias(){
-        return categoriaDao.findAll();
+        var lista = categoriaDao.findAll();
+        
+        lista.removeIf(c -> !c.getEstado().equals("A"));
+        return lista;
     }
 
     
