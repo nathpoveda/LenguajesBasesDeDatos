@@ -1,3 +1,6 @@
+
+
+
 -- Insertar en FIDE_CATEGORIAS_TB
 INSERT INTO FIDE_CATEGORIAS_TB (idCategoria, Nombre, Descripcion, CREADO_POR, FECHA_CREACION, MODIFICADO_POR, FECHA_MODIFICACION, ESTADO, ACCION)
 VALUES (1, 'Electrónica', 'Productos electrónicos como teléfonos, computadoras, televisores, etc.', 'admin', SYSTIMESTAMP, 'admin', SYSTIMESTAMP, 'A', 'insertar');
