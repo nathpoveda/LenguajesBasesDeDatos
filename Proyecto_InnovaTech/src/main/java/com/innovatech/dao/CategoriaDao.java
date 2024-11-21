@@ -18,9 +18,17 @@ public interface CategoriaDao
     int disable(@Param("id") Long id);
     
     @Transactional
+    @Modifying
+    @Query("UPDATE Categoria c SET c.nombre = :V_Nombre, c.descripcion = :V_Descripcion WHERE c.id = :id")
+    int update(
+            @Param("id") Long id,
+            @Param("V_Nombre") String nombre, 
+            @Param("V_Descripcion") String descripcion
+    );
+    
+    @Transactional
     @Procedure(procedureName = "FIDE_PROYECTO_FINAL_PKG.FIDE_CATEGORIAS_TB_INSERTAR_SP")
     void insertarCategoria(
-        @Param("V_idCategoria") Long idCategoria, 
         @Param("V_Nombre") String nombre, 
         @Param("V_Descripcion") String descripcion);
 }

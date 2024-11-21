@@ -8,5 +8,6 @@ public interface CategoriaService {
     
     public Categoria getCategoria(Categoria categoria);
     public void save(Categoria categoria);
+    public void update(Categoria categoria);
     public void delete(Categoria categoria);
 }

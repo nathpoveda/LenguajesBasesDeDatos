@@ -35,8 +35,13 @@ public class CategoriaServiceImpl implements CategoriaService{
     @Override
     @Transactional
     public void save(Categoria categoria) {
-        Random random = new Random(); // Quitar esto
-        categoriaDao.insertarCategoria(random.nextLong(), categoria.getNombre(), categoria.getDescripcion());
+        categoriaDao.insertarCategoria(categoria.getNombre(), categoria.getDescripcion());
+    }
+    
+    @Override
+    @Transactional
+    public void update(Categoria categoria) {
+        categoriaDao.update(categoria.getIdCategoria(), categoria.getNombre(), categoria.getDescripcion());
     }
 
     @Override

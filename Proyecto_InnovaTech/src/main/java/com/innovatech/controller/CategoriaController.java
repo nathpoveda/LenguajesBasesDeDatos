@@ -35,6 +35,12 @@ public class CategoriaController {
         return "redirect:/categoria/listado";
     }
     
+    @PostMapping("/actualizar")
+    public String actualizar(Categoria categoria){
+        categoriaService.update(categoria);
+        return "redirect:/categoria/listado";
+    }
+    
     @GetMapping("/eliminar/{idCategoria}")
     public String eliminar(Categoria categoria){
         categoriaService.delete(categoria);
