@@ -162,19 +162,19 @@ EXECUTE FIDE_PRODUCTOS_TB_INSERTAR_SP(1, 'Hp Pavilion', 3500 , 1, 1, 1);
 ---(Exito)
 
 CREATE OR REPLACE PROCEDURE FIDE_PRODUCTOPROVEEDOR_TB_INSERTAR_SP (
-    V_idProductoProveedor IN FIDE_PRODUCTOPROVEEDOR_TB.idProductoProveedor%TYPE,
-    V_horarioEntrega IN FIDE_PRODUCTOPROVEEDOR_TB.horarioEntrega%TYPE,
+    V_idProducto IN FIDE_PRODUCTOPROVEEDOR_TB.idProductor%TYPE,
     V_idProveedor IN FIDE_PRODUCTOPROVEEDOR_TB.idProveedor%TYPE,
+    V_horarioEntrega IN FIDE_PRODUCTOPROVEEDOR_TB.horarioEntrega%TYPE,
     V_precioCompra IN FIDE_PRODUCTOPROVEEDOR_TB.precioCompra%TYPE
 )
 IS
 BEGIN
-    INSERT INTO FIDE_PRODUCTOPROVEEDOR_TB (idProductoProveedor, horarioEntrega, idProveedor, precioCompra)
-    VALUES (V_idProductoProveedor, V_horarioEntrega, V_idProveedor, V_precioCompra);
+    INSERT INTO FIDE_PRODUCTOPROVEEDOR_TB (idProducto, idProveedor, horarioEntrega, precioCompra)
+    VALUES (V_idProducto, V_idProveedor, V_horarioEntrega, V_precioCompra);
     COMMIT;
 END FIDE_PRODUCTOPROVEEDOR_TB_INSERTAR_SP;
 --prueba
-EXEC FIDE_PRODUCTOPROVEEDOR_TB_INSERTAR_SP(1, 'lunes 9 am',1, 35000);
+EXEC FIDE_PRODUCTOPROVEEDOR_TB_INSERTAR_SP(1, 1, 'lunes 9 am', 35000);
 ---(Exito)
 
 CREATE OR REPLACE PROCEDURE FIDE_SUCURSALES_TB_INSERTAR_SP (
@@ -436,13 +436,14 @@ BEGIN
     UPDATE FIDE_PRODUCTOS_TB SET idEstado = 0 WHERE idProducto = V_idProducto;
     COMMIT;
 END FIDE_PRODUCTOS_TB_ELIMINAR_SP;
-
 CREATE OR REPLACE PROCEDURE FIDE_PRODUCTOPROVEEDOR_TB_ELIMINAR_SP (
-    V_idProductoProveedor IN FIDE_PRODUCTOPROVEEDOR_TB.idProductoProveedor%TYPE
+    V_idProducto IN FIDE_PRODUCTOPROVEEDOR_TB.idProducto%TYPE,
+    V_idProveedor IN FIDE_PRODUCTOPROVEEDOR_TB.idProveedor%TYPE
 )
 IS
 BEGIN
-    UPDATE FIDE_PRODUCTOPROVEEDOR_TB SET idEstado = 0 WHERE idProductoProveedor = V_idProductoProveedor;
+    UPDATE FIDE_PRODUCTOPROVEEDOR_TB SET idEstado = 0 
+        WHERE idProducto = V_idProducto AND idProveedor = V_idProveedor;
     COMMIT;
 END FIDE_PRODUCTOPROVEEDOR_TB_ELIMINAR_SP;
 
