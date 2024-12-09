@@ -12,11 +12,16 @@ import org.springframework.transaction.annotation.Transactional;
 public interface CategoriaDao 
         extends JpaRepository<Categoria,Long>{
     
+     //es temporal, hasta tener los procedimientos almacenados de uptdate 
+    //(para el estado)
     @Transactional
     @Modifying
     @Query("UPDATE Categoria c SET c.estado = 'I' WHERE c.id = :id")
     int disable(@Param("id") Long id);
     
+    
+    //aca igual 
+    //(para actualizar los datos
     @Transactional
     @Modifying
     @Query("UPDATE Categoria c SET c.nombre = :V_Nombre, c.descripcion = :V_Descripcion WHERE c.id = :id")
@@ -27,6 +32,7 @@ public interface CategoriaDao
     );
     
     @Transactional
+    //usa procedimiento almacenado que ya creamos
     @Procedure(procedureName = "FIDE_PROYECTO_FINAL_PKG.FIDE_CATEGORIAS_TB_INSERTAR_SP")
     void insertarCategoria(
         @Param("V_Nombre") String nombre, 

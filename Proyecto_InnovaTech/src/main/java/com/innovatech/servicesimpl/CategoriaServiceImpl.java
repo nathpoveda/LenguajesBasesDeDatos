@@ -19,6 +19,7 @@ public class CategoriaServiceImpl implements CategoriaService{
     
     @Override
     public List<Categoria> getCategorias(){
+        //findAll trae todos los datos de la tabla como tal
         var lista = categoriaDao.findAll();
         
         lista.removeIf(c -> !c.getEstado().equals("A"));

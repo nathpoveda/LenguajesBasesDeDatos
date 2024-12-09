@@ -1,145 +1,164 @@
-create or replace PACKAGE FIDE_PROYECTO_FINAL_PKG AS
+CREATE OR REPLACE PACKAGE fide_proyecto_final_pkg AS
  
  ---------------PROCEDIMEINTOS DE ALMACENADO----------------------------
- 
-    PROCEDURE FIDE_CATEGORIAS_TB_INSERTAR_SP (
-        V_Nombre IN FIDE_CATEGORIAS_TB.Nombre%TYPE,
-        V_Descripcion IN FIDE_CATEGORIAS_TB.Descripcion%TYPE
-    ) ;
 
-    PROCEDURE FIDE_ESTADOS_TB_INSERTAR_SP (
-        V_Nombre IN FIDE_ESTADOS_TB.Nombre%TYPE
+    PROCEDURE fide_categorias_tb_insertar_sp (
+        v_nombre      IN fide_categorias_tb.nombre%TYPE,
+        v_descripcion IN fide_categorias_tb.descripcion%TYPE
     );
 
-    PROCEDURE FIDE_PAISES_TB_INSERTAR_SP (
-        V_Nombre IN FIDE_PAISES_TB.Nombre%TYPE
+    PROCEDURE fide_estados_tb_insertar_sp (
+        v_nombre IN fide_estados_tb.nombre%TYPE
     );
 
-    PROCEDURE FIDE_PROVINCIAS_TB_INSERTAR_SP (
-        V_Nombre IN FIDE_PROVINCIAS_TB.Nombre%TYPE
+    PROCEDURE fide_paises_tb_insertar_sp (
+        v_nombre IN fide_paises_tb.nombre%TYPE
     );
 
-    PROCEDURE FIDE_CANTONES_TB_INSERTAR_SP (
-        V_Nombre IN FIDE_CANTONES_TB.Nombre%TYPE
+    PROCEDURE fide_provincias_tb_insertar_sp (
+        v_nombre IN fide_provincias_tb.nombre%TYPE
     );
 
-    PROCEDURE FIDE_DISTRITOS_TB_INSERTAR_SP (
-        V_Nombre IN FIDE_DISTRITOS_TB.Nombre%TYPE
+    PROCEDURE fide_cantones_tb_insertar_sp (
+        v_nombre IN fide_cantones_tb.nombre%TYPE
     );
 
-    PROCEDURE FIDE_DIRECCIONES_TB_INSERTAR_SP (
-        V_idPais IN FIDE_DIRECCIONES_TB.idPais%TYPE,
-        V_idProvincia IN FIDE_DIRECCIONES_TB.idProvincia%TYPE,
-        V_idCanton IN FIDE_DIRECCIONES_TB.idCanton%TYPE,
-        V_idDistrito IN FIDE_DIRECCIONES_TB.idDistrito%TYPE,
-        V_direccionExacta IN FIDE_DIRECCIONES_TB.direccionExacta%TYPE
+    PROCEDURE fide_distritos_tb_insertar_sp (
+        v_nombre IN fide_distritos_tb.nombre%TYPE
     );
 
-    PROCEDURE FIDE_PROVEEDORES_TB_INSERTAR_SP (
-        V_Nombre IN FIDE_PROVEEDORES_TB.Nombre%TYPE,
-        V_idDireccion IN FIDE_PROVEEDORES_TB.idDireccion%TYPE,
-        V_Telefono IN FIDE_PROVEEDORES_TB.Telefono%TYPE
+    PROCEDURE fide_direcciones_tb_insertar_sp (
+        v_idpais          IN fide_direcciones_tb.idpais%TYPE,
+        v_idprovincia     IN fide_direcciones_tb.idprovincia%TYPE,
+        v_idcanton        IN fide_direcciones_tb.idcanton%TYPE,
+        v_iddistrito      IN fide_direcciones_tb.iddistrito%TYPE,
+        v_direccionexacta IN fide_direcciones_tb.direccionexacta%TYPE
     );
 
-    PROCEDURE FIDE_MARCASPRODUCTO_TB_INSERTAR_SP (
-        V_Nombre IN FIDE_MARCASPRODUCTO_TB.Nombre%TYPE
+    PROCEDURE fide_proveedores_tb_insertar_sp (
+        v_nombre      IN fide_proveedores_tb.nombre%TYPE,
+        v_iddireccion IN fide_proveedores_tb.iddireccion%TYPE,
+        v_telefono    IN fide_proveedores_tb.telefono%TYPE
     );
 
-    PROCEDURE FIDE_PRODUCTOS_TB_INSERTAR_SP (
-        V_Nombre IN FIDE_PRODUCTOS_TB.Nombre%TYPE,
-        V_Precio IN FIDE_PRODUCTOS_TB.Precio%TYPE,
-        V_idCategoria IN FIDE_PRODUCTOS_TB.idCategoria%TYPE,
-        V_idEstado IN FIDE_PRODUCTOS_TB.idEstado%TYPE,
-        V_idMarca IN FIDE_PRODUCTOS_TB.idMarca%TYPE
+    PROCEDURE fide_marcasproducto_tb_insertar_sp (
+        v_nombre IN fide_marcasproducto_tb.nombre%TYPE
     );
 
-    PROCEDURE FIDE_PRODUCTOPROVEEDOR_TB_INSERTAR_SP (
-        V_horarioEntrega IN FIDE_PRODUCTOPROVEEDOR_TB.horarioEntrega%TYPE,
-        V_idProveedor IN FIDE_PRODUCTOPROVEEDOR_TB.idProveedor%TYPE,
-        V_precioCompra IN FIDE_PRODUCTOPROVEEDOR_TB.precioCompra%TYPE
+    PROCEDURE fide_productos_tb_insertar_sp (
+        v_nombre      IN fide_productos_tb.nombre%TYPE,
+        v_precio      IN fide_productos_tb.precio%TYPE,
+        v_idcategoria IN fide_productos_tb.idcategoria%TYPE,
+        v_idestado    IN fide_productos_tb.idestado%TYPE,
+        v_idmarca     IN fide_productos_tb.idmarca%TYPE
     );
 
-    PROCEDURE FIDE_SUCURSALES_TB_INSERTAR_SP (
-        V_Nombre IN FIDE_SUCURSALES_TB.Nombre%TYPE,
-        V_idDireccion IN FIDE_SUCURSALES_TB.idDireccion%TYPE,
-        V_horaApertura IN FIDE_SUCURSALES_TB.horaApertura%TYPE,
-        V_horaCierre IN FIDE_SUCURSALES_TB.horaCierre%TYPE
+    PROCEDURE fide_productoproveedor_tb_insertar_sp (
+        v_horarioentrega IN fide_productoproveedor_tb.horarioentrega%TYPE,
+        v_idproveedor    IN fide_productoproveedor_tb.idproveedor%TYPE,
+        v_preciocompra   IN fide_productoproveedor_tb.preciocompra%TYPE
     );
 
-    PROCEDURE FIDE_INVENTARIOS_TB_INSERTAR_SP (
-        V_idProducto IN FIDE_INVENTARIOS_TB.idProducto%TYPE,
-        V_Cantidad IN FIDE_INVENTARIOS_TB.Cantidad%TYPE,
-        V_ultimaActualizacion IN FIDE_INVENTARIOS_TB.ultimaActualizacion%TYPE,
-        V_idSucursal IN FIDE_INVENTARIOS_TB.idSucursal%TYPE
+    PROCEDURE fide_sucursales_tb_insertar_sp (
+        v_nombre       IN fide_sucursales_tb.nombre%TYPE,
+        v_iddireccion  IN fide_sucursales_tb.iddireccion%TYPE,
+        v_horaapertura IN fide_sucursales_tb.horaapertura%TYPE,
+        v_horacierre   IN fide_sucursales_tb.horacierre%TYPE
     );
 
-    PROCEDURE FIDE_EMPLEADOS_TB_INSERTAR_SP (
-        V_Nombre IN FIDE_EMPLEADOS_TB.Nombre%TYPE,
-        V_idSucursal IN FIDE_EMPLEADOS_TB.idSucursal%TYPE,
-        V_Puesto IN FIDE_EMPLEADOS_TB.Puesto%TYPE,
-        V_idDireccion IN FIDE_EMPLEADOS_TB.idDireccion%TYPE,
-        V_Salario IN FIDE_EMPLEADOS_TB.Salario%TYPE,
-        V_Correo IN FIDE_EMPLEADOS_TB.Correo%TYPE,
-        V_idEstado IN FIDE_EMPLEADOS_TB.idEstado%TYPE
+    PROCEDURE fide_inventarios_tb_insertar_sp (
+        v_idproducto          IN fide_inventarios_tb.idproducto%TYPE,
+        v_cantidad            IN fide_inventarios_tb.cantidad%TYPE,
+        v_ultimaactualizacion IN fide_inventarios_tb.ultimaactualizacion%TYPE,
+        v_idsucursal          IN fide_inventarios_tb.idsucursal%TYPE
     );
 
-    PROCEDURE FIDE_VENTAS_TB_INSERTAR_SP (
-        V_idEmpleado IN FIDE_VENTAS_TB.idEmpleado%TYPE,
-        V_idSucursal IN FIDE_VENTAS_TB.idSucursal%TYPE,
-        V_fechaVenta IN FIDE_VENTAS_TB.fechaVenta%TYPE,
-        V_Total IN FIDE_VENTAS_TB.Total%TYPE
+    PROCEDURE fide_empleados_tb_insertar_sp (
+        v_nombre      IN fide_empleados_tb.nombre%TYPE,
+        v_idsucursal  IN fide_empleados_tb.idsucursal%TYPE,
+        v_puesto      IN fide_empleados_tb.puesto%TYPE,
+        v_iddireccion IN fide_empleados_tb.iddireccion%TYPE,
+        v_salario     IN fide_empleados_tb.salario%TYPE,
+        v_correo      IN fide_empleados_tb.correo%TYPE,
+        v_idestado    IN fide_empleados_tb.idestado%TYPE
     );
 
-    PROCEDURE FIDE_DETALLEVENTAS_TB_INSERTAR_SP (
-        V_idVenta IN FIDE_DETALLEVENTAS_TB.idVenta%TYPE,
-        V_idProducto IN FIDE_DETALLEVENTAS_TB.idProducto%TYPE,
-        V_Cantidad IN FIDE_DETALLEVENTAS_TB.Cantidad%TYPE,
-        V_precioUnitario IN FIDE_DETALLEVENTAS_TB.precioUnitario%TYPE
+    PROCEDURE fide_ventas_tb_insertar_sp (
+        v_idempleado IN fide_ventas_tb.idempleado%TYPE,
+        v_idsucursal IN fide_ventas_tb.idsucursal%TYPE,
+        v_fechaventa IN fide_ventas_tb.fechaventa%TYPE,
+        v_total      IN fide_ventas_tb.total%TYPE
     );
 
-    PROCEDURE FIDE_METODOSPAGO_TB_INSERTAR_SP (
-        V_Nombre IN FIDE_METODOSPAGO_TB.Nombre%TYPE
+    PROCEDURE fide_detalleventas_tb_insertar_sp (
+        v_idventa        IN fide_detalleventas_tb.idventa%TYPE,
+        v_idproducto     IN fide_detalleventas_tb.idproducto%TYPE,
+        v_cantidad       IN fide_detalleventas_tb.cantidad%TYPE,
+        v_preciounitario IN fide_detalleventas_tb.preciounitario%TYPE
     );
 
-    PROCEDURE FIDE_FACTURAS_TB_INSERTAR_SP (
-        V_idVenta IN FIDE_FACTURAS_TB.idVenta%TYPE,
-        V_fechaEmision IN FIDE_FACTURAS_TB.fechaEmision%TYPE,
-        V_idMetodoPago IN FIDE_FACTURAS_TB.idMetodoPago%TYPE,
-        V_Subtotal IN FIDE_FACTURAS_TB.Subtotal%TYPE,
-        V_Impuesto IN FIDE_FACTURAS_TB.Impuesto%TYPE,
-        V_Total IN FIDE_FACTURAS_TB.Total%TYPE
+    PROCEDURE fide_metodospago_tb_insertar_sp (
+        v_nombre IN fide_metodospago_tb.nombre%TYPE
     );
 
-    PROCEDURE FIDE_DEVOLUCIONES_TB_INSERTAR_SP (
-        V_idProducto IN FIDE_DEVOLUCIONES_TB.idProducto%TYPE,
-        V_idFactura IN FIDE_DEVOLUCIONES_TB.idFactura%TYPE,
-        V_Fecha IN FIDE_DEVOLUCIONES_TB.Fecha%TYPE,
-        V_Motivo IN FIDE_DEVOLUCIONES_TB.Motivo%TYPE
+    PROCEDURE fide_facturas_tb_insertar_sp (
+        v_idventa      IN fide_facturas_tb.idventa%TYPE,
+        v_fechaemision IN fide_facturas_tb.fechaemision%TYPE,
+        v_idmetodopago IN fide_facturas_tb.idmetodopago%TYPE,
+        v_subtotal     IN fide_facturas_tb.subtotal%TYPE,
+        v_impuesto     IN fide_facturas_tb.impuesto%TYPE,
+        v_total        IN fide_facturas_tb.total%TYPE
+    );
+
+    PROCEDURE fide_devoluciones_tb_insertar_sp (
+        v_idproducto IN fide_devoluciones_tb.idproducto%TYPE,
+        v_idfactura  IN fide_devoluciones_tb.idfactura%TYPE,
+        v_fecha      IN fide_devoluciones_tb.fecha%TYPE,
+        v_motivo     IN fide_devoluciones_tb.motivo%TYPE
     );
     
 --------------------FUNCIONES------------------------
 
-FUNCTION CATEGORIAS_GENERAR_SECUENCIA_FN RETURN VARCHAR2;
-FUNCTION ESTADOS_GENERAR_SECUENCIA_FN RETURN NUMBER;
-FUNCTION PAISES_GENERAR_SECUENCIA_FN RETURN NUMBER;
-FUNCTION PROVINCIAS_GENERAR_SECUENCIA_FN RETURN NUMBER;
-FUNCTION CANTONES_GENERAR_SECUENCIA_FN RETURN NUMBER;
-FUNCTION DISTRITOS_GENERAR_SECUENCIA_FN RETURN NUMBER;
-FUNCTION DIRECCIONES_GENERAR_SECUENCIA_FN RETURN NUMBER;
-FUNCTION PROVEEDORES_GENERAR_SECUENCIA_FN RETURN NUMBER;
-FUNCTION MARCASPRODUCTO_GENERAR_SECUENCIA_FN RETURN NUMBER;
-FUNCTION PRODUCTOS_GENERAR_SECUENCIA_FN RETURN NUMBER;
-FUNCTION PRODUCTOPROVEEDOR_GENERAR_SECUENCIA_FN RETURN NUMBER;
-FUNCTION SUCURSALES_GENERAR_SECUENCIA_FN RETURN NUMBER;
-FUNCTION INVENTARIOS_GENERAR_SECUENCIA_FN RETURN NUMBER;
-FUNCTION EMPLEADOS_GENERAR_SECUENCIA_FN RETURN NUMBER;
-FUNCTION VENTAS_GENERAR_SECUENCIA_FN RETURN NUMBER;
-FUNCTION DETALLEVENTAS_GENERAR_SECUENCIA_FN RETURN NUMBER;
-FUNCTION METODOSPAGO_GENERAR_SECUENCIA_FN RETURN NUMBER;
-FUNCTION FACTURAS_GENERAR_SECUENCIA_FN RETURN NUMBER;
-FUNCTION DEVOLUCIONES_GENERAR_SECUENCIA_FN RETURN NUMBER;
-FUNCTION ROLES_GENERAR_SECUENCIA_FN RETURN NUMBER;  
+    FUNCTION categorias_generar_secuencia_fn RETURN VARCHAR2;
+
+    FUNCTION estados_generar_secuencia_fn RETURN NUMBER;
+
+    FUNCTION paises_generar_secuencia_fn RETURN NUMBER;
+
+    FUNCTION provincias_generar_secuencia_fn RETURN NUMBER;
+
+    FUNCTION cantones_generar_secuencia_fn RETURN NUMBER;
+
+    FUNCTION distritos_generar_secuencia_fn RETURN NUMBER;
+
+    FUNCTION direcciones_generar_secuencia_fn RETURN NUMBER;
+
+    FUNCTION proveedores_generar_secuencia_fn RETURN NUMBER;
+
+    FUNCTION marcasproducto_generar_secuencia_fn RETURN NUMBER;
+
+    FUNCTION productos_generar_secuencia_fn RETURN NUMBER;
+
+    FUNCTION productoproveedor_generar_secuencia_fn RETURN NUMBER;
+
+    FUNCTION sucursales_generar_secuencia_fn RETURN NUMBER;
+
+    FUNCTION inventarios_generar_secuencia_fn RETURN NUMBER;
+
+    FUNCTION empleados_generar_secuencia_fn RETURN NUMBER;
+
+    FUNCTION ventas_generar_secuencia_fn RETURN NUMBER;
+
+    FUNCTION detalleventas_generar_secuencia_fn RETURN NUMBER;
+
+    FUNCTION metodospago_generar_secuencia_fn RETURN NUMBER;
+
+    FUNCTION facturas_generar_secuencia_fn RETURN NUMBER;
+
+    FUNCTION devoluciones_generar_secuencia_fn RETURN NUMBER;
+
+    FUNCTION roles_generar_secuencia_fn RETURN NUMBER;  
 
 -------------FIN DEL PAQUETE------------------------------------------  
 
-END FIDE_PROYECTO_FINAL_PKG;
+END fide_proyecto_final_pkg;
