@@ -16,9 +16,13 @@ public interface CategoriaDao
     //(para el estado)
     @Transactional
     @Modifying
-    @Query("UPDATE Categoria c SET c.estado = 'I' WHERE c.id = :id")
+    @Query("UPDATE Categoria c SET c.idestado = 1 WHERE c.id = :id")
     int disable(@Param("id") Long id);
     
+    @Transactional
+    @Modifying
+    @Query("UPDATE Categoria c SET c.idestado = 2 WHERE c.id = :id")
+    int enable(@Param("id") Long id);
     
     //aca igual 
     //(para actualizar los datos

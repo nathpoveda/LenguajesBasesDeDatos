@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8" />
-        <title>Panel de Administración - InnovaTech</title>
+        <title>Productos - InnovaTech</title>
         <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
         <link th:href="@{/webjars/font-awesome/css/all.css}" rel="stylesheet" />
         <style>
@@ -30,12 +30,11 @@
     </head>
     <body>
         <header th:replace="~{layout/plantilla :: header}"/>
-        
+
         <div class="container admin-section">
             <div class="row">
                 <div class="col-12 text-center mb-4">
-                    <h1>¡Bienvenido! Actualmente está activo como Administrador</h1>
-                    <p>Selecciona una opción para gestionar.</p>
+                    <h1>Gestione todas las opciones referentes a productos.</p>
                 </div>
             </div>
             <div class="row">
@@ -43,64 +42,44 @@
                 <div class="col-md-4">
                     <div class="admin-card">
                         <i class="fas fa-tags"></i>
-                        <h4>Productos</h4>
-                        <p>Gestione todo lo relacionado a Productos. </p>
-                        <p>Categorías, Marcas, Inventarios.</p>
-                        <a href="/categoria/listado" class="btn btn-info">Administrar</a>
+                        <h4>Categorías</h4>
+                        <p>Gestione las categorías de productos.</p>
+                        <a href="" class="btn btn-info">Administrar</a>
                     </div>
                 </div>
-                <!-- Tarjeta de Productos -->
+                <!-- Tarjeta de Marcas-->
                 <div class="col-md-4">
                     <div class="admin-card">
                         <i class="fas fa-box"></i>
-                        <h4>Empleados</h4>
-                        <p>Gestione a la planilla de empleados.</p>
-                        <a href="/admin/productos" class="btn btn-info">Administrar</a>
+                        <h4>Marcas</h4>
+                        <p>Gestione las marcas que trabaja la tienda.</p>
+                        <a href="" class="btn btn-info">Administrar</a>
                     </div>
                 </div>
                 <!-- Tarjeta de Sucursales -->
                 <div class="col-md-4">
                     <div class="admin-card">
                         <i class="fas fa-store"></i>
-                        <h4>Sucursales</h4>
-                        <p>Gestione las sucursales de la tienda.</p>
-                        <a href="/sucursal/listado" class="btn btn-info">Administrar</a>
-                    </div>
-                </div>
-            </div>
-            <div class="row mt-4">
-                <!-- Tarjeta de Empleados -->
-                <div class="col-md-4">
-                    <div class="admin-card">
-                        <i class="fas fa-users"></i>
-                        <h4>Ventas</h4>
-                        <p>Gestion las ventas.</p>
-                        <a href="/admin/usuarios" class="btn btn-info">Administrar</a>
-                    </div>
-                </div>
-                <!-- Marcas -->
-                <div class="col-md-4">
-                    <div class="admin-card">
-                        <i class="fas fa-cogs"></i>
-                        <h4>Marcas</h4>
-                        <p>Ajusta las configuraciones generales de la tienda.</p>
-                        <a href="/marca/listado" class="btn btn-info">Configurar</a>
-                    </div>
-                </div>
-                <!-- Reportes -->
-                <div class="col-md-4">
-                    <div class="admin-card">
-                        <i class="fas fa-chart-line"></i>
                         <h4>Productos</h4>
-                        <p>Ver productos de la tienda</p>
-                        <a href="/producto/listado" class="btn btn-info">Ver Productos</a>
+                        <p>Gestiona los productos de la tienda.</p>
+                        <a href="" class="btn btn-info">Administrar</a>
+                    </div>
+                </div>
+                <!-- Tarjeta de Sucursales -->
+                <div class="col-md-4">
+                    <div class="admin-card">
+                        <i class="fas fa-store"></i>
+                        <h4>Inventarios</h4>
+                        <p>Gestiona el inventario de cada tienda.</p>
+                        <a href="" class="btn btn-info">Administrar</a>
                     </div>
                 </div>
             </div>
         </div>
+        
         <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
         <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-        
+
         <footer th:replace="~{layout/plantilla :: footer}"/>
     </body>
 </html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<!--Este es el archivo de fragmentos de Sucursales -->
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Sucursales - InnovaTech</title>
+        <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
+        <link th:href="@{/webjars/font-awesome/css/all.css}" rel="stylesheet" />
+
+    </head>
+
+    <body>
+        
+        <section th:fragment="listadoSucursales" id="sucursales">
+            <div class="container pt-4">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Listado de Sucursales</h4>
+                            </div>
+                            <div th:if="${sucursales != null and !sucursales.empty}">
+                                <table class="table table-hover table-bordered ">
+                                    <thead class="table-primary">
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Nombre</th>
+                                            <th>Dirección</th>
+                                            <th>Hora de Apertura</th>
+                                            <th>Hora de Cierre</th>
+                                            <th>Estado</th>
+                                            <th sec:authorize="hasRole('ROLE_ADMIN')" >Opciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="sucursal, contador : ${sucursales}">
+                                            <td>[[${contador.count}]]</td>
+                                            <td>[[${sucursal.nombre}]]</td>
+                                            <td>[[${sucursal.direccion.toString()}]]</td>
+                                            <td>[[${sucursal.horaapertura}]]</td>
+                                            <td>[[${sucursal.horacierre}]]</td>
+                                            <td>
+                                                <span th:if="${sucursal.idestado == 2}">Activa</span>
+                                                <span th:if="${sucursal.idestado != 2}">Inactiva</span>
+                                            </td>
+                                            <td sec:authorize="hasRole('ROLE_ADMIN')">
+                                                <a th:href="@{/sucursal/eliminar/}+${sucursal.idsucursal}"
+                                                   th:classappend="${sucursal.idestado == 2} ? 'btn btn-danger' : 'btn btn-success'"
+                                                   th:text="${sucursal.idestado == 2} ? 'Deshabilitar' : 'Habilitar'">
+                                                    <i class="fa-solid fa-ban"></i>
+                                                </a>
+                                                <a th:href="@{/sucursal/modificar/}+${sucursal.idsucursal}"
+                                                   class="btn btn-primary"> Actualizar
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="text-center p-2" th:if="${sucursales == null or sucursales.empty}">
+                                <span>No hay sucursales registradas.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card text-center text-white mb-3" style="background-color: #0D6EFD">
+                            <div class="card-body">
+                                <h3>Sucursales registradas</h3>
+                                <h4 class="fs-2"><i class="fa-solid fa-icons"></i> [[${totalSucursales}]]</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+    </body>
+</html>

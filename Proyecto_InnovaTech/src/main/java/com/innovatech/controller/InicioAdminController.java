@@ -10,4 +10,9 @@ public class InicioAdminController {
     public String adminPreview() {
         return "inicioadmin";
     }
+    
+//    @GetMapping("/admin/menuproductos")
+//    public String mostrarMenuProductos() {
+//        return "menuproductos"; 
+//    }
 }

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<!-- Página de Categorías-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>Productos - InnovaTech</title>
+        <meta charset="UTF-8"/>
+
+    </head>
+
+    <body>
+        <header th:replace="~{layout/plantilla :: header}"/>
+
+        <section class="py-5 text-center text-white" style="background-color: #9ec2f7;">
+            <div class="container">
+                <h1>Gestión de Productos</h1>
+                <p class="lead">Administra los productos desde aquí.</p>
+            </div>
+        </section>
+        
+        <section th:replace="~{producto/fragmentos :: botonesAgregar}"/>
+        <section th:replace="~{producto/fragmentos :: agregarProducto}"/>
+        <section th:replace="~{producto/fragmentos :: listadoProductos}"/>
+
+
+        <footer th:replace="~{layout/plantilla :: footer}"/>
+
+    </body>
+</html>

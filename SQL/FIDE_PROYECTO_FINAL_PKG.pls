@@ -49,7 +49,6 @@ CREATE OR REPLACE PACKAGE fide_proyecto_final_pkg AS
         v_nombre      IN fide_productos_tb.nombre%TYPE,
         v_precio      IN fide_productos_tb.precio%TYPE,
         v_idcategoria IN fide_productos_tb.idcategoria%TYPE,
-        v_idestado    IN fide_productos_tb.idestado%TYPE,
         v_idmarca     IN fide_productos_tb.idmarca%TYPE
     );
 
@@ -79,8 +78,7 @@ CREATE OR REPLACE PACKAGE fide_proyecto_final_pkg AS
         v_puesto      IN fide_empleados_tb.puesto%TYPE,
         v_iddireccion IN fide_empleados_tb.iddireccion%TYPE,
         v_salario     IN fide_empleados_tb.salario%TYPE,
-        v_correo      IN fide_empleados_tb.correo%TYPE,
-        v_idestado    IN fide_empleados_tb.idestado%TYPE
+        v_correo      IN fide_empleados_tb.correo%TYPE
     );
 
     PROCEDURE fide_ventas_tb_insertar_sp (

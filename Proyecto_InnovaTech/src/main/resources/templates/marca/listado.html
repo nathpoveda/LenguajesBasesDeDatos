@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<!-- Página de Marcas-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>Marcas - InnovaTech</title>
+        <meta charset="UTF-8"/>
+
+    </head>
+
+    <body>
+        <header th:replace="~{layout/plantilla :: header}"/>
+
+        <section class="py-5 text-center text-white" style="background-color: #9ec2f7;">
+            <div class="container">
+                <h1>Gestión de Marcas</h1>
+                <p class="lead">Administra las marcas de productos desde aquí.</p>
+            </div>
+        </section>
+        
+        <section th:replace="~{marca/fragmentos :: botonesAgregar}"/>
+        <section th:replace="~{marca/fragmentos :: agregarMarca}"/> 
+        <section th:replace="~{marca/fragmentos :: listadoMarcas}"/>
+
+
+        <footer th:replace="~{layout/plantilla :: footer}"/>
+
+    </body>
+</html>

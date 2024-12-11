@@ -1,3 +1,4 @@
+
 package com.innovatech.domain;
 
 import jakarta.persistence.*;
@@ -6,19 +7,14 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name="FIDE_CATEGORIAS_TB")
-public class Categoria implements Serializable{
-    
+@Table(name="FIDE_PAISES_TB")
+public class Pais implements Serializable {
     private static final long serialVersionUID = 1l;
-     
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="idcategoria")
+    @Column(name="idpais")
     
-    
-    private Long idCategoria;
+    private Long idPais;
     private String nombre;
-    private String descripcion;
-    private int idestado;
-
 }
