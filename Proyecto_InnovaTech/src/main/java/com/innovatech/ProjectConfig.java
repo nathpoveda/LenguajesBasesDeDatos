@@ -56,6 +56,7 @@ public class ProjectConfig implements WebMvcConfigurer {
                 "/marca/**",
                 "/producto/**",
                 "/sucursal/**",
+                "/inventario/**",
                 "/reportes/**",
                 "/registro/**",
                 "/js/**",

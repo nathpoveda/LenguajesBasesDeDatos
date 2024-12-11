@@ -27,9 +27,9 @@ public interface SucursalDao extends JpaRepository<Sucursal, Long> {
 
     @Transactional
     @Modifying
-    @Query(value = "UPDATE Sucursal c SET c.nombre = :nombre, c.iddireccion = :iddireccion, "
+    @Query(value = "UPDATE FIDE_SUCURSALES_TB c SET c.nombre = :nombre, c.iddireccion = :iddireccion, "
             + "c.horaapertura = :horaapertura, c.horacierre = :horacierre, "
-            + "c.idestado = :estado WHERE c.idsucursal = :idsucursal"
+            + "c.idestado = :idestado WHERE c.idsucursal = :idsucursal"
             ,nativeQuery = true)
     int updateSucursal(
             @Param("idsucursal") Long idSucursal,
@@ -37,7 +37,7 @@ public interface SucursalDao extends JpaRepository<Sucursal, Long> {
             @Param("iddireccion") Long idDireccion,
             @Param("horaapertura") String horaApertura,
             @Param("horacierre") String horaCierre,
-            @Param("estado") int estado
+            @Param("idestado") int idestado
     );
 
     @Transactional
