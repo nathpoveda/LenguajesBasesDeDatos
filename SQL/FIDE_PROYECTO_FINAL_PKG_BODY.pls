@@ -652,24 +652,23 @@ create or replace PACKAGE BODY fide_proyecto_final_pkg AS
     END fide_productos_tb_actualizar_sp;
     
 ------------------------------------------------------ Procedimiento para actualizar un producto proveedor-------------------------------------------------
---//////////////////////NO FUNCIONA//////////////////////////////////// 
---   PROCEDURE fide_productoproveedor_tb_actualizar_sp (
---       v_idproducto    IN fide_productoproveedor_tb.idproducto%TYPE,
---     v_nuevo_precio  IN fide_productoproveedor_tb.preciocompra%TYPE
---   ) IS
---     CURSOR proveedor_compramayor IS
----        SELECT idproducto, preciocompra
---    FROM fide_productoproveedor_tb
---   WHERE idproducto = v_idproducto;
---  BEGIN
--- FOR proveedor IN proveedor_compramayor LOOP
---     UPDATE fide_productoproveedor_tb
----   SET preciocompra = v_nuevo_precio
---   WHERE idproducto = proveedor.idproducto;
---  DBMS_OUTPUT.PUT_LINE('Producto ID: ' || proveedor.idproducto || ' actualizado con nuevo precio: ' || v_nuevo_precio);
---  END LOOP;
---   COMMIT;
---  END fide_productoproveedor_tb_actualizar_sp;
+    PROCEDURE fide_productoproveedor_tb_actualizar_sp (
+     v_idproducto    IN fide_productoproveedor_tb.idproducto%TYPE,
+    v_nuevo_precio  IN fide_productoproveedor_tb.preciocompra%TYPE
+    ) IS
+     CURSOR proveedor_compramayor IS
+      SELECT idproducto, preciocompra
+    FROM fide_productoproveedor_tb
+    WHERE idproducto = v_idproducto;
+    BEGIN
+    FOR proveedor IN proveedor_compramayor LOOP
+     UPDATE fide_productoproveedor_tb
+    SET preciocompra = v_nuevo_precio
+    WHERE idproducto = proveedor.idproducto;
+    DBMS_OUTPUT.PUT_LINE('Producto ID: ' || proveedor.idproducto || ' actualizado con nuevo precio: ' || v_nuevo_precio);
+    END LOOP;
+    COMMIT;
+    END fide_productoproveedor_tb_actualizar_sp;
 
 --------------------------------------------------------- Procedimiento para actualizar una sucursal------------------------------------------------------
     PROCEDURE fide_sucursales_tb_actualizar_sp (
