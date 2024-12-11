@@ -34,7 +34,7 @@ CREATE TABLE FIDE_ESTADOS_TB(
     ACCION VARCHAR2(100));
     ---(Exito)
 
--- Inserción de estados generales
+-- Inserciï¿½n de estados generales
 INSERT INTO FIDE_ESTADOS_TB (idEstado, Nombre) VALUES ('Inactivo');    
 INSERT INTO FIDE_ESTADOS_TB (idEstado, Nombre) VALUES ('Activo'); 
 COMMIT;
@@ -85,10 +85,10 @@ CREATE TABLE FIDE_PROVINCIAS_TB(
     ---(Exito)
     
 INSERT INTO FIDE_PROVINCIAS_TB(Nombre, idPais) VALUES ('Cartago',1);
-INSERT INTO FIDE_PROVINCIAS_TB(Nombre, idPais) VALUES ('San José',1);
+INSERT INTO FIDE_PROVINCIAS_TB(Nombre, idPais) VALUES ('San Josï¿½',1);
 INSERT INTO FIDE_PROVINCIAS_TB(Nombre, idPais) VALUES ('Alajuela',1);
 INSERT INTO FIDE_PROVINCIAS_TB(Nombre, idPais) VALUES ('Heredia',1);
-INSERT INTO FIDE_PROVINCIAS_TB(Nombre, idPais) VALUES ('Limón',1);
+INSERT INTO FIDE_PROVINCIAS_TB(Nombre, idPais) VALUES ('Limï¿½n',1);
 INSERT INTO FIDE_PROVINCIAS_TB(Nombre, idPais) VALUES ('Puntarenas',1);
 INSERT INTO FIDE_PROVINCIAS_TB(Nombre, idPais) VALUES ('Guanacaste',1);
 COMMIT;
@@ -108,80 +108,80 @@ CREATE TABLE FIDE_CANTONES_TB(
     ACCION VARCHAR2(100));
     ---(Exito)
     
--- Inserción de cantones por provincia
+-- Inserciï¿½n de cantones por provincia
 -- Cartago
 INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Cartago',1);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Paraíso',1);    
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('La Unión',1);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Jiménez',1);
+INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Paraï¿½so',1);    
+INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('La Uniï¿½n',1);
+INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Jimï¿½nez',1);
 INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Turrialba',1);
 INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Alvarado',1);
 INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Oreamuno',1);
 INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('El Guarco',1);
 COMMIT;
 
--- San José
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('San José',2);   
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Escazú',2);
+-- San Josï¿½
+INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('San Josï¿½',2);   
+INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Escazï¿½',2);
 INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Desamparados',2);
 INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Puriscal',2);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Tarrazú',2);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Aserrí',2);
+INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Tarrazï¿½',2);
+INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Aserrï¿½',2);
 INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Mora',2);
 INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Goicoechea',2);
 INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Santa Ana',2);
 INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Alajuelita',2);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Vázquez de Coronado',2);
+INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Vï¿½zquez de Coronado',2);
 INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Acosta',2);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Tibás',2);
+INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Tibï¿½s',2);
 INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Moravia',2);
 INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Montes de Oca',2);
 INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Turrubares',2);
 INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Dota',2);
 INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Curridabat',2);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Pérez Zeledón',2);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('León Cortés Castro',2);
+INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Pï¿½rez Zeledï¿½n',2);
+INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Leï¿½n Cortï¿½s Castro',2);
 COMMIT;
 
 -- Alajuela
 INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Alajuela',3);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('San Ramón',3);
+INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('San Ramï¿½n',3);
 INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Grecia',3);
 INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('San Mateo',3);
 INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Atenas',3);
 INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Naranjo',3);
 INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Palmares',3);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Poás',3);
+INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Poï¿½s',3);
 INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Orotina',3);
 INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('San Carlos',3);
 INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Zarcero',3);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Sarchí',3);
+INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Sarchï¿½',3);
 INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Upala',3);
 INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Los Chiles',3);
 INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Guatuso',3);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Río Cuarto',3);
+INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Rï¿½o Cuarto',3);
 COMMIT;
 
 -- Heredia
 INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Heredia',4);
 INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Barva',4);
 INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Santo Domingo',4);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Santa Bárbara',4);
+INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Santa Bï¿½rbara',4);
 INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('San Rafael',4);
 INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('San Isidro',4);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Belén',4);
+INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Belï¿½n',4);
 INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Flores',4);
 INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('San Pablo',4);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Sarapiquí',4);
+INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Sarapiquï¿½',4);
 COMMIT;
 
--- Limón
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Limón',5);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Pococí',5);    
+-- Limï¿½n
+INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Limï¿½n',5);
+INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Pococï¿½',5);    
 INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Siquirres',5);
 INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Talamanca',5);
 INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Matina',5);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Guácimo',5);
+INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Guï¿½cimo',5);
 COMMIT;
 
 -- Puntarenas
@@ -197,7 +197,7 @@ INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Parrita',6);
 INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Corredores',6);
 INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Garabito',6);
 INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Monteverde',6);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Puerto Jiménez',6);
+INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Puerto Jimï¿½nez',6);
 COMMIT;
 
 -- Guanacaste
@@ -206,9 +206,9 @@ INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Nicoya',7);
 INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Santa Cruz',7);
 INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Bagaces',7);
 INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Carillo',7);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Cañas',7);
+INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Caï¿½as',7);
 INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Abangares',7);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Tilarán',7);
+INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Tilarï¿½n',7);
 INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Nandayure',7);
 INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('La Cruz',7);
 INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Hojancha',7);
@@ -451,7 +451,7 @@ CREATE TABLE FIDE_METODOSPAGO_TB(
     
 INSERT INTO FIDE_METODOSPAGO_TB(Nombre) VALUES ('Tarjeta'); 
 INSERT INTO FIDE_METODOSPAGO_TB(Nombre) VALUES ('Efectivo'); 
-INSERT INTO FIDE_METODOSPAGO_TB(Nombre) VALUES ('SINPE Móvil'); 
+INSERT INTO FIDE_METODOSPAGO_TB(Nombre) VALUES ('SINPE Mï¿½vil'); 
 COMMIT;
     
 CREATE TABLE FIDE_FACTURAS_TB(
