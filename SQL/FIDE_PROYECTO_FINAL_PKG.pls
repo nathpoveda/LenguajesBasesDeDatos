@@ -174,11 +174,10 @@ CREATE OR REPLACE PACKAGE fide_proyecto_final_pkg AS
         v_idmarca      IN fide_productos_tb.idmarca%TYPE
     );
     
---//////////////////////NO FUNCIONA//////////////////////////////////// 
---    PROCEDURE fide_productoproveedor_tb_actualizar_sp (
---     v_idproducto    IN fide_productoproveedor_tb.idproducto%TYPE,
---     v_nuevo_precio  IN fide_productoproveedor_tb.preciocompra%TYPE
---   );
+  PROCEDURE fide_productoproveedor_tb_actualizar_sp (
+        v_idproducto    IN fide_productoproveedor_tb.idproducto%TYPE,
+        v_nuevo_precio  IN fide_productoproveedor_tb.preciocompra%TYPE
+   );
     
   PROCEDURE fide_sucursales_tb_actualizar_sp (
         v_idsucursal    IN fide_sucursales_tb.idsucursal%TYPE,
