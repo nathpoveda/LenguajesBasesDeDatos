@@ -232,6 +232,88 @@ CREATE OR REPLACE PACKAGE fide_proyecto_final_pkg AS
         v_fecha        IN fide_devoluciones_tb.fecha%TYPE,
         v_motivo       IN fide_devoluciones_tb.motivo%TYPE
     );
+
+    ---------------PROCEDIMEINTOS ALMACENADO DELETE----------------------
+    PROCEDURE FIDE_CATEGORIAS_TB_ELIMINAR_SP(
+        V_idCategoria IN FIDE_CATEGORIAS_TB.idCategoria%TYPE
+    );
+
+    PROCEDURE FIDE_PAISES_TB_ELIMINAR_SP (
+        V_idPais IN FIDE_PAISES_TB.idPais%TYPE
+    );
+
+    PROCEDURE FIDE_PROVINCIAS_TB_ELIMINAR_SP (
+        V_idProvincia IN FIDE_PROVINCIAS_TB.idProvincia%TYPE
+    );
+
+    CREATE OR REPLACE PROCEDURE FIDE_CANTONES_TB_ELIMINAR_SP (
+        V_idCanton IN FIDE_CANTONES_TB.idCanton%TYPE
+    );
+
+    PROCEDURE FIDE_DISTRITOS_TB_ELIMINAR_SP (
+        V_idDistrito IN FIDE_DISTRITOS_TB.idDistrito%TYPE
+    );
+
+    PROCEDURE FIDE_DIRECCIONES_TB_ELIMINAR_SP (
+        V_idDireccion IN FIDE_DIRECCIONES_TB.idDireccion%TYPE
+    );
+
+    PROCEDURE FIDE_PROVEEDORES_TB_ELIMINAR_SP (
+        V_idProveedor IN FIDE_PROVEEDORES_TB.idProveedor%TYPE
+    );
+
+    PROCEDURE FIDE_MARCASPRODUCTO_TB_ELIMINAR_SP (
+        V_idMarca IN FIDE_MARCASPRODUCTO_TB.idMarca%TYPE
+    );
+
+    PROCEDURE FIDE_PRODUCTOS_TB_ELIMINAR_SP (
+        V_idProducto IN FIDE_PRODUCTOS_TB.idProducto%TYPE
+    );
+
+    PROCEDURE FIDE_PRODUCTOPROVEEDOR_TB_ELIMINAR_SP (
+        V_idProducto IN FIDE_PRODUCTOPROVEEDOR_TB.idProducto%TYPE,
+        V_idProveedor IN FIDE_PRODUCTOPROVEEDOR_TB.idProveedor%TYPE
+    );
+
+    PROCEDURE FIDE_SUCURSALES_TB_ELIMINAR_SP (
+        V_idSucursal IN FIDE_SUCURSALES_TB.idSucursal%TYPE
+    );
+
+    PROCEDURE FIDE_INVENTARIOS_TB_ELIMINAR_SP (
+        V_idInventario IN FIDE_INVENTARIOS_TB.idInventario%TYPE
+    );
+
+    PROCEDURE FIDE_EMPLEADOS_TB_ELIMINAR_SP (
+        V_idEmpleado IN FIDE_EMPLEADOS_TB.idEmpleado%TYPE
+    );
+    
+    PROCEDURE FIDE_VENTAS_TB_ELIMINAR_SP (
+        V_idVenta IN FIDE_VENTAS_TB.idVenta%TYPE
+    );
+
+    
+    PROCEDURE FIDE_DETALLEVENTAS_TB_ELIMINAR_SP (
+        V_idDetalle IN FIDE_DETALLEVENTAS_TB.idDetalle%TYPE
+    );
+
+    PROCEDURE FIDE_METODOSPAGO_TB_ELIMINAR_SP (
+        V_idMetodoPago IN FIDE_METODOSPAGO_TB.idMetodoPago%TYPE
+    );
+
+    PROCEDURE FIDE_FACTURAS_TB_ELIMINAR_SP (
+        V_idFactura IN FIDE_FACTURAS_TB.idFactura%TYPE
+    );
+
+
+    PROCEDURE FIDE_DEVOLUCIONES_TB_ELIMINAR_SP (
+        V_idDevolucion IN FIDE_DEVOLUCIONES_TB.idDevolucion%TYPE
+    );
+
+    PROCEDURE FIDE_ROLES_TB_ELIMINAR_SP (
+        V_idRol IN FIDE_ROLES_TB.idRol%TYPE
+    );   
+
+
     
 --------------------FUNCIONES------------------------
 

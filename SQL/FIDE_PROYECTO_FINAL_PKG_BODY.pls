@@ -1,10 +1,9 @@
 create or replace PACKAGE BODY fide_proyecto_final_pkg AS
 
---------------------------------------------------------------------------------------
---------------------------PROCEDIMIENTOS DE ALMACENADO INSERT -------------------------------
---------------------------------------------------------------------------------------
+-- PROCEDIMIENTOS ALMACENADOS
 
-----------------------------------------------------------Procedimiento para insertar una categoria-------------------------------------------------------------
+-- INSERTS
+-- Insertar una categoria
     PROCEDURE fide_categorias_tb_insertar_sp (
         v_nombre      IN fide_categorias_tb.nombre%TYPE,
         v_descripcion IN fide_categorias_tb.descripcion%TYPE
@@ -22,7 +21,7 @@ create or replace PACKAGE BODY fide_proyecto_final_pkg AS
         COMMIT;
     END fide_categorias_tb_insertar_sp;
 
------------------------------------------------------------- Procedimiento para insertar un estado-------------------------------------------------------------
+-- Insertar un estado
     PROCEDURE fide_estados_tb_insertar_sp (
         v_nombre IN fide_estados_tb.nombre%TYPE
     ) IS
@@ -40,7 +39,7 @@ create or replace PACKAGE BODY fide_proyecto_final_pkg AS
         COMMIT;
     END fide_estados_tb_insertar_sp;
 
------------------------------------------------------------- Procedimiento para insertar un paÃ­s--------------------------------------------------------------
+-- Insertar un pais
     PROCEDURE fide_paises_tb_insertar_sp (
         v_nombre IN fide_paises_tb.nombre%TYPE
     ) IS
@@ -59,7 +58,7 @@ create or replace PACKAGE BODY fide_proyecto_final_pkg AS
         COMMIT;
     END fide_paises_tb_insertar_sp;
 
---------------------------------------------------------- Procedimiento para insertar una provincia----------------------------------------------------------
+-- Insertar una provincia
     PROCEDURE fide_provincias_tb_insertar_sp (
         v_nombre IN fide_provincias_tb.nombre%TYPE
     ) IS
@@ -77,7 +76,7 @@ create or replace PACKAGE BODY fide_proyecto_final_pkg AS
         COMMIT;
     END fide_provincias_tb_insertar_sp;
 
--------------------------------------------------------- Procedimiento para insertar un cantÃ³n--------------------------------------------------------------
+-- Insertar un canton
     PROCEDURE fide_cantones_tb_insertar_sp (
         v_nombre IN fide_cantones_tb.nombre%TYPE
     ) IS
@@ -96,7 +95,7 @@ create or replace PACKAGE BODY fide_proyecto_final_pkg AS
         COMMIT;
     END fide_cantones_tb_insertar_sp;
 
-------------------------------------------------------- Procedimiento para insertar un distrito-------------------------------------------------------------
+-- Insertar un distrito
     PROCEDURE fide_distritos_tb_insertar_sp (
         v_nombre IN fide_distritos_tb.nombre%TYPE
     ) IS
@@ -114,7 +113,7 @@ create or replace PACKAGE BODY fide_proyecto_final_pkg AS
         COMMIT;
     END fide_distritos_tb_insertar_sp;
 
------------------------------------------------------- Procedimiento para insertar una direcciÃ³n------------------------------------------------------------
+-- Insertar una direccion 
     PROCEDURE fide_direcciones_tb_insertar_sp (
         v_idpais          IN fide_direcciones_tb.idpais%TYPE,
         v_idprovincia     IN fide_direcciones_tb.idprovincia%TYPE,
@@ -148,7 +147,7 @@ create or replace PACKAGE BODY fide_proyecto_final_pkg AS
         COMMIT;
     END fide_direcciones_tb_insertar_sp;
 
------------------------------------------------------ Procedimiento para insertar un proveedor---------------------------------------------------------------
+-- Insertar un proveedor
     PROCEDURE fide_proveedores_tb_insertar_sp (
         v_nombre      IN fide_proveedores_tb.nombre%TYPE,
         v_iddireccion IN fide_proveedores_tb.iddireccion%TYPE,
@@ -175,7 +174,7 @@ create or replace PACKAGE BODY fide_proyecto_final_pkg AS
         COMMIT;
     END fide_proveedores_tb_insertar_sp;
 
-------------------------------------------------- Procedimiento para insertar una marca de producto--------------------------------------------------------
+-- Insertar una marca de producto
     PROCEDURE fide_marcasproducto_tb_insertar_sp (
         v_nombre IN fide_marcasproducto_tb.nombre%TYPE
     ) IS
@@ -193,7 +192,7 @@ create or replace PACKAGE BODY fide_proyecto_final_pkg AS
         COMMIT;
     END fide_marcasproducto_tb_insertar_sp;
 
--------------------------------------------------------- Procedimiento para insertar un producto-----------------------------------------------------------
+-- Insertar un producto
     PROCEDURE fide_productos_tb_insertar_sp (
         v_nombre      IN fide_productos_tb.nombre%TYPE,
         v_precio      IN fide_productos_tb.precio%TYPE,
@@ -219,7 +218,7 @@ create or replace PACKAGE BODY fide_proyecto_final_pkg AS
         COMMIT;
     END fide_productos_tb_insertar_sp;
 
------------------------------------------------------- Procedimiento para insertar un producto proveedor-------------------------------------------------
+-- Insertar un producto por proveedor
     PROCEDURE fide_productoproveedor_tb_insertar_sp (
         v_horarioentrega IN fide_productoproveedor_tb.horarioentrega%TYPE,
         v_idproveedor    IN fide_productoproveedor_tb.idproveedor%TYPE,
@@ -248,7 +247,7 @@ create or replace PACKAGE BODY fide_proyecto_final_pkg AS
         COMMIT;
     END fide_productoproveedor_tb_insertar_sp;
 
---------------------------------------------------------- Procedimiento para insertar una sucursal------------------------------------------------------
+-- Insertar una sucursal
     PROCEDURE fide_sucursales_tb_insertar_sp (
         v_nombre       IN fide_sucursales_tb.nombre%TYPE,
         v_iddireccion  IN fide_sucursales_tb.iddireccion%TYPE,
@@ -272,7 +271,7 @@ create or replace PACKAGE BODY fide_proyecto_final_pkg AS
         COMMIT;
     END fide_sucursales_tb_insertar_sp;
 
------------------------------------------------------- Procedimiento para insertar un inventario-----------------------------------------------------
+-- Insertar un inventario
     PROCEDURE fide_inventarios_tb_insertar_sp (
         v_idproducto          IN fide_inventarios_tb.idproducto%TYPE,
         v_cantidad            IN fide_inventarios_tb.cantidad%TYPE,
@@ -304,7 +303,7 @@ create or replace PACKAGE BODY fide_proyecto_final_pkg AS
         COMMIT;
     END fide_inventarios_tb_insertar_sp;
     
---------------------------------------------------- Procedimiento para insertar un empleado--------------------------------------------------------
+-- Insertar un empleado
     PROCEDURE fide_empleados_tb_insertar_sp (
         v_nombre      IN fide_empleados_tb.nombre%TYPE,
         v_idsucursal  IN fide_empleados_tb.idsucursal%TYPE,
@@ -332,7 +331,7 @@ create or replace PACKAGE BODY fide_proyecto_final_pkg AS
         COMMIT;
     END fide_empleados_tb_insertar_sp;
 
---------------------------------------------------Procedimiento para insertar una venta-----------------------------------------------------------
+-- Insertar una venta
     PROCEDURE fide_ventas_tb_insertar_sp (
         v_idempleado IN fide_ventas_tb.idempleado%TYPE,
         v_idsucursal IN fide_ventas_tb.idsucursal%TYPE,
@@ -358,7 +357,7 @@ create or replace PACKAGE BODY fide_proyecto_final_pkg AS
         COMMIT;
     END fide_ventas_tb_insertar_sp;
 
-------------------------------------- Procedimiento para insertar el detalle de una venta--------------------------------------------------------
+-- Insertar el detalle de una venta 
     PROCEDURE fide_detalleventas_tb_insertar_sp (
         v_idventa        IN fide_detalleventas_tb.idventa%TYPE,
         v_idproducto     IN fide_detalleventas_tb.idproducto%TYPE,
@@ -385,7 +384,7 @@ create or replace PACKAGE BODY fide_proyecto_final_pkg AS
         COMMIT;
     END fide_detalleventas_tb_insertar_sp;
 
---------------------------------------- Procedimiento para insertar un mÃ©todo de pago----------------------------------------------------------
+-- Insertar un metodo de pago 
     PROCEDURE fide_metodospago_tb_insertar_sp (
         v_nombre IN fide_metodospago_tb.nombre%TYPE
     ) IS
@@ -395,7 +394,7 @@ create or replace PACKAGE BODY fide_proyecto_final_pkg AS
         COMMIT;
     END fide_metodospago_tb_insertar_sp;
 
---------------------------------------------Procedimiento para insertar una factura-------------------------------------------------------------
+-- Insertar una factura 
     PROCEDURE fide_facturas_tb_insertar_sp (
         v_idventa      IN fide_facturas_tb.idventa%TYPE,
         v_fechaemision IN fide_facturas_tb.fechaemision%TYPE,
@@ -424,7 +423,7 @@ create or replace PACKAGE BODY fide_proyecto_final_pkg AS
         COMMIT;
     END fide_facturas_tb_insertar_sp;
 
------------------------------------ Procedimiento para insertar una devoluciÃ³n--------------------------------------------------------------
+-- Insertar una devolucion
     PROCEDURE fide_devoluciones_tb_insertar_sp (
         v_idproducto IN fide_devoluciones_tb.idproducto%TYPE,
         v_idfactura  IN fide_devoluciones_tb.idfactura%TYPE,
@@ -447,11 +446,9 @@ create or replace PACKAGE BODY fide_proyecto_final_pkg AS
         COMMIT;
     END fide_devoluciones_tb_insertar_sp;
     
---------------------------------------------------------------------------------
- -------------------PROCEDIMIENTOS DE ALMACENADO UPDATE-------------------------
- -------------------------------------------------------------------------------
+-- UPDATES
     
-----------------------------------------------------------Procedimiento para actualizar una categoria-------------------------------------------------------------
+-- Actualizar una categoria
      PROCEDURE fide_categorias_tb_actualizar_sp (
         v_id          IN fide_categorias_tb.idCategoria%TYPE, 
         v_nombre      IN fide_categorias_tb.nombre%TYPE,
@@ -467,7 +464,7 @@ create or replace PACKAGE BODY fide_proyecto_final_pkg AS
         COMMIT;
     END fide_categorias_tb_actualizar_sp;
     
-    ------------------------------------------------------------ Procedimiento para actualizar un estado-------------------------------------------------------------
+-- Actualizar un estado 
      PROCEDURE fide_estados_tb_actualizar_sp (
         v_idestado IN fide_estados_tb.idEstado%TYPE,
         v_nuevo_nombre IN fide_estados_tb.nombre%TYPE
@@ -486,7 +483,7 @@ create or replace PACKAGE BODY fide_proyecto_final_pkg AS
         COMMIT;
     END fide_estados_tb_actualizar_sp;
     
-   ------------------------------------------------------------ Procedimiento para actualizar un paÃ­s--------------------------------------------------------------
+-- Actualizar un pais
     PROCEDURE fide_paises_tb_actualizar_sp (
     v_idpais IN fide_paises_tb.idpais%TYPE,
     v_nuevo_nombre IN fide_paises_tb.nombre%TYPE
@@ -505,7 +502,7 @@ create or replace PACKAGE BODY fide_proyecto_final_pkg AS
     COMMIT;
     END fide_paises_tb_actualizar_sp;
 
---------------------------------------------------------- Procedimiento para actualizar una provincia----------------------------------------------------------
+-- Actualizar una provincia
     PROCEDURE fide_provincias_tb_actualizar_sp (
     v_idprovincia IN fide_provincias_tb.idprovincia%TYPE,
     v_nuevo_nombre IN fide_provincias_tb.nombre%TYPE
@@ -525,7 +522,7 @@ create or replace PACKAGE BODY fide_proyecto_final_pkg AS
     COMMIT;
     END fide_provincias_tb_actualizar_sp;
     
-   -------------------------------------------------------- Procedimiento para actualizar un cantÃ³n-------------------------------------------------------------- 
+-- Actualizar un canton
     PROCEDURE fide_cantones_tb_actualizar_sp (
     v_idcanton IN fide_cantones_tb.idcanton%TYPE,
     v_nuevo_nombre IN fide_cantones_tb.nombre%TYPE
@@ -544,7 +541,7 @@ create or replace PACKAGE BODY fide_proyecto_final_pkg AS
     COMMIT;
     END fide_cantones_tb_actualizar_sp;
     
-   ------------------------------------------------------- Procedimiento para actualizar un distrito------------------------------------------------------------- 
+-- Actualizar un distrito
     PROCEDURE fide_distritos_tb_actualizar_sp (
         v_iddistrito IN fide_distritos_tb.iddistrito%TYPE,
         v_nuevo_nombre IN fide_distritos_tb.nombre%TYPE
@@ -563,7 +560,7 @@ create or replace PACKAGE BODY fide_proyecto_final_pkg AS
         COMMIT;
     END fide_distritos_tb_actualizar_sp;
     
------------------------------------------------------- Procedimiento para actualizar una direcciÃ³n------------------------------------------------------------
+-- Actualizar una direccion
     PROCEDURE fide_direcciones_tb_actualizar_sp (
     v_iddireccion IN fide_direcciones_tb.iddireccion%TYPE,
     v_nueva_direccion IN fide_direcciones_tb.direccionexacta%TYPE
@@ -582,7 +579,7 @@ create or replace PACKAGE BODY fide_proyecto_final_pkg AS
     COMMIT;
     END fide_direcciones_tb_actualizar_sp;
     
------------------------------------------------------ Procedimiento para actualizar un proveedor---------------------------------------------------------------
+-- Actualizar un proveedor
     PROCEDURE fide_proveedores_tb_actualizar_sp (
     v_idproveedor IN fide_proveedores_tb.idproveedor%TYPE,
     v_nuevo_nombre IN fide_proveedores_tb.nombre%TYPE
@@ -601,7 +598,7 @@ create or replace PACKAGE BODY fide_proyecto_final_pkg AS
     COMMIT;
     END fide_proveedores_tb_actualizar_sp;
     
- ------------------------------------------------- Procedimiento para actualizar una marca de producto--------------------------------------------------------   
+-- Actualizar una marca de producto 
     PROCEDURE fide_marcasproducto_tb_actualizar_sp (
         v_idmarca IN fide_marcasproducto_tb.IDMarca%TYPE,
         v_nuevo_nombre IN fide_marcasproducto_tb.nombre%TYPE
@@ -621,8 +618,8 @@ create or replace PACKAGE BODY fide_proyecto_final_pkg AS
         END LOOP;
         COMMIT; 
     END fide_marcasproducto_tb_actualizar_sp;
-    
--------------------------------------------------------- Procedimiento para actualizar un producto-----------------------------------------------------------
+
+-- Actualizar un producto
     PROCEDURE fide_productos_tb_actualizar_sp (
         v_idproducto   IN fide_productos_tb.idproducto%TYPE,
         v_nombre       IN fide_productos_tb.nombre%TYPE,
@@ -651,7 +648,7 @@ create or replace PACKAGE BODY fide_proyecto_final_pkg AS
         COMMIT;
     END fide_productos_tb_actualizar_sp;
     
------------------------------------------------------- Procedimiento para actualizar un producto proveedor-------------------------------------------------
+-- Actualizar un producto por proveedor
     PROCEDURE fide_productoproveedor_tb_actualizar_sp (
      v_idproducto    IN fide_productoproveedor_tb.idproducto%TYPE,
     v_nuevo_precio  IN fide_productoproveedor_tb.preciocompra%TYPE
@@ -670,7 +667,7 @@ create or replace PACKAGE BODY fide_proyecto_final_pkg AS
     COMMIT;
     END fide_productoproveedor_tb_actualizar_sp;
 
---------------------------------------------------------- Procedimiento para actualizar una sucursal------------------------------------------------------
+-- Actualizar una sucursal
     PROCEDURE fide_sucursales_tb_actualizar_sp (
         v_idsucursal    IN fide_sucursales_tb.idsucursal%TYPE,
         v_nuevo_nombre  IN fide_sucursales_tb.nombre%TYPE,
@@ -693,7 +690,7 @@ create or replace PACKAGE BODY fide_proyecto_final_pkg AS
         COMMIT;
     END fide_sucursales_tb_actualizar_sp;
     
------------------------------------------------------- Procedimiento para actualizar un inventario-----------------------------------------------------
+-- Actualizar un inventario
      PROCEDURE fide_inventarios_tb_actualizar_sp (
         v_idproducto          IN fide_inventarios_tb.idproducto%TYPE,
         v_nueva_cantidad      IN fide_inventarios_tb.cantidad%TYPE,
@@ -718,7 +715,7 @@ create or replace PACKAGE BODY fide_proyecto_final_pkg AS
         COMMIT;
     END fide_inventarios_tb_actualizar_sp;
 
---------------------------------------------------- Procedimiento paraactualizar un empleado--------------------------------------------------------
+-- Actualizar un empleado
     PROCEDURE fide_empleados_tb_actualizar_sp (
             v_idempleado IN fide_empleados_tb.idempleado%TYPE,
             v_nuevo_salario IN fide_empleados_tb.salario%TYPE,
@@ -740,7 +737,7 @@ create or replace PACKAGE BODY fide_proyecto_final_pkg AS
             COMMIT;
         END fide_empleados_tb_actualizar_sp;
         
---------------------------------------------------Procedimiento para actualizar una venta-----------------------------------------------------------
+-- Actualizar una venta
          PROCEDURE fide_ventas_tb_actualizar_sp (
         v_idventa IN fide_ventas_tb.idventa%TYPE,
         v_nuevo_total IN fide_ventas_tb.total%TYPE
@@ -760,7 +757,7 @@ create or replace PACKAGE BODY fide_proyecto_final_pkg AS
         COMMIT;
     END fide_ventas_tb_actualizar_sp;
     
-    ------------------------------------- Procedimiento para actualizar el detalle de una venta--------------------------------------------------------
+-- Actualizar el detalle de una venta
     PROCEDURE fide_detalleventas_tb_actualizar_sp (
         v_idventa        IN fide_detalleventas_tb.idventa%TYPE,
         v_idproducto     IN fide_detalleventas_tb.idproducto%TYPE,
@@ -784,7 +781,7 @@ create or replace PACKAGE BODY fide_proyecto_final_pkg AS
         COMMIT;
     END fide_detalleventas_tb_actualizar_sp;
     
---------------------------------------- Procedimiento para actualizar un mÃ©todo de pago----------------------------------------------------------
+-- Actualizar un metodo de pago
     PROCEDURE fide_metodospago_tb_actualizar_sp (
         v_idmetodopago IN fide_metodospago_tb.idmetodopago%TYPE,
         v_nuevo_nombre IN fide_metodospago_tb.nombre%TYPE
@@ -797,7 +794,7 @@ create or replace PACKAGE BODY fide_proyecto_final_pkg AS
         COMMIT;
     END fide_metodospago_tb_actualizar_sp;
     
---------------------------------------------Procedimiento para actualizar una factura-------------------------------------------------------------
+-- Actualizar una factura
     PROCEDURE fide_facturas_tb_actualizar_sp (
         v_idventa      IN fide_facturas_tb.idventa%TYPE,
         v_fechaemision IN fide_facturas_tb.fechaemision%TYPE,
@@ -819,7 +816,7 @@ create or replace PACKAGE BODY fide_proyecto_final_pkg AS
         COMMIT;
     END fide_facturas_tb_actualizar_sp;
     
------------------------------------ Procedimiento para actualizar una devoluciÃ³n--------------------------------------------------------------
+-- Actualizar una devolucion 
     PROCEDURE fide_devoluciones_tb_actualizar_sp (
         v_iddevolucion IN fide_devoluciones_tb.iddevolucion%TYPE,
         v_idproducto   IN fide_devoluciones_tb.idproducto%TYPE,
@@ -839,10 +836,221 @@ create or replace PACKAGE BODY fide_proyecto_final_pkg AS
         COMMIT;
     END fide_devoluciones_tb_actualizar_sp;
 
---------------------------------------------------------------------------------------
---------------------------------------- FUNCIONES ------------------------------------
---------------------------------------------------------------------------------------
-    
+
+-- DELETES (update estado=inactivo)
+
+-- "Eliminar" una categoria
+CREATE OR REPLACE PROCEDURE FIDE_CATEGORIAS_TB_ELIMINAR_SP (
+    V_idCategoria IN FIDE_CATEGORIAS_TB.idCategoria%TYPE
+)
+IS
+BEGIN
+    UPDATE FIDE_CATEGORIAS_TB SET idEstado = 1 WHERE idCategoria = V_idCategoria;
+    COMMIT;
+END FIDE_CATEGORIAS_TB_ELIMINAR_SP;
+
+
+-- "Eliminar" un pais
+CREATE OR REPLACE PROCEDURE FIDE_PAISES_TB_ELIMINAR_SP (
+    V_idPais IN FIDE_PAISES_TB.idPais%TYPE
+)
+IS
+BEGIN
+    UPDATE FIDE_PAISES_TB SET idEstado = 1 WHERE idPais = V_idPais;
+    COMMIT;
+END FIDE_PAISES_TB_ELIMINAR_SP;
+
+
+-- "Eliminar" una provincia
+CREATE OR REPLACE PROCEDURE FIDE_PROVINCIAS_TB_ELIMINAR_SP (
+    V_idProvincia IN FIDE_PROVINCIAS_TB.idProvincia%TYPE
+)
+IS
+BEGIN
+    UPDATE FIDE_PROVINCIAS_TB SET idEstado = 1 WHERE idProvincia = V_idProvincia;
+    COMMIT;
+END FIDE_PROVINCIAS_TB_ELIMINAR_SP;
+
+
+-- "Eliminar" un canton
+CREATE OR REPLACE PROCEDURE FIDE_CANTONES_TB_ELIMINAR_SP (
+    V_idCanton IN FIDE_CANTONES_TB.idCanton%TYPE
+)
+IS
+BEGIN
+    UPDATE FIDE_CANTONES_TB SET idEstado = 1 WHERE idCanton = V_idCanton;
+    COMMIT;
+END FIDE_CANTONES_TB_ELIMINAR_SP;
+
+
+-- "Eliminar" un distrito 
+CREATE OR REPLACE PROCEDURE FIDE_DISTRITOS_TB_ELIMINAR_SP (
+    V_idDistrito IN FIDE_DISTRITOS_TB.idDistrito%TYPE
+)
+IS
+BEGIN
+    UPDATE FIDE_DISTRITOS_TB SET idEstado = 0 WHERE idDistrito = V_idDistrito;
+    COMMIT;
+END FIDE_DISTRITOS_TB_ELIMINAR_SP;
+
+
+-- "Eliminar" una direccion
+CREATE OR REPLACE PROCEDURE FIDE_DIRECCIONES_TB_ELIMINAR_SP (
+    V_idDireccion IN FIDE_DIRECCIONES_TB.idDireccion%TYPE
+)
+IS
+BEGIN
+    UPDATE FIDE_DIRECCIONES_TB SET idEstado = 1 WHERE idDireccion = V_idDireccion;
+    COMMIT;
+END FIDE_DIRECCIONES_TB_ELIMINAR_SP;
+
+
+-- "Eliminar" un proveedor
+CREATE OR REPLACE PROCEDURE FIDE_PROVEEDORES_TB_ELIMINAR_SP (
+    V_idProveedor IN FIDE_PROVEEDORES_TB.idProveedor%TYPE
+)
+IS
+BEGIN
+    UPDATE FIDE_PROVEEDORES_TB SET idEstado = 1 WHERE idProveedor = V_idProveedor;
+    COMMIT;
+END FIDE_PROVEEDORES_TB_ELIMINAR_SP;
+
+
+-- "Eliminar" una marca 
+CREATE OR REPLACE PROCEDURE FIDE_MARCASPRODUCTO_TB_ELIMINAR_SP (
+    V_idMarca IN FIDE_MARCASPRODUCTO_TB.idMarca%TYPE
+)
+IS
+BEGIN
+    UPDATE FIDE_MARCASPRODUCTO_TB SET idEstado = 1 WHERE idMarca = V_idMarca;
+    COMMIT;
+END FIDE_MARCASPRODUCTO_TB_ELIMINAR_SP;
+
+
+-- "Eliminar" un producto
+CREATE OR REPLACE PROCEDURE FIDE_PRODUCTOS_TB_ELIMINAR_SP (
+    V_idProducto IN FIDE_PRODUCTOS_TB.idProducto%TYPE
+)
+IS
+BEGIN
+    UPDATE FIDE_PRODUCTOS_TB SET idEstado = 1 WHERE idProducto = V_idProducto;
+    COMMIT;
+END FIDE_PRODUCTOS_TB_ELIMINAR_SP;
+
+
+-- "Eliminar" un producto por proveedor
+CREATE OR REPLACE PROCEDURE FIDE_PRODUCTOPROVEEDOR_TB_ELIMINAR_SP (
+    V_idProducto IN FIDE_PRODUCTOPROVEEDOR_TB.idProducto%TYPE,
+    V_idProveedor IN FIDE_PRODUCTOPROVEEDOR_TB.idProveedor%TYPE
+)
+IS
+BEGIN
+    UPDATE FIDE_PRODUCTOPROVEEDOR_TB SET idEstado = 1 
+        WHERE idProducto = V_idProducto AND idProveedor = V_idProveedor;
+    COMMIT;
+END FIDE_PRODUCTOPROVEEDOR_TB_ELIMINAR_SP;
+
+
+-- "Eliminar" una categoria
+CREATE OR REPLACE PROCEDURE FIDE_SUCURSALES_TB_ELIMINAR_SP (
+    V_idSucursal IN FIDE_SUCURSALES_TB.idSucursal%TYPE
+)
+IS
+BEGIN
+    UPDATE FIDE_SUCURSALES_TB SET idEstado = 1 WHERE idSucursal = V_idSucursal;
+    COMMIT;
+END FIDE_SUCURSALES_TB_ELIMINAR_SP;
+
+
+-- "Eliminar" un inventario
+CREATE OR REPLACE PROCEDURE FIDE_INVENTARIOS_TB_ELIMINAR_SP (
+    V_idInventario IN FIDE_INVENTARIOS_TB.idInventario%TYPE
+)
+IS
+BEGIN
+    UPDATE FIDE_INVENTARIOS_TB SET idEstado = 1 WHERE idInventario = V_idInventario;
+    COMMIT;
+END FIDE_INVENTARIOS_TB_ELIMINAR_SP;
+
+
+-- "Eliminar" un empleado
+CREATE OR REPLACE PROCEDURE FIDE_EMPLEADOS_TB_ELIMINAR_SP (
+    V_idEmpleado IN FIDE_EMPLEADOS_TB.idEmpleado%TYPE
+)
+IS
+BEGIN
+    UPDATE FIDE_EMPLEADOS_TB SET idEstado = 1 WHERE idEmpleado = V_idEmpleado;
+    COMMIT;
+END FIDE_EMPLEADOS_TB_ELIMINAR_SP;
+
+
+-- "Eliminar" una venta
+CREATE OR REPLACE PROCEDURE FIDE_VENTAS_TB_ELIMINAR_SP (
+    V_idVenta IN FIDE_VENTAS_TB.idVenta%TYPE
+)
+IS
+BEGIN
+    UPDATE FIDE_VENTAS_TB SET idEstado = 1 WHERE idVenta = V_idVenta;
+    COMMIT;
+END FIDE_VENTAS_TB_ELIMINAR_SP;
+
+
+-- "Eliminar" un detalle de venta
+CREATE OR REPLACE PROCEDURE FIDE_DETALLEVENTAS_TB_ELIMINAR_SP (
+    V_idDetalle IN FIDE_DETALLEVENTAS_TB.idDetalle%TYPE
+)
+IS
+BEGIN
+    UPDATE FIDE_DETALLEVENTAS_TB SET idEstado = 1 WHERE idDetalle = V_idDetalle;
+    COMMIT;
+END FIDE_DETALLEVENTAS_TB_ELIMINAR_SP;
+
+
+-- "Eliminar" una metodo de pago
+CREATE OR REPLACE PROCEDURE FIDE_METODOSPAGO_TB_ELIMINAR_SP (
+    V_idMetodoPago IN FIDE_METODOSPAGO_TB.idMetodoPago%TYPE
+)
+IS
+BEGIN
+    UPDATE FIDE_METODOSPAGO_TB SET idEstado = 1 WHERE idMetodoPago = V_idMetodoPago;
+    COMMIT;
+END FIDE_METODOSPAGO_TB_ELIMINAR_SP;
+
+
+-- "Eliminar" una factura
+CREATE OR REPLACE PROCEDURE FIDE_FACTURAS_TB_ELIMINAR_SP (
+    V_idFactura IN FIDE_FACTURAS_TB.idFactura%TYPE
+)
+IS
+BEGIN
+    UPDATE FIDE_FACTURAS_TB SET idEstado = 1 WHERE idFactura = V_idFactura;
+    COMMIT;
+END FIDE_FACTURAS_TB_ELIMINAR_SP;
+
+
+-- "Eliminar" una devolucion
+CREATE OR REPLACE PROCEDURE FIDE_DEVOLUCIONES_TB_ELIMINAR_SP (
+    V_idDevolucion IN FIDE_DEVOLUCIONES_TB.idDevolucion%TYPE
+)
+IS
+BEGIN
+    UPDATE FIDE_DEVOLUCIONES_TB SET idEstado = 1 WHERE idDevolucion = V_idDevolucion;
+    COMMIT;
+END FIDE_DEVOLUCIONES_TB_ELIMINAR_SP;
+
+
+-- "Eliminar" un rol
+CREATE OR REPLACE PROCEDURE FIDE_ROLES_TB_ELIMINAR_SP (
+    V_idRol IN FIDE_ROLES_TB.idRol%TYPE
+)
+IS
+BEGIN
+    UPDATE FIDE_ROLES_TB SET idEstado = 1 WHERE idRol = V_idRol;
+    COMMIT;
+END FIDE_ROLES_TB_ELIMINAR_SP;
+
+-- FUNCIONES
+
     FUNCTION categorias_generar_secuencia_fn RETURN VARCHAR2 IS
         v_resultado VARCHAR2(100);
     BEGIN
