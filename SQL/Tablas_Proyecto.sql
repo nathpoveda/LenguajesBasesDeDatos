@@ -35,8 +35,8 @@ CREATE TABLE FIDE_ESTADOS_TB(
     ---(Exito)
 
 -- Inserci�n de estados generales
-INSERT INTO FIDE_ESTADOS_TB (idEstado, Nombre) VALUES ('Inactivo');    
-INSERT INTO FIDE_ESTADOS_TB (idEstado, Nombre) VALUES ('Activo'); 
+INSERT INTO FIDE_ESTADOS_TB (Nombre) VALUES ('Inactivo');    
+INSERT INTO FIDE_ESTADOS_TB (Nombre) VALUES ('Activo'); 
 COMMIT;
 
 CREATE TABLE FIDE_CATEGORIAS_TB(

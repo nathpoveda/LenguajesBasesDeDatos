@@ -14,7 +14,6 @@ public class Sucursal implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="idsucursal")
-    
     private Long idsucursal;
     private String nombre;
     

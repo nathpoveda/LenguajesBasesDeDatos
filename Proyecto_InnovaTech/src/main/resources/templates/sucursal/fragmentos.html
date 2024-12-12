@@ -12,6 +12,23 @@
 
     <body>
         
+        <section th:fragment="botonesAgregar" class="py-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">   
+                        <button 
+                            sec:authorize="hasRole('ROLE_ADMIN')"
+                            type="button" 
+                            class="btn btn-primary btn-block" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#agregarSucursal">
+                            <i class="fas fa-plus"></i> Agregar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
         <section th:fragment="listadoSucursales" id="sucursales">
             <div class="container pt-4">
                 <div class="row">
@@ -70,6 +87,80 @@
                                 <h4 class="fs-2"><i class="fa-solid fa-icons"></i> [[${totalSucursales}]]</h4>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section th:fragment="agregarSucursal">
+            <div id="agregarSucursal" 
+                 class="modal fade" 
+                 tabindex="-1" 
+                 aria-labelledby="exampleModalLabel" 
+                 aria-hidden="true">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content">
+                        <div class="modal-header bg-info text-white">
+                            <h5 class="modal-title">Agregar Nueva Sucursal</h5>
+                            <button type="button" 
+                                    class="btn-close" 
+                                    data-bs-dismiss="modal" 
+                                    aria-label="Close"></button>
+                        </div> 
+                        <form th:action="@{/sucursal/guardar}" th:object="${sucursal}"
+                              method="POST" class="was-validated"
+                              enctype="multipart/form-data">
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label for="nombre">Nombre</label>
+                                    <input type="text" class="form-control" name="nombre" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="horaapertura">Hora de apertura</label>
+                                    <input type="time" class="form-control" name="horaapertura" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="horacierre">Hora de cierre</label>
+                                    <input type="time" class="form-control" name="horacierre" required="true"/>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="pais">País</label>
+                                    <select id="pais" class="form-select" name="direccion.pais.idPais" onchange="cargarProvincias(this.value)" required="true">
+                                        <option value="" disabled selected>Seleccione un país</option>
+                                        <option th:each="pais : ${paises}" th:value="${pais.idPais}" th:text="${pais.nombre}"></option>
+                                    </select>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="provincia">Provincia</label>
+                                    <select id="provincia" class="form-select" name="direccion.provincia.idProvincia" onchange="cargarCantones(this.value)" required="true">
+                                        <option value="" disabled selected>Seleccione una provincia</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="canton">Cantón</label>
+                                    <select id="canton" class="form-select" name="direccion.canton.idCanton" onchange="cargarDistritos(this.value)" required="true">
+                                        <option value="" disabled selected>Seleccione un cantón</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="distrito">Distrito</label>
+                                    <select id="distrito" class="form-select" name="direccion.distrito.idDistrito" required="true">
+                                        <option value="" disabled selected>Seleccione un distrito</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="direccionExacta">Direccion exacta</label>
+                                    <input type="text" class="form-control" name="direccion.direccionexacta" required="true"/>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" type="submit">Guardar</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

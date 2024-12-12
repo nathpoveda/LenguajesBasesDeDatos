@@ -43,10 +43,10 @@ public interface SucursalDao extends JpaRepository<Sucursal, Long> {
     @Transactional
     @Procedure(procedureName = "FIDE_PROYECTO_FINAL_PKG.FIDE_SUCURSALES_TB_INSERTAR_SP")
     void insertarSucursal(
-            @Param("V_Nombre") String nombre,
-            @Param("V_HoraApertura") String horaApertura,
-            @Param("V_HoraCierre") String horaCierre,
-            @Param("V_IdDireccion") Long idDireccion
+            @Param("v_nombre") String nombre,
+            @Param("v_horaapertura") String horaApertura,
+            @Param("v_horacierre") String horaCierre,
+            @Param("v_iddireccion") Long idDireccion
     );
 
 }

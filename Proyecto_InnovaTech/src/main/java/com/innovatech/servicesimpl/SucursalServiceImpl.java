@@ -1,5 +1,6 @@
 package com.innovatech.servicesimpl;
 
+import com.innovatech.dao.DireccionDao;
 import com.innovatech.dao.SucursalDao;
 import com.innovatech.domain.Sucursal;
 import com.innovatech.services.SucursalService;
@@ -13,6 +14,9 @@ public class SucursalServiceImpl implements SucursalService {
 
     @Autowired
     private SucursalDao sucursalDao;
+
+    @Autowired
+    private DireccionDao direccionDao;
 
     @Override
     public List<Sucursal> getSucursales() {
@@ -29,12 +33,23 @@ public class SucursalServiceImpl implements SucursalService {
     @Override
     @Transactional
     public void save(Sucursal sucursal) {
-//        sucursalDao.insertarSucursal(
-//                sucursal.getNombre(),
-//                sucursal.getHoraapertura(),
-//                sucursal.getHoracierre(),
-//                sucursal.getIddireccion()
-//        );
+        Long idDireccion = direccionDao.insertarDireccion(
+                sucursal.getDireccion().getPais().getIdPais(),
+                sucursal.getDireccion().getProvincia().getIdProvincia(),
+                sucursal.getDireccion().getCanton().getIdCanton(),
+                sucursal.getDireccion().getDistrito().getIdDistrito(),
+                sucursal.getDireccion().getDireccionexacta()
+        );
+        
+        System.out.println("Prueba id direccion: " + idDireccion);
+        System.out.println("Prueba datos sucursal: " + sucursal);
+
+        sucursalDao.insertarSucursal(
+                sucursal.getNombre(),
+                sucursal.getHoraapertura(),
+                sucursal.getHoracierre(),
+                idDireccion
+        );
     }
 
     @Override
