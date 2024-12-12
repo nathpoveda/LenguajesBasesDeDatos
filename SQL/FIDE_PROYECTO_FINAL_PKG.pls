@@ -32,7 +32,8 @@ CREATE OR REPLACE PACKAGE fide_proyecto_final_pkg AS
         v_idprovincia     IN fide_direcciones_tb.idprovincia%TYPE,
         v_idcanton        IN fide_direcciones_tb.idcanton%TYPE,
         v_iddistrito      IN fide_direcciones_tb.iddistrito%TYPE,
-        v_direccionexacta IN fide_direcciones_tb.direccionexacta%TYPE
+        v_direccionexacta IN fide_direcciones_tb.direccionexacta%TYPE,
+        v_iddireccion     OUT fide_direcciones_tb.iddireccion%TYPE
     );
 
     PROCEDURE fide_proveedores_tb_insertar_sp (

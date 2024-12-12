@@ -119,7 +119,8 @@ create or replace PACKAGE BODY fide_proyecto_final_pkg AS
         v_idprovincia     IN fide_direcciones_tb.idprovincia%TYPE,
         v_idcanton        IN fide_direcciones_tb.idcanton%TYPE,
         v_iddistrito      IN fide_direcciones_tb.iddistrito%TYPE,
-        v_direccionexacta IN fide_direcciones_tb.direccionexacta%TYPE
+        v_direccionexacta IN fide_direcciones_tb.direccionexacta%TYPE,
+        v_iddireccion     OUT fide_direcciones_tb.iddireccion%TYPE
     ) IS
         CURSOR insertar_direcciones IS 
         SELECT * FROM fide_direcciones_tb
@@ -138,7 +139,8 @@ create or replace PACKAGE BODY fide_proyecto_final_pkg AS
             v_idcanton,
             v_iddistrito,
             v_direccionexacta
-        );
+        )
+        RETURNING iddireccion INTO v_iddireccion;
         
         FOR direccion IN insertar_direcciones LOOP
         DBMS_OUTPUT.PUT_LINE('Dirección: ' || direccion.direccionexacta);
