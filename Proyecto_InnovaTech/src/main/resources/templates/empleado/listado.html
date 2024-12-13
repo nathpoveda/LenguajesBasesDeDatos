@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<!-- Página de Empleados-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>Empleados - InnovaTech</title>
+        <meta charset="UTF-8"/>
+
+    </head>
+
+    <body>
+        <header th:replace="~{layout/plantilla :: header}"/>
+
+        <section class="py-5 text-center text-white" style="background-color: #9ec2f7;">
+            <div class="container">
+                <h1>Gestión de Empleados</h1>
+                <p class="lead">Administra los empleados de la tienda desde aquí.</p>
+            </div>
+        </section>
+
+        <section th:replace="~{empleado/fragmentos :: botonesAgregar}"/>
+        <section th:replace="~{empleado/fragmentos :: agregarEmpleado}"/>
+        <section th:replace="~{empleado/fragmentos :: listadoEmpleados}"/>
+
+
+        <footer th:replace="~{layout/plantilla :: footer}"/>
+
+
+        <script>
+            function cargarProvincias(idPais) {
+                fetch(`/empleado/provincias/${idPais}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            const provinciaDropdown = document.getElementById('provincia');
+                            provinciaDropdown.innerHTML = '<option value="" disabled selected>Seleccione una provincia</option>';
+                            data.forEach(provincia => {
+                                const option = document.createElement('option');
+                                option.value = provincia.idProvincia;
+                                option.textContent = provincia.nombre;
+                                provinciaDropdown.appendChild(option);
+                            });
+                            
+                            document.getElementById('canton').innerHTML = '<option value="" disabled selected>Seleccione un cantón</option>';
+                            document.getElementById('distrito').innerHTML = '<option value="" disabled selected>Seleccione un distrito</option>';
+                        });
+            }
+
+            function cargarCantones(idProvincia) {
+                fetch(`/empleado/cantones/${idProvincia}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            const cantonDropdown = document.getElementById('canton');
+                            cantonDropdown.innerHTML = '<option value="" disabled selected>Seleccione un cantón</option>';
+                            data.forEach(canton => {
+                                const option = document.createElement('option');
+                                option.value = canton.idCanton;
+                                option.textContent = canton.nombre;
+                                cantonDropdown.appendChild(option);
+                            });
+                            
+                            document.getElementById('distrito').innerHTML = '<option value="" disabled selected>Seleccione un distrito</option>';
+                        });
+            }
+
+            function cargarDistritos(idCanton) {
+                fetch(`/empleado/distritos/${idCanton}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            const distritoDropdown = document.getElementById('distrito');
+                            distritoDropdown.innerHTML = '<option value="" disabled selected>Seleccione un distrito</option>';
+                            data.forEach(distrito => {
+                                const option = document.createElement('option');
+                                option.value = distrito.idDistrito;
+                                option.textContent = distrito.nombre;
+                                distritoDropdown.appendChild(option);
+                            });
+                        });
+            }
+        </script>
+
+    </body>
+</html>

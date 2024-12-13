@@ -23,21 +23,25 @@ public interface ProveedorDao extends JpaRepository<Proveedor, Long> {
     
     @Transactional
     @Modifying
-    @Query(value = "UPDATE FIDE_PROVEEDORES_TB c SET c.nombre = :nombre, c.iddireccion = :iddireccion, "
-            + "c.idestado = :idestado WHERE c.idproveedor = :idproveedor"
+    @Query(value = "UPDATE FIDE_PROVEEDORES_TB c "
+            + "SET c.nombre = :nombre, "
+            + "c.idDireccion = :iddireccion, "
+            + "c.telefono = :telefono "
+            + "WHERE c.idproveedor = :idproveedor"
             ,nativeQuery = true)
     int updateProveedor(
             @Param("idproveedor") Long idProveedor,
             @Param("nombre") String nombre,
             @Param("iddireccion") Long idDireccion,
-            @Param("idestado") int idestado
+            @Param("telefono") String telefono
     );
     
     @Transactional
     @Procedure(procedureName = "FIDE_PROYECTO_FINAL_PKG.FIDE_PROVEEDORES_TB_INSERTAR_SP")
     void insertarProveedor(
             @Param("V_Nombre") String nombre,
-            @Param("V_IdDireccion") Long idDireccion
+            @Param("V_iddireccion") Long idDireccion,
+            @Param("V_telefono") String telefono
     );
     
 }
