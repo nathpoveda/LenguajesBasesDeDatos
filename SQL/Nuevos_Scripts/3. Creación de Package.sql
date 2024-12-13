@@ -122,6 +122,11 @@ CREATE OR REPLACE PACKAGE fide_proyecto_final_pkg AS
         v_fecha      IN fide_devoluciones_tb.fecha%TYPE,
         v_motivo     IN fide_devoluciones_tb.motivo%TYPE
     );
+
+    PROCEDURE fide_roles_tb_insertar_sp (
+        v_nombre IN fide_roles_tb.nombre%TYPE,
+        v_idempleado IN fide_roles_tb.idempleado%TYPE
+    );
     
     ---------------PROCEDIMEINTOS ALMACENADO UPDATE----------------------
     
@@ -237,6 +242,12 @@ CREATE OR REPLACE PACKAGE fide_proyecto_final_pkg AS
         v_idfactura    IN fide_devoluciones_tb.idfactura%TYPE,
         v_fecha        IN fide_devoluciones_tb.fecha%TYPE,
         v_motivo       IN fide_devoluciones_tb.motivo%TYPE
+    );
+
+    PROCEDURE fide_roles_tb_actualizar_sp (
+        v_idrol IN fide_roles_tb.idrol%TYPE,
+        v_nuevo_nombre IN fide_roles_tb.nombre%TYPE,
+        v_nuevo_idempleado IN fide_roles_tb.idempleado%TYPE
     );
 
      ---------------PROCEDIMEINTOS ALMACENADO DELETE----------------------
