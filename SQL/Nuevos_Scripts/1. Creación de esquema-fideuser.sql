@@ -32,7 +32,7 @@ GRANT SELECT ANY TABLE, INSERT ANY TABLE, UPDATE ANY TABLE, DELETE ANY TABLE TO 
 
 
 --
---  Parte I: Creación de Usuario
+--  Parte II: Creación de Usuario
 --
 
 
