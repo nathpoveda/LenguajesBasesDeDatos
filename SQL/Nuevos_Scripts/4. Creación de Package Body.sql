@@ -136,7 +136,8 @@ PROCEDURE fide_direcciones_tb_insertar_sp (
     v_idprovincia IN fide_direcciones_tb.idprovincia % TYPE,
     v_idcanton IN fide_direcciones_tb.idcanton % TYPE,
     v_iddistrito IN fide_direcciones_tb.iddistrito % TYPE,
-    v_direccionexacta IN fide_direcciones_tb.direccionexacta % TYPE
+    v_direccionexacta IN fide_direcciones_tb.direccionexacta % TYPE,
+    v_iddireccion OUT fide_direcciones_tb.iddireccion%TYPE
 ) IS CURSOR insertar_direcciones IS
 SELECT
     *
@@ -161,7 +162,8 @@ VALUES
         v_idcanton,
         v_iddistrito,
         v_direccionexacta
-    );
+    )
+    RETURNING iddireccion INTO v_iddireccion;
 
 FOR direccion IN insertar_direcciones LOOP DBMS_OUTPUT.PUT_LINE('Dirección: ' || direccion.direccionexacta);
 
@@ -236,7 +238,6 @@ PROCEDURE fide_productos_tb_insertar_sp (
     v_nombre IN fide_productos_tb.nombre % TYPE,
     v_precio IN fide_productos_tb.precio % TYPE,
     v_idcategoria IN fide_productos_tb.idcategoria % TYPE,
-    v_idestado IN fide_productos_tb.idestado % TYPE,
     v_idmarca IN fide_productos_tb.idmarca % TYPE
 ) IS CURSOR precio_productos IS
 SELECT
@@ -250,7 +251,6 @@ INSERT INTO
         nombre,
         precio,
         idcategoria,
-        idestado,
         idmarca
     )
 VALUES
@@ -258,7 +258,6 @@ VALUES
         v_nombre,
         v_precio,
         v_idcategoria,
-        v_idestado,
         v_idmarca
     );
 
@@ -399,7 +398,7 @@ PROCEDURE fide_empleados_tb_insertar_sp (
     v_iddireccion IN fide_empleados_tb.iddireccion % TYPE,
     v_salario IN fide_empleados_tb.salario % TYPE,
     v_correo IN fide_empleados_tb.correo % TYPE,
-    v_idestado IN fide_empleados_tb.idestado % TYPE
+    v_contrasena IN fide_empleados_tb.contrasena % TYPE
 ) IS CURSOR empleados_cursor IS
 SELECT
     nombre,
@@ -417,7 +416,7 @@ INSERT INTO
         iddireccion,
         salario,
         correo,
-        idestado
+        contrasena
     )
 VALUES
     (
@@ -427,7 +426,7 @@ VALUES
         v_iddireccion,
         v_salario,
         v_correo,
-        v_idestado
+        v_contrasena
     );
 
 FOR empleado IN empleados_cursor LOOP IF empleado.salario > 4000 THEN DBMS_OUTPUT.PUT_LINE(
@@ -888,7 +887,6 @@ PROCEDURE fide_productos_tb_actualizar_sp (
     v_nombre IN fide_productos_tb.nombre % TYPE,
     v_precio IN fide_productos_tb.precio % TYPE,
     v_idcategoria IN fide_productos_tb.idcategoria % TYPE,
-    v_idestado IN fide_productos_tb.idestado % TYPE,
     v_idmarca IN fide_productos_tb.idmarca % TYPE
 ) IS CURSOR precio_productos IS
 SELECT
@@ -907,7 +905,6 @@ SET
     nombre = v_nombre,
     precio = v_precio,
     idcategoria = v_idcategoria,
-    idestado = v_idestado,
     idmarca = v_idmarca
 WHERE
     idproducto = v_idproducto;
@@ -1299,7 +1296,7 @@ PROCEDURE FIDE_DISTRITOS_TB_ELIMINAR_SP (
 UPDATE
     FIDE_DISTRITOS_TB
 SET
-    idEstado = 0
+    idEstado = 1
 WHERE
     idDistrito = V_idDistrito;
 

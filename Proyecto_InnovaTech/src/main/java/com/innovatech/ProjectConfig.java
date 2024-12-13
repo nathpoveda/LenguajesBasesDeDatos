@@ -50,8 +50,11 @@ public class ProjectConfig implements WebMvcConfigurer {
                 "/",
                 "/index",
                 "/errores/**",
-                "/carrito/**",
-                "/pruebas/**",
+                "/js/**",
+                "/webjars/**"
+                )
+                .permitAll()
+                .requestMatchers(
                 "/categoria/**",
                 "/marca/**",
                 "/producto/**",
@@ -59,18 +62,7 @@ public class ProjectConfig implements WebMvcConfigurer {
                 "/inventario/**",
                 "/proveedor/**",
                 "/empleado/**",
-                "/registro/**",
-                "/js/**",
-                "/webjars/**"
-                )
-                .permitAll()
-                .requestMatchers(
                 "/inicio-admin"
-                )
-                .hasRole("ADMIN")
-                .requestMatchers(
-                "/producto/listado",
-                "/usuario/listado"
                 )
                 .hasAnyRole("ADMIN", "SALES")
             )

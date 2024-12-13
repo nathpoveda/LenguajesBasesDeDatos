@@ -51,6 +51,9 @@ public class EmpleadoServiceImpl implements UserDetailsService, EmpleadoService 
         for (Rol r : empleado.getRoles()){
             roles.add(new SimpleGrantedAuthority(r.getNombre()));
         }
+        if (roles.isEmpty()) {
+            roles.add(new SimpleGrantedAuthority("ROLE_SALES"));
+        }
         
         // quitar el noop cuando activemos la encriptacion
         //Se retorna un usuario del sistema con username, password y roles
