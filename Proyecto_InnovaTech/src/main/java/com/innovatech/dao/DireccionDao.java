@@ -5,9 +5,9 @@
 package com.innovatech.dao;
 
 import com.innovatech.domain.Direccion;
-import jakarta.persistence.ParameterMode;
-import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,5 +25,24 @@ public interface DireccionDao extends JpaRepository<Direccion, Long> {
             @Param("V_idcanton") Long idCanton,
             @Param("V_iddistrito") Long idDistrito,
             @Param("V_direccionexacta") String direccionExacta
+    );
+    
+    @Transactional
+    @Modifying
+    @Query(value = "UPDATE FIDE_DIRECCIONES_TB c "
+            + "SET c.idpais = :idpais, "
+            + "c.idprovincia = :idprovincia, "
+            + "c.idcanton = :idcanton, "
+            + "c.iddistrito = :iddistrito, "
+            + "c.direccionexacta = :direccionexacta "
+            + "WHERE c.iddireccion = :iddireccion"
+            ,nativeQuery = true)
+    int updateDireccion(
+            @Param("iddireccion") Long iddireccion,
+            @Param("idpais") Long idpais,
+            @Param("idprovincia") Long idprovincia,
+            @Param("idcanton") Long idcanton,
+            @Param("iddistrito") Long iddistrito,
+            @Param("direccionexacta") String direccionexacta
     );
 }

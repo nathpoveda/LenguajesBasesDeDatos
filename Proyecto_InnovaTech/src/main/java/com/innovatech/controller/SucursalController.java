@@ -73,6 +73,14 @@ public class SucursalController {
     @GetMapping("/modificar/{idsucursal}")
     public String modificar(Sucursal sucursal, Model model){
         sucursal=sucursalService.getSucursal(sucursal);
+        var paises = paisService.getPaises();
+        var provincias = provinciaService.getProvinciasPorPais(sucursal.getDireccion().getPais().getIdPais());
+        var cantones = cantonService.getCantonesPorProvincia(sucursal.getDireccion().getProvincia().getIdProvincia());
+        var distritos = distritoService.getDistritosPorCanton(sucursal.getDireccion().getCanton().getIdCanton());
+        model.addAttribute("paises", paises);
+        model.addAttribute("provincias", provincias);
+        model.addAttribute("cantones", cantones);
+        model.addAttribute("distritos", distritos);
         model.addAttribute("sucursal",sucursal);
         return "/sucursal/modifica";
     }

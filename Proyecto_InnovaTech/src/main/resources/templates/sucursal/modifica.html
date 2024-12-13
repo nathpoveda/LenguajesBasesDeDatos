@@ -15,5 +15,57 @@
         
         <footer th:replace="~{layout/plantilla :: footer}"/>
         
+        
+        <script>
+            function cargarProvincias(idPais) {
+                fetch(`/sucursal/provincias/${idPais}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            const provinciaDropdown = document.getElementById('provincia');
+                            provinciaDropdown.innerHTML = '<option value="" disabled selected>Seleccione una provincia</option>';
+                            data.forEach(provincia => {
+                                const option = document.createElement('option');
+                                option.value = provincia.idProvincia;
+                                option.textContent = provincia.nombre;
+                                provinciaDropdown.appendChild(option);
+                            });
+                            
+                            document.getElementById('canton').innerHTML = '<option value="" disabled selected>Seleccione un cantón</option>';
+                            document.getElementById('distrito').innerHTML = '<option value="" disabled selected>Seleccione un distrito</option>';
+                        });
+            }
+
+            function cargarCantones(idProvincia) {
+                fetch(`/sucursal/cantones/${idProvincia}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            const cantonDropdown = document.getElementById('canton');
+                            cantonDropdown.innerHTML = '<option value="" disabled selected>Seleccione un cantón</option>';
+                            data.forEach(canton => {
+                                const option = document.createElement('option');
+                                option.value = canton.idCanton;
+                                option.textContent = canton.nombre;
+                                cantonDropdown.appendChild(option);
+                            });
+                            
+                            document.getElementById('distrito').innerHTML = '<option value="" disabled selected>Seleccione un distrito</option>';
+                        });
+            }
+
+            function cargarDistritos(idCanton) {
+                fetch(`/sucursal/distritos/${idCanton}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            const distritoDropdown = document.getElementById('distrito');
+                            distritoDropdown.innerHTML = '<option value="" disabled selected>Seleccione un distrito</option>';
+                            data.forEach(distrito => {
+                                const option = document.createElement('option');
+                                option.value = distrito.idDistrito;
+                                option.textContent = distrito.nombre;
+                                distritoDropdown.appendChild(option);
+                            });
+                        });
+            }
+        </script>
     </body>
 </html>

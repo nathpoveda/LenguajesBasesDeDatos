@@ -27,26 +27,28 @@ public interface SucursalDao extends JpaRepository<Sucursal, Long> {
 
     @Transactional
     @Modifying
-    @Query(value = "UPDATE FIDE_SUCURSALES_TB c SET c.nombre = :nombre, c.iddireccion = :iddireccion, "
-            + "c.horaapertura = :horaapertura, c.horacierre = :horacierre, "
-            + "c.idestado = :idestado WHERE c.idsucursal = :idsucursal"
+    @Query(value = "UPDATE FIDE_SUCURSALES_TB c "
+            + "SET c.nombre = :nombre, "
+            + "c.iddireccion = :iddireccion, "
+            + "c.horaapertura = :horaapertura, "
+            + "c.horacierre = :horacierre "
+            + "WHERE c.idsucursal = :idsucursal"
             ,nativeQuery = true)
     int updateSucursal(
             @Param("idsucursal") Long idSucursal,
             @Param("nombre") String nombre,
             @Param("iddireccion") Long idDireccion,
             @Param("horaapertura") String horaApertura,
-            @Param("horacierre") String horaCierre,
-            @Param("idestado") int idestado
+            @Param("horacierre") String horaCierre
     );
 
     @Transactional
     @Procedure(procedureName = "FIDE_PROYECTO_FINAL_PKG.FIDE_SUCURSALES_TB_INSERTAR_SP")
     void insertarSucursal(
             @Param("v_nombre") String nombre,
+            @Param("v_iddireccion") Long idDireccion,
             @Param("v_horaapertura") String horaApertura,
-            @Param("v_horacierre") String horaCierre,
-            @Param("v_iddireccion") Long idDireccion
+            @Param("v_horacierre") String horaCierre
     );
 
 }

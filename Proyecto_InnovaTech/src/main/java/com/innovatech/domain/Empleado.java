@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.innovatech.domain;
 
 import jakarta.persistence.*;
@@ -23,10 +19,27 @@ public class Empleado implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="idempleado")
     private Long idEmpleado;
+    
+    private String nombre;
+    
+    @ManyToOne
+    @JoinColumn(name = "idsucursal", nullable = false)
+    private Sucursal sucursal;
+   
+    private String puesto;
+    
+    @ManyToOne
+    @JoinColumn(name = "iddireccion", nullable = false)
+    private Direccion direccion;
+    
+    private double salario;
     private String correo;
     private String contrasena;
     
     @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name="idempleado", updatable=false)
     private List<Rol> roles;
+    
+    
+    private int idestado;
 }

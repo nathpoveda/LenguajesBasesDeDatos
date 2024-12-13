@@ -41,28 +41,34 @@ public class SucursalServiceImpl implements SucursalService {
                 sucursal.getDireccion().getDireccionexacta()
         );
         
-        System.out.println("Prueba id direccion: " + idDireccion);
-        System.out.println("Prueba datos sucursal: " + sucursal);
-
         sucursalDao.insertarSucursal(
                 sucursal.getNombre(),
+                idDireccion,
                 sucursal.getHoraapertura(),
-                sucursal.getHoracierre(),
-                idDireccion
+                sucursal.getHoracierre()
         );
     }
 
     @Override
     @Transactional
     public void update(Sucursal sucursal) {
-//        sucursalDao.updateSucursal(
-//                sucursal.getIdsucursal(), 
-//                sucursal.getNombre(), 
-//                sucursal.getIddireccion(), 
-//                sucursal.getHoraapertura(), 
-//                sucursal.getHoracierre(),
-//                sucursal.getIdestado() 
-//        );
+        
+        direccionDao.updateDireccion(
+                sucursal.getDireccion().getIdDireccion(),
+                sucursal.getDireccion().getPais().getIdPais(),
+                sucursal.getDireccion().getProvincia().getIdProvincia(),
+                sucursal.getDireccion().getCanton().getIdCanton(),
+                sucursal.getDireccion().getDistrito().getIdDistrito(),
+                sucursal.getDireccion().getDireccionexacta()
+        );
+        
+        sucursalDao.updateSucursal(
+                sucursal.getIdsucursal(), 
+                sucursal.getNombre(), 
+                sucursal.getDireccion().getIdDireccion(), 
+                sucursal.getHoraapertura(), 
+                sucursal.getHoracierre()
+        );
     }
 
     @Override
