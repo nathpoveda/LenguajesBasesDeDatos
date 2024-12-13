@@ -1,15 +1,20 @@
-
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package com.innovatech.controller;
 
 import com.innovatech.domain.Canton;
 import com.innovatech.domain.Distrito;
-import com.innovatech.domain.Proveedor;
+import com.innovatech.domain.Empleado;
 import com.innovatech.domain.Provincia;
+import com.innovatech.domain.Sucursal;
 import com.innovatech.services.CantonService;
 import com.innovatech.services.DistritoService;
+import com.innovatech.services.EmpleadoService;
 import com.innovatech.services.PaisService;
-import com.innovatech.services.ProveedorService;
 import com.innovatech.services.ProvinciaService;
+import com.innovatech.services.SucursalService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,10 +30,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @author natha
  */
 @Controller
-@RequestMapping("/proveedor")
-public class ProveedorController {
+@RequestMapping("/empleado")
+public class EmpleadoController {
     @Autowired
-    private ProveedorService proveedorService;
+    private EmpleadoService empleadoService;
     
     @Autowired
     private PaisService paisService;
@@ -42,49 +47,47 @@ public class ProveedorController {
     @Autowired
     private DistritoService distritoService;
     
+    @Autowired
+    private SucursalService sucursalService;
+    
     @GetMapping("/listado")
     public String listado(Model model){
-        var lista = proveedorService.getProveedores(); 
+        var lista = empleadoService.getEmpleados(); 
         var paises = paisService.getPaises();
+        var sucursales = sucursalService.getSucursales();
 
-        model.addAttribute("proveedores",lista);
+        model.addAttribute("empleados",lista);
         model.addAttribute("paises", paises);
-        model.addAttribute("totalProveedores",lista.size());
+        model.addAttribute("sucursales", sucursales);
+        model.addAttribute("totalSucursales",lista.size());
         
-        return "/proveedor/listado";
+        return "/empleado/listado";
     }
     
     @PostMapping("/guardar")
-    public String guardar(Proveedor proveedor){
-        proveedorService.save(proveedor);
-        return "redirect:/proveedor/listado";
+    public String guardar(Empleado empleado){
+        empleadoService.save(empleado);
+        return "redirect:/empleado/listado";
     }
     
     @PostMapping("/actualizar")
-    public String actualizar(Proveedor proveedor){
-        proveedorService.update(proveedor);
-        return "redirect:/proveedor/listado";
+    public String actualizar(Empleado empleado){
+        empleadoService.update(empleado);
+        return "redirect:/empleado/listado";
     }
     
-    @GetMapping("/eliminar/{idProveedor}")
-    public String eliminar(Proveedor proveedor){
-        proveedorService.delete(proveedor);
-        return "redirect:/proveedor/listado";
+    @GetMapping("/eliminar/{idEmpleado}")
+    public String eliminar(Empleado empleado){
+        empleadoService.delete(empleado);
+        return "redirect:/empleado/listado";
     }
-         
-    @GetMapping("/modificar/{idProveedor}")
-    public String modificar(Proveedor proveedor, Model model){
-        proveedor=proveedorService.getProveedor(proveedor);
-        var paises = paisService.getPaises();
-        var provincias = provinciaService.getProvinciasPorPais(proveedor.getDireccion().getPais().getIdPais());
-        var cantones = cantonService.getCantonesPorProvincia(proveedor.getDireccion().getProvincia().getIdProvincia());
-        var distritos = distritoService.getDistritosPorCanton(proveedor.getDireccion().getCanton().getIdCanton());
-        model.addAttribute("paises", paises);
-        model.addAttribute("provincias", provincias);
-        model.addAttribute("cantones", cantones);
-        model.addAttribute("distritos", distritos);
-        model.addAttribute("proveedor",proveedor);
-        return "/proveedor/modifica";
+    
+    @GetMapping("/modificar/{idEmpleado}")
+    public String modificar(Empleado empleado, Model model){
+        empleado=empleadoService.getEmpleado(empleado);
+
+        model.addAttribute("empleado", empleado);
+        return "/empleado/modifica";
     }
     
     @GetMapping("/provincias/{idPais}")

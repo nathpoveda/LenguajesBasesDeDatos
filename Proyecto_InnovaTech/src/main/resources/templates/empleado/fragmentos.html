@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<!--Este es el archivo de fragmentos de Empleados -->
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Empleados - InnovaTech</title>
+        <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
+        <link th:href="@{/webjars/font-awesome/css/all.css}" rel="stylesheet" />
+
+    </head>
+
+    <body>
+
+        <section th:fragment="botonesAgregar" class="py-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">   
+                        <button 
+                            sec:authorize="hasRole('ROLE_ADMIN')"
+                            type="button" 
+                            class="btn btn-primary btn-block" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#agregarEmpleado">
+                            <i class="fas fa-plus"></i> Agregar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section th:fragment="listadoEmpleados" id="empleados">
+            <div class="container pt-4">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Listado de Empleados</h4>
+                            </div>
+                            <div th:if="${empleados != null and !empleados.empty}">
+                                <table class="table table-hover table-bordered ">
+                                    <thead class="table-primary">
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Nombre</th>
+                                            <th>Sucursal</th>
+                                            <th>Puesto</th>
+                                            <th>Direccion</th>
+                                            <th>Salario</th>
+                                            <th>Correo</th>
+                                            <th>Estado</th>
+                                            <th sec:authorize="hasRole('ROLE_ADMIN')" >Opciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="empleado, contador : ${empleados}">
+                                            <td>[[${contador.count}]]</td>
+                                            <td>[[${empleado.nombre}]]</td>
+                                            <td>[[${empleado.sucursal.nombre}]]</td>
+                                            <td>[[${empleado.puesto}]]</td>
+                                            <td>[[${empleado.direccion.toString()}]]</td>
+                                            <td>[[${empleado.salario}]]</td>
+                                            <td>[[${empleado.correo}]]</td>
+                                            <td>
+                                                <span th:if="${empleado.idestado == 2}">Activa</span>
+                                                <span th:if="${empleado.idestado != 2}">Inactiva</span>
+                                            </td>
+                                            <td sec:authorize="hasRole('ROLE_ADMIN')">
+                                                <a th:href="@{/empleado/eliminar/}+${empleado.idEmpleado}"
+                                                   th:classappend="${empleado.idestado == 2} ? 'btn btn-danger' : 'btn btn-success'"
+                                                   th:text="${empleado.idestado == 2} ? 'Deshabilitar' : 'Habilitar'">
+                                                    <i class="fa-solid fa-ban"></i>
+                                                </a>
+                                                <a th:href="@{/empleado/modificar/}+${empleado.idEmpleado}"
+                                                   class="btn btn-primary"> Actualizar
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="text-center p-2" th:if="${empleados == null or empleados.empty}">
+                                <span>No hay empleados registradas.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card text-center text-white mb-3" style="background-color: #0D6EFD">
+                            <div class="card-body">
+                                <h3>Empleados registradas</h3>
+                                <h4 class="fs-2"><i class="fa-solid fa-icons"></i> [[${totalEmpleados}]]</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section th:fragment="agregarEmpleado">
+            <div id="agregarEmpleado" 
+                 class="modal fade" 
+                 tabindex="-1" 
+                 aria-labelledby="exampleModalLabel" 
+                 aria-hidden="true">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content">
+                        <div class="modal-header bg-info text-white">
+                            <h5 class="modal-title">Agregar Nueva Empleado</h5>
+                            <button type="button" 
+                                    class="btn-close" 
+                                    data-bs-dismiss="modal" 
+                                    aria-label="Close"></button>
+                        </div> 
+                        <form th:action="@{/empleado/guardar}" th:object="${empleado}"
+                              method="POST" class="was-validated"
+                              enctype="multipart/form-data">
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label for="nombre">Nombre</label>
+                                    <input type="text" class="form-control" name="nombre" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="sucursal">Sucursal</label>
+                                    <select class="form-select" name="sucursal.idsucursal" required="true">
+                                        <option value="" disabled selected>Seleccione una sucursal</option>
+                                        <option th:each="sucursal : ${sucursales}" 
+                                                th:value="${sucursal.idsucursal}" 
+                                                th:text="${sucursal.nombre}"></option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="puesto">Puesto</label>
+                                    <input type="text" class="form-control" name="puesto" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="salario">Salario</label>
+                                    <input type="number" class="form-control" name="salario" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="correo">Correo</label>
+                                    <input type="text" class="form-control" name="correo" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="contrasena">Contrasena</label>
+                                    <input type="password" class="form-control" name="contrasena" required="true"/>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="pais">País</label>
+                                    <select id="pais" class="form-select" name="direccion.pais.idPais" onchange="cargarProvincias(this.value)" required="true">
+                                        <option value="" disabled selected>Seleccione un país</option>
+                                        <option th:each="pais : ${paises}" th:value="${pais.idPais}" th:text="${pais.nombre}"></option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="provincia">Provincia</label>
+                                    <select id="provincia" class="form-select" name="direccion.provincia.idProvincia" onchange="cargarCantones(this.value)" required="true">
+                                        <option value="" disabled selected>Seleccione una provincia</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="canton">Cantón</label>
+                                    <select id="canton" class="form-select" name="direccion.canton.idCanton" onchange="cargarDistritos(this.value)" required="true">
+                                        <option value="" disabled selected>Seleccione un cantón</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="distrito">Distrito</label>
+                                    <select id="distrito" class="form-select" name="direccion.distrito.idDistrito" required="true">
+                                        <option value="" disabled selected>Seleccione un distrito</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="direccionExacta">Direccion exacta</label>
+                                    <input type="text" class="form-control" name="direccion.direccionexacta" required="true"/>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" type="submit">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section th:fragment="editarEmpleado">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <form method="POST"
+                          th:action="@{/empleado/actualizar}" th:object="${empleado}"
+                          class="was-validated"
+                          enctype="multipart/form-data">
+                        <input type="hidden" name="idEmpleado" th:field="*{idEmpleado}"/>
+                        <input type="hidden" name="direccion.idDireccion" th:field="*{direccion.idDireccion}"/>
+                        <section th:replace="~{empleado/fragmentos :: botonesEditar}"/>
+                        <div id=details>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h4>Actualizar Empleado</h4>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="mb-3">
+                                                    <label for="salario">Salario</label>
+                                                    <input type="text" class="form-control" th:field="*{salario}" name="salario" required="true"/>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="puesto">Puesto</label>
+                                                    <input type="text" class="form-control" th:field="*{puesto}" name="puesto" required="true"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section th:fragment="botonesEditar">
+            <div class="container py-4 mb-4 bg-light">
+                <div class="row">
+                    <div class="col-md-4 d-grid">
+                        <a th:href="@{/empleado/listado}" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left"></i> Regresar
+                        </a>
+                    </div>
+
+                    <div class="col-md-4 d-grid" sec:authorize="hasRole('ROLE_ADMIN')">                             
+                        <a th:href="@{/empleado/eliminar/}+${empleado.idEmpleado}"
+                           class="btn btn-danger">
+                            <i class="fa-solid fa-ban"></i> Deshabilitar 
+                        </a>
+                    </div>
+
+                    <div class="col-md-4 d-grid" sec:authorize="hasRole('ROLE_ADMIN')">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-check"></i> Actualizar 
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </body>
+</html>

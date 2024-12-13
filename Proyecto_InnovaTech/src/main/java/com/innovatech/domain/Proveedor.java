@@ -20,13 +20,13 @@ public class Proveedor implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="idproveedor")
-    
     private Long idProveedor;
     private String nombre;
     
     @OneToOne
     @JoinColumn(name = "iddireccion", nullable = false)
     private Direccion direccion;
+    private String telefono;
     
     private int idestado;
    

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<!--Este es el archivo de fragmentos de Proveedores -->
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Proveedores - InnovaTech</title>
+        <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
+        <link th:href="@{/webjars/font-awesome/css/all.css}" rel="stylesheet" />
+
+    </head>
+
+    <body>
+
+        <section th:fragment="botonesAgregar" class="py-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">   
+                        <button 
+                            sec:authorize="hasRole('ROLE_ADMIN')"
+                            type="button" 
+                            class="btn btn-primary btn-block" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#agregarProveedor">
+                            <i class="fas fa-plus"></i> Agregar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section th:fragment="listadoProveedores" id="proveedores">
+            <div class="container pt-4">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Listado de Proveedores</h4>
+                            </div>
+                            <div th:if="${proveedores != null and !proveedores.empty}">
+                                <table class="table table-hover table-bordered ">
+                                    <thead class="table-primary">
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Nombre</th>
+                                            <th>Dirección</th>
+                                            <th>Telefono</th>
+                                            <th>Estado</th>
+                                            <th sec:authorize="hasRole('ROLE_ADMIN')" >Opciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="proveedor, contador : ${proveedores}">
+                                            <td>[[${contador.count}]]</td>
+                                            <td>[[${proveedor.nombre}]]</td>
+                                            <td>[[${proveedor.direccion.toString()}]]</td>
+                                            <td>[[${proveedor.telefono}]]</td>
+                                            <td>
+                                                <span th:if="${proveedor.idestado == 2}">Activa</span>
+                                                <span th:if="${proveedor.idestado != 2}">Inactiva</span>
+                                            </td>
+                                            <td sec:authorize="hasRole('ROLE_ADMIN')">
+                                                <a th:href="@{/proveedor/eliminar/}+${proveedor.idProveedor}"
+                                                   th:classappend="${proveedor.idestado == 2} ? 'btn btn-danger' : 'btn btn-success'"
+                                                   th:text="${proveedor.idestado == 2} ? 'Deshabilitar' : 'Habilitar'">
+                                                    <i class="fa-solid fa-ban"></i>
+                                                </a>
+                                                <a th:href="@{/proveedor/modificar/}+${proveedor.idProveedor}"
+                                                   class="btn btn-primary"> Actualizar
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="text-center p-2" th:if="${proveedores == null or proveedores.empty}">
+                                <span>No hay proveedores registradas.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card text-center text-white mb-3" style="background-color: #0D6EFD">
+                            <div class="card-body">
+                                <h3>Proveedores registradas</h3>
+                                <h4 class="fs-2"><i class="fa-solid fa-icons"></i> [[${totalProveedores}]]</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section th:fragment="agregarProveedor">
+            <div id="agregarProveedor" 
+                 class="modal fade" 
+                 tabindex="-1" 
+                 aria-labelledby="exampleModalLabel" 
+                 aria-hidden="true">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content">
+                        <div class="modal-header bg-info text-white">
+                            <h5 class="modal-title">Agregar Nuevo Proveedor</h5>
+                            <button type="button" 
+                                    class="btn-close" 
+                                    data-bs-dismiss="modal" 
+                                    aria-label="Close"></button>
+                        </div> 
+                        <form th:action="@{/proveedor/guardar}" th:object="${proveedor}"
+                              method="POST" class="was-validated"
+                              enctype="multipart/form-data">
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label for="nombre">Nombre</label>
+                                    <input type="text" class="form-control" name="nombre" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="telefono">Telefono</label>
+                                    <input type="text" class="form-control" name="telefono" required="true"/>
+                                </div>
+ 
+                                <div class="mb-3">
+                                    <label for="pais">País</label>
+                                    <select id="pais" class="form-select" name="direccion.pais.idPais" onchange="cargarProvincias(this.value)" required="true">
+                                        <option value="" disabled selected>Seleccione un país</option>
+                                        <option th:each="pais : ${paises}" th:value="${pais.idPais}" th:text="${pais.nombre}"></option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="provincia">Provincia</label>
+                                    <select id="provincia" class="form-select" name="direccion.provincia.idProvincia" onchange="cargarCantones(this.value)" required="true">
+                                        <option value="" disabled selected>Seleccione una provincia</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="canton">Cantón</label>
+                                    <select id="canton" class="form-select" name="direccion.canton.idCanton" onchange="cargarDistritos(this.value)" required="true">
+                                        <option value="" disabled selected>Seleccione un cantón</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="distrito">Distrito</label>
+                                    <select id="distrito" class="form-select" name="direccion.distrito.idDistrito" required="true">
+                                        <option value="" disabled selected>Seleccione un distrito</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="direccionExacta">Direccion exacta</label>
+                                    <input type="text" class="form-control" name="direccion.direccionexacta" required="true"/>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" type="submit">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section th:fragment="editarProveedor">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <form method="POST"
+                          th:action="@{/proveedor/actualizar}" th:object="${proveedor}"
+                          class="was-validated"
+                          enctype="multipart/form-data">
+                        <input type="hidden" name="idProveedor" th:field="*{idProveedor}"/>
+                        <input type="hidden" name="direccion.idDireccion" th:field="*{direccion.idDireccion}"/>
+                        <section th:replace="~{proveedor/fragmentos :: botonesEditar}"/>
+                        <div id=details>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h4>Actualizar Proveedor</h4>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="mb-3">
+                                                    <label for="nombre">Nombre</label>
+                                                    <input type="text" class="form-control" th:field="*{nombre}" name="nombre" required="true"/>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="telefono">Telefono</label>
+                                                    <input type="text" class="form-control" th:field="*{telefono}" name="telefono" required="true"/>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label for="pais">País</label>
+                                                    <select id="pais" class="form-select" th:field="*{direccion.pais.idPais}" name="direccion.pais.idPais" onchange="cargarProvincias(this.value)" required="true">
+                                                        <option value="" disabled selected>Seleccione un país</option>
+                                                        <option th:each="pais : ${paises}" th:value="${pais.idPais}" th:text="${pais.nombre}"></option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label for="provincia">Provincia</label>
+                                                    <select id="provincia" class="form-select" th:field="*{direccion.provincia.idProvincia}" name="direccion.provincia.idProvincia" onchange="cargarCantones(this.value)" required="true">
+                                                        <option value="" disabled selected>Seleccione una provincia</option>
+                                                        <option th:each="provincia : ${provincias}" th:value="${provincia.idProvincia}" th:text="${provincia.nombre}"></option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label for="canton">Cantón</label>
+                                                    <select id="canton" class="form-select" th:field="*{direccion.canton.idCanton}" name="direccion.canton.idCanton" onchange="cargarDistritos(this.value)" required="true">
+                                                        <option value="" disabled selected>Seleccione un cantón</option>
+                                                        <option th:each="canton : ${cantones}" th:value="${canton.idCanton}" th:text="${canton.nombre}"></option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label for="distrito">Distrito</label>
+                                                    <select id="distrito" class="form-select" th:field="*{direccion.distrito.idDistrito}" name="direccion.distrito.idDistrito" required="true">
+                                                        <option value="" disabled selected>Seleccione un distrito</option>
+                                                        <option th:each="distrito : ${distritos}" th:value="${distrito.idDistrito}" th:text="${distrito.nombre}"></option>
+                                                    </select>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="direccionExacta">Direccion exacta</label>
+                                                    <input type="text" class="form-control" th:field="*{direccion.direccionexacta}" name="direccion.direccionexacta" required="true"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section th:fragment="botonesEditar">
+            <div class="container py-4 mb-4 bg-light">
+                <div class="row">
+                    <div class="col-md-4 d-grid">
+                        <a th:href="@{/proveedor/listado}" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left"></i> Regresar
+                        </a>
+                    </div>
+
+                    <div class="col-md-4 d-grid" sec:authorize="hasRole('ROLE_ADMIN')">                             
+                        <a th:href="@{/proveedor/eliminar/}+${proveedor.idProveedor}"
+                           class="btn btn-danger">
+                            <i class="fa-solid fa-ban"></i> Deshabilitar 
+                        </a>
+                    </div>
+
+                    <div class="col-md-4 d-grid" sec:authorize="hasRole('ROLE_ADMIN')">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-check"></i> Actualizar 
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </body>
+</html>
