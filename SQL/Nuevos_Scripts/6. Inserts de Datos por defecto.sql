@@ -1,15 +1,14 @@
 INSERT INTO FIDE_ESTADOS_TB (Nombre)
 VALUES ('Inactivo');
 
-INSERT INTO FIDE_ESTADOS_TB (Nombre)
-VALUES ('Activo');
-COMMIT;
+
+INSERT INTO FIDE_ESTADOS_TB (Nombre) VALUES ('Activo'); COMMIT;
 
 INSERT INTO FIDE_PAISES_TB(Nombre) VALUES ('Costa Rica');
 COMMIT;
     
 INSERT INTO FIDE_PROVINCIAS_TB(Nombre, idPais) VALUES ('Cartago',1);
-INSERT INTO FIDE_PROVINCIAS_TB(Nombre, idPais) VALUES ('San Jos�',1);
+INSERT INTO FIDE_PROVINCIAS_TB(Nombre, idPais) VALUES ('San José',1);
 INSERT INTO FIDE_PROVINCIAS_TB(Nombre, idPais) VALUES ('Alajuela',1);
 INSERT INTO FIDE_PROVINCIAS_TB(Nombre, idPais) VALUES ('Heredia',1);
 INSERT INTO FIDE_PROVINCIAS_TB(Nombre, idPais) VALUES ('Limón',1);
@@ -17,9 +16,6 @@ INSERT INTO FIDE_PROVINCIAS_TB(Nombre, idPais) VALUES ('Puntarenas',1);
 INSERT INTO FIDE_PROVINCIAS_TB(Nombre, idPais) VALUES ('Guanacaste',1);
 COMMIT;
  
-
-
-
 -- Inserción de cantones por provincia
 -- Cartago
 INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Cartago',1);
@@ -146,5 +142,5 @@ COMMIT;
 
 INSERT INTO FIDE_METODOSPAGO_TB(Nombre) VALUES ('Tarjeta'); 
 INSERT INTO FIDE_METODOSPAGO_TB(Nombre) VALUES ('Efectivo'); 
-INSERT INTO FIDE_METODOSPAGO_TB(Nombre) VALUES ('SINPE M�vil'); 
+INSERT INTO FIDE_METODOSPAGO_TB(Nombre) VALUES ('SINPE Movil'); 
 COMMIT;

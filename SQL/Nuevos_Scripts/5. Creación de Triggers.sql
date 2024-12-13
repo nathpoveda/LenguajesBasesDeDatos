@@ -11,7 +11,6 @@ FOR EACH ROW
 BEGIN
 :NEW.idCategoria:= FIDE_PROYECTO_FINAL_PKG.CATEGORIAS_GENERAR_SECUENCIA_FN;
 END;
-/
 -- (Exito)
 
 --Trigger de la fecha de modificacion
@@ -37,7 +36,6 @@ ELSE
 :NEW.ACCION:='UPDATE';
 END IF;
 END;
-/
 -- (Exito)
 
 --Trigger del autor 
@@ -51,7 +49,6 @@ ELSE
 :NEW.MODIFICADO_POR:=USER;
 END IF;
 END;
-/
 -- (Exito)
 
 --Trigger del estado
@@ -61,7 +58,6 @@ FOR EACH ROW
 BEGIN 
 :NEW.IDESTADO:=2;
 END;
-/
 -- (Exito)
 
 ----------------TABLA 2: ESTADOS----------------
@@ -86,7 +82,6 @@ FOR EACH ROW
 BEGIN
   :NEW.idEstado:= FIDE_PROYECTO_FINAL_PKG.ESTADOS_GENERAR_SECUENCIA_FN;
 END;  
-/
 -- (Exito)
 
 --Trigger de la accion
@@ -100,7 +95,6 @@ BEGIN
     :NEW.ACCION:='UPDATE';
   END IF;
 END;
-/
 -- (Exito)
 
 --Trigger del autor
@@ -114,7 +108,6 @@ BEGIN
     :NEW.MODIFICADO_POR:=USER;
   END IF;
 END;  
-/
 -- (Exito)
 
 
@@ -140,7 +133,7 @@ FOR EACH ROW
 BEGIN
   :NEW.idPais := FIDE_PROYECTO_FINAL_PKG.PAISES_GENERAR_SECUENCIA_FN;
 END;
-/
+
 -- (Exito)
 
 --Trigger de la accion
@@ -154,7 +147,7 @@ BEGIN
     :NEW.ACCION := 'UPDATE';
   END IF;
 END;
-/
+
 -- (Exito)
 
 -- Trigger del autor
@@ -168,7 +161,6 @@ BEGIN
     :NEW.MODIFICADO_POR := USER;
   END IF;
 END;
-/
 -- (Exito)
 
 --Trigger del estado
@@ -178,7 +170,7 @@ FOR EACH ROW
 BEGIN
   :NEW.idEstado:=2;
 END;
-/
+
 -- (Exito)
 
 ----------------TABLA 4: PROVINCIAS----------------
@@ -203,7 +195,6 @@ FOR EACH ROW
 BEGIN
   :NEW.idProvincia := FIDE_PROYECTO_FINAL_PKG.PROVINCIAS_GENERAR_SECUENCIA_FN;
 END;
-/
 -- (Exito)
 
 --Trigger de la accion
@@ -217,7 +208,6 @@ BEGIN
     :NEW.ACCION := 'UPDATE';
   END IF;
 END;
-/
 -- (Exito)
 
 --Trigger del autor
@@ -231,7 +221,6 @@ BEGIN
     :NEW.MODIFICADO_POR := USER;
   END IF;
 END;
-/
 -- (Exito)
 
 --Trigger del estado
@@ -241,7 +230,6 @@ FOR EACH ROW
 BEGIN
   :NEW.idEstado:=2;
 END;
-/
 -- (Exito)
 
 
@@ -267,7 +255,7 @@ FOR EACH ROW
 BEGIN
   :NEW.idCanton := FIDE_PROYECTO_FINAL_PKG.CANTONES_GENERAR_SECUENCIA_FN;
 END;
-/
+
 -- (Exito)
 
 --Trigger de la accion
@@ -281,7 +269,7 @@ BEGIN
     :NEW.ACCION := 'UPDATE';
   END IF;
 END;
-/
+
 -- (Exito)
 
 --Trigger del autor
@@ -295,7 +283,7 @@ BEGIN
     :NEW.MODIFICADO_POR := USER;
   END IF;
 END;
-/
+
 -- (Exito)
 
 --Trigger del estado
@@ -305,7 +293,7 @@ FOR EACH ROW
 BEGIN
   :NEW.idEstado:=2;
 END;
-/
+
 -- (Exito)
 
 ----------------TABLA 6: DISTRITOS----------------
@@ -370,23 +358,13 @@ FOR EACH ROW
 BEGIN
   :NEW.idEstado:=2;
 END;
-/ 
 -- (Exito)
 
 ----------------TABLA 7: DIRECCIONES----------------
 --------------CREACION DE TRIGGERS----------------
 
 --Trigger de la fecha de modificacion
-CREATE OR REPLACE TRIGGER FIDE_DIRECCIONES_FECHA_MODIFICACION_TRG
-BEFORE INSERT OR UPDATE ON FIDE_DIRECCIONES_TB
-FOR EACH ROW
-BEGIN
-IF INSERTING THEN
-:NEW.FECHA_CREACION:=SYSTIMESTAMP;
-ELSE
-:NEW.FECHA_MODIFICACION:=SYSTIMESTAMP;
-END IF;
-END;
+
 
 --Trigger del id
 CREATE OR REPLACE TRIGGER FIDE_DIRECCIONES_ID_TRG
@@ -395,7 +373,7 @@ FOR EACH ROW
 BEGIN
   :NEW.idDireccion := FIDE_PROYECTO_FINAL_PKG.DIRECCIONES_GENERAR_SECUENCIA_FN;
 END;
-/ 
+
 -- (Exito)
 
 
@@ -410,7 +388,7 @@ BEGIN
     :NEW.ACCION := 'UPDATE';
   END IF;
 END;
-/ 
+
 -- (Exito)
 
 --Trigger del autor
@@ -435,7 +413,7 @@ FOR EACH ROW
 BEGIN
   :NEW.idEstado:=2;
 END;
-/ 
+
 -- (Exito)
 
 
@@ -460,7 +438,7 @@ FOR EACH ROW
 BEGIN
   :NEW.idProveedor := FIDE_PROYECTO_FINAL_PKG.PROVEEDORES_GENERAR_SECUENCIA_FN;
 END;
-/ 
+
 -- (Exito)
 
 
@@ -475,7 +453,7 @@ BEGIN
     :NEW.ACCION := 'UPDATE';
   END IF;
 END;
-/ 
+
 -- (Exito)
 
 
@@ -490,7 +468,7 @@ BEGIN
     :NEW.MODIFICADO_POR := USER;
   END IF;
 END;
-/ 
+
 -- (Exito)
 
 --Trigger del estado
@@ -500,7 +478,7 @@ FOR EACH ROW
 BEGIN
   :NEW.idEstado:=2;
 END;
-/ 
+
 -- (Exito)
 
 
@@ -526,7 +504,7 @@ FOR EACH ROW
 BEGIN
   :NEW.idMarca := FIDE_PROYECTO_FINAL_PKG.MARCASPRODUCTO_GENERAR_SECUENCIA_FN;
 END;
-/ 
+
 -- (Exito)
 
 
@@ -541,7 +519,7 @@ BEGIN
     :NEW.ACCION := 'UPDATE';
   END IF;
 END;
-/ 
+
 -- (Exito)
 
 
@@ -556,7 +534,7 @@ BEGIN
     :NEW.MODIFICADO_POR := USER;
   END IF;
 END;
-/ 
+
 -- (Exito)
 
 --Trigger del estado
@@ -566,7 +544,7 @@ FOR EACH ROW
 BEGIN
   :NEW.idEstado:=2;
 END;
-/ 
+
 -- (Exito)
 
 
@@ -592,7 +570,7 @@ FOR EACH ROW
 BEGIN
   :NEW.idProducto := FIDE_PROYECTO_FINAL_PKG.PRODUCTOS_GENERAR_SECUENCIA_FN;
 END;
-/ 
+
 -- (Exito)
 
 --Trigger de la accion
@@ -606,7 +584,7 @@ BEGIN
     :NEW.ACCION := 'UPDATE';
   END IF;
 END;
-/ 
+
 -- (Exito)
 
 --Trigger del autor
@@ -620,7 +598,7 @@ BEGIN
     :NEW.MODIFICADO_POR := USER;
   END IF;
 END;
-/ 
+
 -- (Exito)
 
 --Trigger del estado
@@ -630,7 +608,7 @@ FOR EACH ROW
 BEGIN
   :NEW.idEstado:=2;
 END;
-/ 
+
 -- (Exito)
 
 
@@ -663,7 +641,7 @@ BEGIN
     :NEW.ACCION := 'UPDATE';
   END IF;
 END;
-/ 
+
 -- (Exito)
 
 --Trigger del autor
@@ -677,7 +655,6 @@ BEGIN
     :NEW.MODIFICADO_POR := USER;
   END IF;
 END;
-/ 
 -- (Exito)
 
 
