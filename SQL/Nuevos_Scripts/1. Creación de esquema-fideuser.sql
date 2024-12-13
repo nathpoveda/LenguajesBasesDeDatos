@@ -1,10 +1,6 @@
 alter session set "_ORACLE_SCRIPT"= true;
 
 
---
---  Eliminación de objetos creadas si existen
---
-
 /*
 
 alter session set "_ORACLE_SCRIPT"= true;

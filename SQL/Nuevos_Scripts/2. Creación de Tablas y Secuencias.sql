@@ -336,8 +336,6 @@ CREATE TABLE FIDE_DEVOLUCIONES_TB(
 --
 --      Creación de Secuencias
 --
-
-
 ----------------TABLA 1: CATEGORIAS----------------
 CREATE SEQUENCE  ID_CATEGORIAS_SEQ
 START WITH 1
@@ -456,7 +454,7 @@ INCREMENT BY 1;
 
 
 ----------------TABLA 19: DEVOLUCIONES----------------
--------------SECUENCIA PARA DEVOLUCIONES--------------
+-------------SECUENCIA PARA DEVOLUCIONES--------------  
 CREATE SEQUENCE ID_DEVOLUCIONES_SEQ  
 START WITH 1 
 INCREMENT BY 1;

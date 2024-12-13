@@ -1,3 +1,5 @@
+DECLARE
+     v_iddireccion fide_direcciones_tb.iddireccion%TYPE;
 BEGIN
     fide_proyecto_final_pkg.fide_estados_tb_insertar_sp('Inactivo');
     fide_proyecto_final_pkg.fide_estados_tb_insertar_sp('Activo');
@@ -610,16 +612,31 @@ BEGIN
 
     -- Datos claves
 
-    fide_proyecto_final_pkg.fide_direcciones_tb_insertar_sp(1, 2, 23, 143, '200 metros sur del Outlet Mall');
+    fide_proyecto_final_pkg.fide_direcciones_tb_insertar_sp(1, 2, 23, 143, '200 metros sur del Outlet Mall', v_iddireccion);
 
     fide_proyecto_final_pkg.fide_sucursales_tb_insertar_sp('Sucursal Central', 1, '8:00am', '5:00pm');
 
     fide_proyecto_final_pkg.fide_empleados_tb_insertar_sp('Nathalie Poveda Chaves', 1, 'Gerente de Cajas', 1, 1500, 'nathalie@innovatech.com', '123');
 
-    fide_proyecto_final_pkg.fide_roles_tb_insertar_sp('ADMIN', 1);
+    fide_proyecto_final_pkg.fide_roles_tb_insertar_sp('ROLE_ADMIN', 1);
+    
+    fide_proyecto_final_pkg.fide_categorias_tb_insertar_sp('Procesadores', 'Procesador de computador');
+    
+    fide_proyecto_final_pkg.fide_inventarios_tb_insertar_sp(1,5,sysdate,1);
+   
+    fide_proyecto_final_pkg.fide_marcasproducto_tb_insertar_sp('AMD');
+
+    fide_proyecto_final_pkg.fide_productos_tb_insertar_sp('Ryzen 7 5700 X3D', 150, 1,1); 
 
     fide_proyecto_final_pkg.fide_metodospago_tb_insertar_sp('Tarjeta');
     fide_proyecto_final_pkg.fide_metodospago_tb_insertar_sp('Efectivo');
     fide_proyecto_final_pkg.fide_metodospago_tb_insertar_sp('SINPE Movil');
+    
+    fide_proyecto_final_pkg.fide_ventas_tb_insertar_sp(1,1, SYSDATE, 150);
+    fide_proyecto_final_pkg.fide_detalleventas_tb_insertar_sp(1, 1,1,150);
+    fide_proyecto_final_pkg.fide_facturas_tb_insertar_sp(1,SYSDATE,1,150,0.15, 152);
+    
+    fide_proyecto_final_pkg.fide_devoluciones_tb_insertar_sp(1,1, SYSDATE, 'Defecto de fabrica');
+ 
 END;
 /

@@ -15,7 +15,7 @@
 
         <style>
             body{
-                padding-bottom: 120px;
+                padding-bottom: 150px;
             }
             #main-header .carousel-item img {
                 height: 400px;
@@ -44,31 +44,25 @@
             <nav class="navbar navbar-expand-sm navbar-dark bg-primary p-4">
                 <div class="container">
                     <a class="navbar-brand" 
-                        th:href="@{/}" 
-                        sec:authorize="isAnonymous()"> 
+                       th:href="@{/}" 
+                       sec:authorize="isAnonymous()"> 
                         <i class="fa-solid fa-microchip"></i> InnovaTech
-                     </a>
+                    </a>
 
-                     <a class="navbar-brand" 
-                        th:href="@{/inicio-admin}" 
-                        sec:authorize="hasRole('ADMIN')">
+                    <a class="navbar-brand" 
+                       th:href="@{/inicio-admin}" 
+                       sec:authorize="hasRole('ADMIN')">
                         <i class="fa-solid fa-microchip"></i> InnovaTech
-                     </a>
+                    </a>
                     <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                        <ul class="navbar-nav">
-                            <li class="nav-item px-2"><a class="nav-link" th:href="@{/categoria/listado}">Gestión de Productos</a></li>
-                            <li class="nav-item px-2"><a class="nav-link" th:href="@{/producto/listado}">Ventas</a></li>   
-                            <li class="nav-item px-2"><a class="nav-link" th:href="@{/producto/listado}">Sucursales</a></li> 
-                            
 
-                        </ul>
+                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <ul class="navbar-nav " 
                             sec:authorize="isAuthenticated()">
                             <li class="nav-item my-auto text-white mx-4">
-                               <span sec:authentication='name'>Jhon</span>
+                                <span sec:authentication='name'>Jhon</span>
                             </li>
                             <li class="nav-item my-auto text-white">
                                 <form method="post"
@@ -82,7 +76,7 @@
                     </div>
                 </div>
             </nav>
-           
+
 
         </header>
 
