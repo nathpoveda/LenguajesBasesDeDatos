@@ -1,143 +1,126 @@
-INSERT INTO FIDE_ESTADOS_TB (Nombre)VALUES ('Inactivo');
-INSERT INTO FIDE_ESTADOS_TB (Nombre) VALUES ('Activo'); COMMIT;
+BEGIN
+    fide_proyecto_final_pkg.fide_estados_tb_insertar_sp('Inactivo');
+    fide_proyecto_final_pkg.fide_estados_tb_insertar_sp('Activo');
 
-INSERT INTO FIDE_PAISES_TB(Nombre) VALUES ('Costa Rica');
-COMMIT;
-    
-INSERT INTO FIDE_PROVINCIAS_TB(Nombre, idPais) VALUES ('Cartago',1);
-INSERT INTO FIDE_PROVINCIAS_TB(Nombre, idPais) VALUES ('San José',1);
-INSERT INTO FIDE_PROVINCIAS_TB(Nombre, idPais) VALUES ('Alajuela',1);
-INSERT INTO FIDE_PROVINCIAS_TB(Nombre, idPais) VALUES ('Heredia',1);
-INSERT INTO FIDE_PROVINCIAS_TB(Nombre, idPais) VALUES ('Limón',1);
-INSERT INTO FIDE_PROVINCIAS_TB(Nombre, idPais) VALUES ('Puntarenas',1);
-INSERT INTO FIDE_PROVINCIAS_TB(Nombre, idPais) VALUES ('Guanacaste',1);
-COMMIT;
- 
--- Inserción de cantones por provincia
--- Cartago
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Cartago',1);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Paraíso',1);    
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('La Unión',1);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Jiménez',1);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Turrialba',1);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Alvarado',1);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Oreamuno',1);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('El Guarco',1);
-COMMIT;
+    fide_proyecto_final_pkg.fide_paises_tb_insertar_sp('Costa Rica');
 
--- San José
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('San José',2);   
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Escazú',2);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Desamparados',2);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Puriscal',2);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Tarrazú',2);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Aserrí',2);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Mora',2);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Goicoechea',2);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Santa Ana',2);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Alajuelita',2);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Vázquez de Coronado',2);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Acosta',2);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Tibás',2);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Moravia',2);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Montes de Oca',2);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Turrubares',2);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Dota',2);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Curridabat',2);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Pérez Zeledón',2);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('León Cortés Castro',2);
-COMMIT;
+    fide_proyecto_final_pkg.fide_provincias_tb_insertar_sp('Cartago', 1);
+    fide_proyecto_final_pkg.fide_provincias_tb_insertar_sp('San José', 1);
+    fide_proyecto_final_pkg.fide_provincias_tb_insertar_sp('Alajuela', 1);
+    fide_proyecto_final_pkg.fide_provincias_tb_insertar_sp('Heredia', 1);
+    fide_proyecto_final_pkg.fide_provincias_tb_insertar_sp('Limón', 1);
+    fide_proyecto_final_pkg.fide_provincias_tb_insertar_sp('Puntarenas', 1);
+    fide_proyecto_final_pkg.fide_provincias_tb_insertar_sp('Guanacaste', 1);
 
--- Alajuela
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Alajuela',3);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('San Ramón',3);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Grecia',3);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('San Mateo',3);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Atenas',3);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Naranjo',3);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Palmares',3);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Poás',3);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Orotina',3);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('San Carlos',3);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Zarcero',3);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Sarchí',3);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Upala',3);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Los Chiles',3);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Guatuso',3);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Río Cuarto',3);
-COMMIT;
+    -- Inserción de cantones por provincia
+    -- Cartago
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Cartago', 1);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Paraíso', 1);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('La Unión', 1);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Jiménez', 1);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Turrialba', 1);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Alvarado', 1);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Oreamuno', 1);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('El Guarco', 1);
 
--- Heredia
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Heredia',4);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Barva',4);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Santo Domingo',4);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Santa Bárbara',4);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('San Rafael',4);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('San Isidro',4);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Belén',4);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Flores',4);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('San Pablo',4);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Sarapiquí',4);
-COMMIT;
+    -- San José
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('San José', 2);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Escazú', 2);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Desamparados', 2);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Puriscal', 2);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Tarrazú', 2);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Aserrí', 2);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Mora', 2);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Goicoechea', 2);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Santa Ana', 2);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Alajuelita', 2);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Vázquez de Coronado', 2);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Acosta', 2);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Tibás', 2);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Moravia', 2);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Montes de Oca', 2);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Turrubares', 2);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Dota', 2);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Curridabat', 2);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Pérez Zeledón', 2);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('León Cortés Castro', 2);
 
--- Limón
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Limón',5);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Pococí',5);    
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Siquirres',5);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Talamanca',5);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Matina',5);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Guácimo',5);
-COMMIT;
+    -- Alajuela
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Alajuela', 3);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('San Ramón', 3);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Grecia', 3);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('San Mateo', 3);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Atenas', 3);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Naranjo', 3);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Palmares', 3);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Poás', 3);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Orotina', 3);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('San Carlos', 3);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Zarcero', 3);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Sarchí', 3);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Upala', 3);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Los Chiles', 3);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Guatuso', 3);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Río Cuarto', 3);
 
--- Puntarenas
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Puntarenas',6);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Esparza',6);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Buenos Aires',6);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Montes de Oro',6);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Osa',6);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Quepos',6);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Golfito',6);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Coto Brus',6);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Parrita',6);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Corredores',6);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Garabito',6);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Monteverde',6);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Puerto Jiménez',6);
-COMMIT;
+    -- Heredia
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Heredia', 4);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Barva', 4);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Santo Domingo', 4);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Santa Bárbara', 4);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('San Rafael', 4);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('San Isidro', 4);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Belén', 4);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Flores', 4);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('San Pablo', 4);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Sarapiquí', 4);
 
--- Guanacaste
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Liberia',7);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Nicoya',7);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Santa Cruz',7);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Bagaces',7);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Carillo',7);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Cañas',7);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Abangares',7);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Tilarán',7);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Nandayure',7);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('La Cruz',7);
-INSERT INTO FIDE_CANTONES_TB(Nombre, idProvincia) VALUES ('Hojancha',7);
-COMMIT;
+    -- Limón
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Limón', 5);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Pococí', 5);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Siquirres', 5);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Talamanca', 5);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Matina', 5);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Guácimo', 5);
 
-INSERT INTO FIDE_DIRECCIONES_TB(idPais, idProvincia, idCanton, idDistrito, direccionExacta) VALUES 
-    (1,2, 23, 143, '200 metros sur del Outlet Mall');
-    COMMIT;
-COMMIT;
+    -- Puntarenas
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Puntarenas', 6);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Esparza', 6);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Buenos Aires', 6);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Montes de Oro', 6);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Osa', 6);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Quepos', 6);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Golfito', 6);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Coto Brus', 6);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Parrita', 6);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Corredores', 6);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Garabito', 6);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Monteverde', 6);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Puerto Jiménez', 6);
 
-INSERT INTO FIDE_SUCURSALES_TB(Nombre, idDireccion, horaApertura, horaCierre) VALUES
-    ('Sucursal Central', 1, '8:00am','5:00pm');
-    COMMIT;
-COMMIT;
+    -- Guanacaste
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Liberia', 7);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Nicoya', 7);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Santa Cruz', 7);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Bagaces', 7);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Carillo', 7);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Cañas', 7);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Abangares', 7);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Tilarán', 7);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Nandayure', 7);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('La Cruz', 7);
+    fide_proyecto_final_pkg.fide_cantones_tb_insertar_sp('Hojancha', 7);
 
-INSERT INTO FIDE_EMPLEADOS_TB(Nombre,idSucursal,Puesto, idDireccion, Salario, correo, contrasena) VALUES
-    ('Nathalie Poveda Chaves', 1, 'Gerente de Cajas', 1, 1500, 'nathalie@innovatech.com', '123');
-COMMIT;
+    fide_proyecto_final_pkg.fide_direcciones_tb_insertar_sp(1, 2, 23, 143, '200 metros sur del Outlet Mall');
 
-INSERT INTO FIDE_ROLES_TB(Nombre, idEmpleado) VALUES
-    ('ADMIN',1);
-COMMIT;
+    fide_proyecto_final_pkg.fide_sucursales_tb_insertar_sp('Sucursal Central', 1, '8:00am', '5:00pm');
 
-INSERT INTO FIDE_METODOSPAGO_TB(Nombre) VALUES ('Tarjeta'); 
-INSERT INTO FIDE_METODOSPAGO_TB(Nombre) VALUES ('Efectivo'); 
-INSERT INTO FIDE_METODOSPAGO_TB(Nombre) VALUES ('SINPE Movil'); 
-COMMIT;
+    fide_proyecto_final_pkg.fide_empleados_tb_insertar_sp('Nathalie Poveda Chaves', 1, 'Gerente de Cajas', 1, 1500, 'nathalie@innovatech.com', '123');
+
+    fide_proyecto_final_pkg.fide_roles_tb_insertar_sp('ADMIN', 1);
+
+    fide_proyecto_final_pkg.fide_metodospago_tb_insertar_sp('Tarjeta');
+    fide_proyecto_final_pkg.fide_metodospago_tb_insertar_sp('Efectivo');
+    fide_proyecto_final_pkg.fide_metodospago_tb_insertar_sp('SINPE Movil');
+END;
+/
