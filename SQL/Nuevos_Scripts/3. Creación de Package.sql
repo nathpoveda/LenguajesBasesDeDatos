@@ -18,16 +18,19 @@ CREATE OR REPLACE PACKAGE fide_proyecto_final_pkg AS
         v_nombre IN fide_paises_tb.nombre%TYPE
     );
 
-    PROCEDURE fide_provincias_tb_insertar_sp (
-        v_nombre IN fide_provincias_tb.nombre%TYPE
+   PROCEDURE fide_provincias_tb_insertar_sp (
+        v_nombre IN fide_provincias_tb.nombre%TYPE,
+    v_idPais IN fide_provincias_tb.idPais%TYPE
     );
 
     PROCEDURE fide_cantones_tb_insertar_sp (
-        v_nombre IN fide_cantones_tb.nombre%TYPE
+        v_nombre IN fide_cantones_tb.nombre%TYPE,
+        v_idProvincia IN fide_cantones_tb.idProvincia%TYPE
     );
 
     PROCEDURE fide_distritos_tb_insertar_sp (
-        v_nombre IN fide_distritos_tb.nombre%TYPE
+        v_nombre IN fide_distritos_tb.nombre%TYPE,
+        v_idCanton IN fide_distritos_tb.idCanton%TYPE
     );
 
     PROCEDURE fide_direcciones_tb_insertar_sp (
