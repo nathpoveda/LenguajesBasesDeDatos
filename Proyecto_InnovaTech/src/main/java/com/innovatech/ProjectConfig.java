@@ -62,6 +62,7 @@ public class ProjectConfig implements WebMvcConfigurer {
                 "/inventario/**",
                 "/proveedor/**",
                 "/empleado/**",
+                "/productoProveedor/**",
                 "/inicio-admin"
                 )
                 .hasAnyRole("ADMIN", "SALES")

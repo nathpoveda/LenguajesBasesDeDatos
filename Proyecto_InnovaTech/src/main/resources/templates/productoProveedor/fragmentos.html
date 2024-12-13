@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<!--Este es el archivo de fragmentos de ProductosProveedor -->
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Productos Proveedor - InnovaTech</title>
+        <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
+        <link th:href="@{/webjars/font-awesome/css/all.css}" rel="stylesheet" />
+
+    </head>
+
+    <body>
+
+
+        <section th:fragment="botonesAgregar" class="py-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">   
+                        <button 
+                            sec:authorize="hasRole('ROLE_ADMIN')"
+                            type="button" 
+                            class="btn btn-primary btn-block" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#agregarInventario">
+                            <i class="fas fa-plus"></i> Agregar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section th:fragment="listadoProductosProveedor" id="productosProveedor">
+            <div class="container pt-4">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Listado de Productos Proveedor</h4>
+                            </div>
+                            <div th:if="${productosProveedor != null and !productosProveedor.empty}">
+                                <table class="table table-hover table-bordered ">
+                                    <thead class="table-primary">
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Producto</th>
+                                            <th>Proveedor</th>
+                                            <th>Horario de entrega</th>
+                                            <th>Precio</th>
+                                            <th>Estado</th>
+                                            <th sec:authorize="hasRole('ROLE_ADMIN')" >Opciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="productoProveedor, contador : ${productosProveedor}">
+                                            <td>[[${contador.count}]]</td>
+                                            <td>[[${productoProveedor.id.producto.nombre}]]</td>
+                                            <td>[[${productoProveedor.id.proveedor.nombre}]]</td>
+                                            <td>[[${productoProveedor.horarioEntrega}]]</td>
+                                            <td>[[${productoProveedor.precioCompra}]]</td>
+                                            <td>
+                                                <span th:if="${productoProveedor.idestado == 2}">Activo</span>
+                                                <span th:if="${productoProveedor.idestado != 2}">Inactivo</span>
+                                            </td>
+                                            <td sec:authorize="hasRole('ROLE_ADMIN')">
+                                                <a th:href="@{/productoProveedor/eliminar/(idProducto=${productoProveedor.id.producto.idProducto},idProveedor=${productoProveedor.id.proveedor.idProveedor})}"
+                                                   th:classappend="${productoProveedor.idestado == 2} ? 'btn btn-danger' : 'btn btn-success'"
+                                                   th:text="${productoProveedor.idestado == 2} ? 'Deshabilitar' : 'Habilitar'">
+                                                    <i class="fa-solid fa-ban"></i>
+                                                </a>
+                                                <a th:href="@{/productoProveedor/modificar/}+${productoProveedor.id}"
+                                                   class="btn btn-primary"> Actualizar
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="text-center p-2" th:if="${productosProveedor == null or productosProveedor.empty}">
+                                <span>No hay preoductos por proveedor registrados.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card text-center text-white mb-3" style="background-color: #0D6EFD">
+                            <div class="card-body">
+                                <h3>Productos Proveedor registrados</h3>
+                                <h4 class="fs-2"><i class="fa-solid fa-icons"></i> [[${totalProductosProveedor}]]</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section th:fragment="agregarProductoProveedor">
+            <div id="agregarInventario" 
+                 class="modal fade" 
+                 tabindex="-1" 
+                 aria-labelledby="exampleModalLabel" 
+                 aria-hidden="true">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content">
+                        <div class="modal-header bg-info text-white">
+                            <h5 class="modal-title">Agregar Nuevo Inventario</h5>
+                            <button type="button" 
+                                    class="btn-close" 
+                                    data-bs-dismiss="modal" 
+                                    aria-label="Close"></button>
+                        </div> 
+                        <form th:action="@{/productoProveedor/guardar}" th:object="${productoProveedor}"
+                              method="POST" class="was-validated"
+                              enctype="multipart/form-data">
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label for="horarioEntrega">Horario de Entrega</label>
+                                    <input type="time" class="form-control" name="horarioEntrega" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="precioCompra">Precio de compra</label>
+                                    <input type="number" class="form-control" name="precioCompra" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="producto">Producto</label>
+                                    <select class="form-select" name="id.producto.idProducto" required="true">
+                                        <option value="" disabled selected>Seleccione un producto</option>
+                                        <option th:each="producto : ${productos}" 
+                                                th:value="${producto.idProducto}" 
+                                                th:text="${producto.nombre}"></option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="proveedor">Proveedor</label>
+                                    <select class="form-select" name="id.proveedor.idProveedor" required="true">
+                                        <option value="" disabled selected>Seleccione una sucursal</option>
+                                        <option th:each="proveedor : ${proveedores}" 
+                                                th:value="${proveedor.idProveedor}" 
+                                                th:text="${proveedor.nombre}"></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" type="submit">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section th:fragment="botonesEditar">
+            <div class="container py-4 mb-4 bg-light">
+                <div class="row">
+                    <div class="col-md-4 d-grid">
+                        <a th:href="@{/productoProveedor/listado}" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left"></i> Regresar
+                        </a>
+                    </div>
+
+                    <div class="col-md-4 d-grid" sec:authorize="hasRole('ROLE_ADMIN')">                             
+                        <a th:href="@{/productoProveedor/eliminar/}+${productoProveedor.id}"
+                           class="btn btn-danger">
+                            <i class="fa-solid fa-ban"></i> Deshabilitar 
+                        </a>
+                    </div>
+
+                    <div class="col-md-4 d-grid" sec:authorize="hasRole('ROLE_ADMIN')">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-check"></i> Actualizar 
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>

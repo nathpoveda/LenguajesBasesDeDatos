@@ -159,7 +159,7 @@ VALUES
     (
         v_idpais,
         v_idprovincia,
-        v_idcanton,
+        v_idcanton, 
         v_iddistrito,
         v_direccionexacta
     )
@@ -277,6 +277,7 @@ END fide_productos_tb_insertar_sp;
 PROCEDURE fide_productoproveedor_tb_insertar_sp (
     v_horarioentrega IN fide_productoproveedor_tb.horarioentrega % TYPE,
     v_idproveedor IN fide_productoproveedor_tb.idproveedor % TYPE,
+    v_idproducto IN fide_productoproveedor_tb.idproducto%TYPE,
     v_preciocompra IN fide_productoproveedor_tb.preciocompra % TYPE
 ) IS CURSOR proveedor_compramayor IS
 SELECT
@@ -289,12 +290,14 @@ INSERT INTO
     fide_productoproveedor_tb (
         horarioentrega,
         idproveedor,
+        idproducto,
         preciocompra
     )
 VALUES
     (
         v_horarioentrega,
         v_idproveedor,
+        v_idproducto,
         v_preciocompra
     );
 

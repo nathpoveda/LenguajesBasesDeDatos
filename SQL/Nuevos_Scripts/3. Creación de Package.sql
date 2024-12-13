@@ -62,6 +62,7 @@ CREATE OR REPLACE PACKAGE fide_proyecto_final_pkg AS
     PROCEDURE fide_productoproveedor_tb_insertar_sp (
         v_horarioentrega IN fide_productoproveedor_tb.horarioentrega%TYPE,
         v_idproveedor    IN fide_productoproveedor_tb.idproveedor%TYPE,
+        v_idproducto     IN fide_productoproveedor_tb.idproducto%TYPE,
         v_preciocompra   IN fide_productoproveedor_tb.preciocompra%TYPE
     );
 
