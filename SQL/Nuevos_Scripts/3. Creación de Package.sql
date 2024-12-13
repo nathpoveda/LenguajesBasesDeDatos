@@ -38,7 +38,8 @@ CREATE OR REPLACE PACKAGE fide_proyecto_final_pkg AS
         v_idprovincia     IN fide_direcciones_tb.idprovincia%TYPE,
         v_idcanton        IN fide_direcciones_tb.idcanton%TYPE,
         v_iddistrito      IN fide_direcciones_tb.iddistrito%TYPE,
-        v_direccionexacta IN fide_direcciones_tb.direccionexacta%TYPE
+        v_direccionexacta IN fide_direcciones_tb.direccionexacta%TYPE,
+        v_iddireccion     OUT fide_direcciones_tb.iddireccion%TYPE
     );
 
     PROCEDURE fide_proveedores_tb_insertar_sp (
@@ -55,7 +56,6 @@ CREATE OR REPLACE PACKAGE fide_proyecto_final_pkg AS
         v_nombre      IN fide_productos_tb.nombre%TYPE,
         v_precio      IN fide_productos_tb.precio%TYPE,
         v_idcategoria IN fide_productos_tb.idcategoria%TYPE,
-        v_idestado    IN fide_productos_tb.idestado%TYPE,
         v_idmarca     IN fide_productos_tb.idmarca%TYPE
     );
 
@@ -86,7 +86,7 @@ CREATE OR REPLACE PACKAGE fide_proyecto_final_pkg AS
         v_iddireccion IN fide_empleados_tb.iddireccion%TYPE,
         v_salario     IN fide_empleados_tb.salario%TYPE,
         v_correo      IN fide_empleados_tb.correo%TYPE,
-        v_idestado    IN fide_empleados_tb.idestado%TYPE
+        v_contrasena    IN fide_empleados_tb.contrasena%TYPE
     );
 
     PROCEDURE fide_ventas_tb_insertar_sp (
@@ -181,7 +181,6 @@ CREATE OR REPLACE PACKAGE fide_proyecto_final_pkg AS
         v_nombre       IN fide_productos_tb.nombre%TYPE,
         v_precio       IN fide_productos_tb.precio%TYPE,
         v_idcategoria  IN fide_productos_tb.idcategoria%TYPE,
-        v_idestado     IN fide_productos_tb.idestado%TYPE,
         v_idmarca      IN fide_productos_tb.idmarca%TYPE
     );
     
