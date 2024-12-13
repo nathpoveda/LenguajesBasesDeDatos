@@ -622,11 +622,11 @@ BEGIN
     
     fide_proyecto_final_pkg.fide_categorias_tb_insertar_sp('Procesadores', 'Procesador de computador');
     
-    fide_proyecto_final_pkg.fide_inventarios_tb_insertar_sp(1,5,sysdate,1);
-   
     fide_proyecto_final_pkg.fide_marcasproducto_tb_insertar_sp('AMD');
-
+    
     fide_proyecto_final_pkg.fide_productos_tb_insertar_sp('Ryzen 7 5700 X3D', 150, 1,1); 
+    
+    fide_proyecto_final_pkg.fide_inventarios_tb_insertar_sp(1,5,1);
 
     fide_proyecto_final_pkg.fide_metodospago_tb_insertar_sp('Tarjeta');
     fide_proyecto_final_pkg.fide_metodospago_tb_insertar_sp('Efectivo');

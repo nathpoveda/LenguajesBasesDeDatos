@@ -76,7 +76,6 @@ CREATE OR REPLACE PACKAGE fide_proyecto_final_pkg AS
     PROCEDURE fide_inventarios_tb_insertar_sp (
         v_idproducto          IN fide_inventarios_tb.idproducto%TYPE,
         v_cantidad            IN fide_inventarios_tb.cantidad%TYPE,
-        v_ultimaactualizacion IN fide_inventarios_tb.ultimaactualizacion%TYPE,
         v_idsucursal          IN fide_inventarios_tb.idsucursal%TYPE
     );
 

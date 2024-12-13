@@ -357,7 +357,6 @@ END fide_sucursales_tb_insertar_sp;
 PROCEDURE fide_inventarios_tb_insertar_sp (
     v_idproducto IN fide_inventarios_tb.idproducto % TYPE,
     v_cantidad IN fide_inventarios_tb.cantidad % TYPE,
-    v_ultimaactualizacion IN fide_inventarios_tb.ultimaactualizacion % TYPE,
     v_idsucursal IN fide_inventarios_tb.idsucursal % TYPE
 ) IS CURSOR cantidad_inventario IS
 SELECT
@@ -370,14 +369,12 @@ INSERT INTO
     fide_inventarios_tb (
         idproducto,
         cantidad,
-        ultimaactualizacion,
         idsucursal
     )
 VALUES
     (
         v_idproducto,
         v_cantidad,
-        v_ultimaactualizacion,
         v_idsucursal
     );
 
