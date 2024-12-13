@@ -77,77 +77,57 @@ END fide_paises_tb_insertar_sp;
 
 --------------------------------------------------------- Procedimiento para insertar una provincia----------------------------------------------------------
 PROCEDURE fide_provincias_tb_insertar_sp (
-    v_nombre IN fide_provincias_tb.nombre % TYPE
-) IS CURSOR insertar_provincias IS
-SELECT
-    *
-FROM
-    fide_provincias_tb;
-
+    v_nombre IN fide_provincias_tb.nombre%TYPE,
+    v_idPais IN fide_provincias_tb.idPais%TYPE
+) IS
+     CURSOR insertar_provincias IS 
+    SELECT * FROM fide_provincias_tb;
 BEGIN
-INSERT INTO
-    fide_provincias_tb (nombre)
-VALUES
-    (v_nombre);
-
-FOR provincia IN insertar_provincias LOOP IF LENGTH(provincia.nombre) > 5 THEN DBMS_OUTPUT.PUT_LINE('Provincia: ' || provincia.nombre);
-
-END IF;
-
-END LOOP;
-
-COMMIT;
-
+    INSERT INTO fide_provincias_tb ( nombre,idPais ) VALUES ( v_nombre, v_idPais );
+    
+    FOR provincia IN insertar_provincias LOOP
+        IF LENGTH(provincia.nombre) > 5 THEN
+            DBMS_OUTPUT.PUT_LINE('Provincia: ' || provincia.nombre);
+        END IF;
+    END LOOP;
+    COMMIT;
 END fide_provincias_tb_insertar_sp;
-
 -------------------------------------------------------- Procedimiento para insertar un cantÃ³n--------------------------------------------------------------
 PROCEDURE fide_cantones_tb_insertar_sp (
-    v_nombre IN fide_cantones_tb.nombre % TYPE
-) IS CURSOR insertar_cantones IS
-SELECT
-    *
-FROM
-    fide_cantones_tb;
+    v_nombre IN fide_cantones_tb.nombre%TYPE,
+    v_idProvincia IN fide_cantones_tb.idProvincia%TYPE
+) IS
+    CURSOR insertar_cantones IS 
+    SELECT * FROM fide_cantones_tb;
 
 BEGIN
-INSERT INTO
-    fide_cantones_tb (nombre)
-VALUES
-    (v_nombre);
+    INSERT INTO fide_cantones_tb ( nombre,  idProvincia ) VALUES ( v_nombre, v_idProvincia );
+    
+    FOR canton IN insertar_cantones LOOP
+        IF LENGTH(canton.nombre) > 10 THEN
+            DBMS_OUTPUT.PUT_LINE('Cantón: ' || canton.nombre);
+        END IF;
+    END LOOP;
 
-FOR canton IN insertar_cantones LOOP IF LENGTH(canton.nombre) > 10 THEN DBMS_OUTPUT.PUT_LINE('Cantón: ' || canton.nombre);
-
-END IF;
-
-END LOOP;
-
-COMMIT;
-
+    COMMIT;
 END fide_cantones_tb_insertar_sp;
-
 ------------------------------------------------------- Procedimiento para insertar un distrito-------------------------------------------------------------
 PROCEDURE fide_distritos_tb_insertar_sp (
-    v_nombre IN fide_distritos_tb.nombre % TYPE
-) IS CURSOR insertar_distritos IS
-SELECT
-    *
-FROM
-    fide_distritos_tb;
-
+    v_nombre IN fide_distritos_tb.nombre%TYPE,
+    v_idCanton IN fide_distritos_tb.idCanton%TYPE
+) IS
+    CURSOR insertar_distritos IS 
+    SELECT * FROM fide_distritos_tb;
 BEGIN
-INSERT INTO
-    fide_distritos_tb (nombre)
-VALUES
-    (v_nombre);
+    INSERT INTO fide_distritos_tb ( nombre,  idCanton ) VALUES ( v_nombre, v_idCanton );
+    
+    FOR distrito IN insertar_distritos LOOP
+        IF LENGTH(distrito.nombre) > 10 THEN
+            DBMS_OUTPUT.PUT_LINE('Distrito: ' || distrito.nombre);
+        END IF;
+    END LOOP;
 
-FOR distrito IN insertar_distritos LOOP IF LENGTH(distrito.nombre) > 10 THEN DBMS_OUTPUT.PUT_LINE('Distrito: ' || distrito.nombre);
-
-END IF;
-
-END LOOP;
-
-COMMIT;
-
+    COMMIT;
 END fide_distritos_tb_insertar_sp;
 
 ------------------------------------------------------ Procedimiento para insertar una direcciÃ³n------------------------------------------------------------
@@ -616,6 +596,23 @@ VALUES
 COMMIT;
 
 END fide_devoluciones_tb_insertar_sp;
+
+----------------------------------------------------- Procedimiento para insertar un rol ---------------------------------------------------------------
+PROCEDURE fide_roles_tb_insertar_sp (
+    v_nombre IN fide_roles_tb.nombre%TYPE,
+    v_idempleado IN fide_roles_tb.idempleado%TYPE
+) IS
+BEGIN
+    INSERT INTO fide_roles_tb (
+        nombre,
+        idempleado
+    ) VALUES (
+        v_nombre,
+        v_idempleado
+    );
+
+    COMMIT;
+END fide_roles_tb_insertar_sp;
 
 --------------------------------------------------------------------------------
 -------------------PROCEDIMIENTOS DE ALMACENADO UPDATE-------------------------
@@ -1185,7 +1182,7 @@ COMMIT;
 
 END fide_facturas_tb_actualizar_sp;
 
------------------------------------ Procedimiento para actualizar una devoluciÃ³n--------------------------------------------------------------
+----------------------------------- Procedimiento para actualizar una devolución--------------------------------------------------------------
 PROCEDURE fide_devoluciones_tb_actualizar_sp (
     v_iddevolucion IN fide_devoluciones_tb.iddevolucion % TYPE,
     v_idproducto IN fide_devoluciones_tb.idproducto % TYPE,
@@ -1210,6 +1207,31 @@ DBMS_OUTPUT.PUT_LINE(
 COMMIT;
 
 END fide_devoluciones_tb_actualizar_sp;
+
+----------------------------------------------------- Procedimiento para actualizar un rol ---------------------------------------------------------------
+PROCEDURE fide_roles_tb_actualizar_sp (
+    v_idrol IN fide_roles_tb.idrol%TYPE,
+    v_nuevo_nombre IN fide_roles_tb.nombre%TYPE,
+    v_nuevo_idempleado IN fide_roles_tb.idempleado%TYPE
+) IS
+CURSOR roles_cursor IS
+    SELECT idrol, nombre, idempleado
+    FROM fide_roles_tb
+    WHERE idrol = v_idrol;
+BEGIN
+    FOR rol IN roles_cursor LOOP
+        UPDATE fide_roles_tb
+        SET nombre = v_nuevo_nombre,
+            idempleado = v_nuevo_idempleado
+        WHERE idrol = rol.idrol;
+
+        DBMS_OUTPUT.PUT_LINE(
+            'Rol actualizado: ' || rol.idrol || ' - Nuevo nombre: ' || v_nuevo_nombre || ' - Nuevo idEmpleado: ' || v_nuevo_idempleado
+        );
+    END LOOP;
+
+    COMMIT;
+END fide_roles_tb_actualizar_sp;
 
 -- DELETES (update estado=inactivo)
 -- "Eliminar" una categoria

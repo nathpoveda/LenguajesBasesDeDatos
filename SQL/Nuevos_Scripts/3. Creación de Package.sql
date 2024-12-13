@@ -18,16 +18,19 @@ CREATE OR REPLACE PACKAGE fide_proyecto_final_pkg AS
         v_nombre IN fide_paises_tb.nombre%TYPE
     );
 
-    PROCEDURE fide_provincias_tb_insertar_sp (
-        v_nombre IN fide_provincias_tb.nombre%TYPE
+   PROCEDURE fide_provincias_tb_insertar_sp (
+        v_nombre IN fide_provincias_tb.nombre%TYPE,
+    v_idPais IN fide_provincias_tb.idPais%TYPE
     );
 
     PROCEDURE fide_cantones_tb_insertar_sp (
-        v_nombre IN fide_cantones_tb.nombre%TYPE
+        v_nombre IN fide_cantones_tb.nombre%TYPE,
+        v_idProvincia IN fide_cantones_tb.idProvincia%TYPE
     );
 
     PROCEDURE fide_distritos_tb_insertar_sp (
-        v_nombre IN fide_distritos_tb.nombre%TYPE
+        v_nombre IN fide_distritos_tb.nombre%TYPE,
+        v_idCanton IN fide_distritos_tb.idCanton%TYPE
     );
 
     PROCEDURE fide_direcciones_tb_insertar_sp (
@@ -118,6 +121,11 @@ CREATE OR REPLACE PACKAGE fide_proyecto_final_pkg AS
         v_idfactura  IN fide_devoluciones_tb.idfactura%TYPE,
         v_fecha      IN fide_devoluciones_tb.fecha%TYPE,
         v_motivo     IN fide_devoluciones_tb.motivo%TYPE
+    );
+
+    PROCEDURE fide_roles_tb_insertar_sp (
+        v_nombre IN fide_roles_tb.nombre%TYPE,
+        v_idempleado IN fide_roles_tb.idempleado%TYPE
     );
     
     ---------------PROCEDIMEINTOS ALMACENADO UPDATE----------------------
@@ -234,6 +242,12 @@ CREATE OR REPLACE PACKAGE fide_proyecto_final_pkg AS
         v_idfactura    IN fide_devoluciones_tb.idfactura%TYPE,
         v_fecha        IN fide_devoluciones_tb.fecha%TYPE,
         v_motivo       IN fide_devoluciones_tb.motivo%TYPE
+    );
+
+    PROCEDURE fide_roles_tb_actualizar_sp (
+        v_idrol IN fide_roles_tb.idrol%TYPE,
+        v_nuevo_nombre IN fide_roles_tb.nombre%TYPE,
+        v_nuevo_idempleado IN fide_roles_tb.idempleado%TYPE
     );
 
      ---------------PROCEDIMEINTOS ALMACENADO DELETE----------------------
