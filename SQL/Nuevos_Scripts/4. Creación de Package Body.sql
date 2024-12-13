@@ -1527,11 +1527,9 @@ RETURN v_resultado;
 END categorias_generar_secuencia_fn;
 
 FUNCTION estados_generar_secuencia_fn RETURN NUMBER IS v_resultado NUMBER;
-
-BEGIN v_resultado := id_estados_seq.nextval;
-
-RETURN v_resultado;
-
+BEGIN
+  v_resultado := id_estados_seq.nextval;
+  RETURN v_resultado;
 END estados_generar_secuencia_fn;
 
 FUNCTION paises_generar_secuencia_fn RETURN NUMBER IS v_resultado NUMBER;
